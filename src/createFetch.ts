@@ -7,14 +7,12 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-/* @flow */
+type Fetch = (url: string, options?: any) => Promise<any>;
 
-type Fetch = (url: string, options: ?any) => Promise<any>;
-
-type Options = {
-  baseUrl: string,
-  cookie?: string,
-};
+interface Options {
+  baseUrl: string;
+  cookie?: string;
+}
 
 /**
  * Creates a wrapper function around the HTML5 Fetch API that provides
@@ -29,7 +27,7 @@ function createFetch(fetch: Fetch, { baseUrl, cookie }: Options) {
     mode: baseUrl ? 'cors' : 'same-origin',
     credentials: baseUrl ? 'include' : 'same-origin',
     headers: {
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
       ...(cookie ? { Cookie: cookie } : null),
     },

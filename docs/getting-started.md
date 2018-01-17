@@ -5,7 +5,7 @@
 * Mac OS X, Windows, or Linux
 * [Yarn](https://yarnpkg.com/) package + [Node.js](https://nodejs.org/) v6.5 or
   newer
-* Text editor or IDE pre-configured with React/JSX/Flow/ESlint
+* Text editor or IDE pre-configured with React/JSX/TypeScript/ESlint
   ([learn more](./how-to-configure-text-editors.md))
 
 ### Directory Layout
@@ -157,8 +157,7 @@ The deployment script `tools/deploy.js` is configured to push the contents of
 the `/build` folder to a remote server via Git. You can easily deploy your app
 to
 [Azure Web Apps](https://azure.microsoft.com/en-us/services/app-service/web/),
-or [Heroku](https://www.heroku.com/) this way. Both will execute `yarn install
---production` upon receiving new files from you. Note, you should only deploy
+or [Heroku](https://www.heroku.com/) this way. Both will execute `yarn install --production` upon receiving new files from you. Note, you should only deploy
 the contents of the `/build` folder to a remote server.
 
 ### How to Update
