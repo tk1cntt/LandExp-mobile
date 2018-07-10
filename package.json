@@ -14,6 +14,8 @@
   ],
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.51",
+    "antd": "^3.6.6",
+    "babel-plugin-import": "^1.8.0",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
     "cookie-parser": "^1.4.3",
@@ -24,6 +26,10 @@
     "history": "^4.7.2",
     "isomorphic-style-loader": "^4.0.0",
     "jsonwebtoken": "^8.3.0",
+    "less": "^3.5.3",
+    "less-loader": "^4.1.0",
+    "less-vars-to-js": "^1.2.1",
+    "mini-css-extract-plugin": "^0.4.1",
     "node-fetch": "^2.1.2",
     "normalize.css": "^8.0.0",
     "passport": "^0.4.0",
@@ -37,6 +43,7 @@
     "serialize-javascript": "^1.5.0",
     "source-map-support": "^0.5.6",
     "sqlite3": "^4.0.0",
+    "style-loader": "^0.21.0",
     "universal-router": "^6.0.0",
     "whatwg-fetch": "^2.0.4"
   },

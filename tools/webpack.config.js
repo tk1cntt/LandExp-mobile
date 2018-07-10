@@ -11,10 +11,19 @@ import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import lessToJS from 'less-vars-to-js';
 import nodeExternals from 'webpack-node-externals';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import overrideRules from './lib/overrideRules';
 import pkg from '../package.json';
+
+const antThemeVars = lessToJS(
+  fs.readFileSync(
+    path.resolve(__dirname, '../src/components/antTheme.less'),
+    'utf8',
+  ),
+);
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
@@ -122,9 +131,48 @@ const config = {
         },
       },
 
+      // Rules for Ant-Design
+      {
+        test: /\.less$/,
+        include: [
+          /[\\/]node_modules[\\/].*antd/,
+          resolvePath(SRC_DIR, 'components/antTheme.less'),
+        ],
+        use: [
+          MiniCssExtractPlugin.loader,
+          // 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDebug,
+              minimize: isDebug ? false : minimizeCssOptions,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: './tools/postcss.config.js',
+              },
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: antThemeVars,
+              javascriptEnabled: true,
+            },
+          },
+        ],
+      },
+
       // Rules for Style Sheets
       {
         test: reStyle,
+        exclude: [
+          /[\\/]node_modules[\\/].*antd/,
+          resolvePath(SRC_DIR, 'components/antTheme.less'),
+        ],
         rules: [
           // Convert CSS into JS module
           {
@@ -308,6 +356,10 @@ const clientConfig = {
     new webpack.DefinePlugin({
       'process.env.BROWSER': true,
       __DEV__: isDebug,
+    }),
+
+    new MiniCssExtractPlugin({
+      filename: `styles/[name].css`,
     }),
 
     // Emit a file with assets paths
@@ -494,5 +546,11 @@ const serverConfig = {
     __dirname: false,
   },
 };
+
+// Only use babel-plugin-import in client side
+clientConfig.module.rules[0].options.plugins = [
+  ...clientConfig.module.rules[0].options.plugins,
+  ['import', { libraryName: 'antd', style: true }],
+];
 
 export default [clientConfig, serverConfig];
