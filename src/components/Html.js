@@ -58,6 +58,31 @@ class Html extends React.Component {
           ))}
         </head>
         <body>
+          <noscript id="deferred-styles">
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            />
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/antd-mobile/2.2.2/antd-mobile.min.css"
+            />
+          </noscript>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `var loadDeferredStyles = function () {
+                  var addStylesNode = document.getElementById("deferred-styles");
+                  var replacement = document.createElement("div");
+                  replacement.innerHTML = addStylesNode.textContent;
+                  document.body.appendChild(replacement)
+                  addStylesNode.parentElement.removeChild(addStylesNode);
+              };
+              var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                  window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+              if (raf) raf(function () { window.setTimeout(loadDeferredStyles, 0); });
+              else window.addEventListener('load', loadDeferredStyles);`,
+            }}
+          />
           <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
           <script
             dangerouslySetInnerHTML={{ __html: `window.App=${serialize(app)}` }}

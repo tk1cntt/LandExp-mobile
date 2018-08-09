@@ -9,19 +9,22 @@
 
 import React from 'react';
 import Home from './Home';
-import newsQuery from './news.graphql';
+import loginQuery from './login.graphql';
 import Layout from '../../components/Layout';
 
-async function action({ client }) {
-  const data = await client.query({
-    query: newsQuery,
+async function action(context) {
+  // console.log(context); // eslint-disable-line
+  const data = await context.client.query({
+    query: loginQuery,
+    variables: { username: 'user', password: 'user' },
   });
+  console.log(data); // eslint-disable-line
   return {
     title: 'React Starter Kit',
     chunks: ['home'],
     component: (
       <Layout>
-        <Home news={data.reactjsGetAllNews} />
+        <Home />
       </Layout>
     ),
   };

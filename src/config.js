@@ -30,6 +30,7 @@ module.exports = {
     serverUrl:
       process.env.API_SERVER_URL ||
       `http://localhost:${process.env.PORT || 3000}`,
+    remoteUrl: 'http://api.tinvang.com.vn',
   },
 
   // Database

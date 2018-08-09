@@ -11,8 +11,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { WhiteSpace } from 'antd-mobile';
+
 import newsQuery from './news.graphql';
 import s from './Home.css';
+
+const PlaceHolder = () => <div className={s.placeholder}>Block</div>;
+
+const WhiteSpaceExample = () => (
+  <div>
+    <WhiteSpace size="xs" />
+    <PlaceHolder />
+
+    <WhiteSpace size="sm" />
+    <PlaceHolder />
+
+    <WhiteSpace />
+    <PlaceHolder />
+
+    <WhiteSpace size="lg" />
+    <PlaceHolder />
+
+    <WhiteSpace size="xl" />
+    <PlaceHolder />
+  </div>
+);
 
 class Home extends React.Component {
   static propTypes = {
@@ -29,10 +52,13 @@ class Home extends React.Component {
   };
 
   render() {
-    const { data: { loading, reactjsGetAllNews } } = this.props;
+    const {
+      data: { loading, reactjsGetAllNews },
+    } = this.props;
     return (
       <div className={s.root}>
         <div className={s.container}>
+          <WhiteSpaceExample />
           <h1>React.js News</h1>
           {loading
             ? 'Loading...'
@@ -54,4 +80,7 @@ class Home extends React.Component {
   }
 }
 
-export default compose(withStyles(s), graphql(newsQuery))(Home);
+export default compose(
+  withStyles(s),
+  graphql(newsQuery),
+)(Home);
