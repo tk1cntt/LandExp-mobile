@@ -28,6 +28,14 @@ const fetch = createFetch(window.fetch, {
 
 const apolloClient = createApolloClient();
 
+// Initialize a new Redux store
+// http://redux.js.org/docs/basics/UsageWithReact.html
+const store = configureStore(window.App.state, {
+  apolloClient,
+  fetch,
+  history,
+});
+
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
 const context = {
@@ -42,11 +50,10 @@ const context = {
   },
   // For react-apollo
   client: apolloClient,
-  // Initialize a new Redux store
-  // http://redux.js.org/docs/basics/UsageWithReact.html
-  store: configureStore(window.App.state, { fetch, history }),
-  fetch,
+  store,
   storeSubscription: null,
+  // Universal HTTP client
+  fetch,
 };
 
 const container = document.getElementById('app');

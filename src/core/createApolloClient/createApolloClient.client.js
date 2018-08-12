@@ -5,7 +5,20 @@ import { from } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { HttpLink } from 'apollo-link-http';
 import apolloLogger from 'apollo-link-logger';
+import { setContext } from 'apollo-link-context';
 import createCache from './createCache';
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const link = from([
   onError(({ graphQLErrors, networkError }) => {
@@ -18,6 +31,7 @@ const link = from([
     if (networkError) console.warn(`[Network error]: ${networkError}`);
   }),
   ...(__DEV__ ? [apolloLogger] : []),
+  authLink,
   new HttpLink({
     uri: '/graphql',
     credentials: 'include',

@@ -157,6 +157,7 @@ app.get('*', async (req, res, next) => {
 
     const store = configureStore(initialState, {
       cookie: req.headers.cookie,
+      client: apolloClient,
       fetch,
       // I should not use `history` on server.. but how I do redirection? follow universal-router
       history: null,
