@@ -13,27 +13,39 @@ export const schema = [
     email: String
     activated: Boolean
     authorities: [String]
+    error: Error
   }
 `,
 ];
 
 export const queries = [
   `
-  getSession: Account
+  getSession(token: String): Account
 `,
 ];
 
 export const resolvers = {
   RootQuery: {
-    getSession(context) {
-      console.log('getSession-context', context); // eslint-disable-line
-      const response = client.post('/api/account', {
-        username: 'user',
-        password: 'user',
-        rememberMe: true,
-      });
-      console.log('getSession-response', response); // eslint-disable-line
-      return response;
+    async getSession(parent, args) {
+      console.log('getSession-args', args); // eslint-disable-line
+      const headers = args.token
+        ? {
+            Authorization: `Bearer ${args.token}`,
+          }
+        : {};
+      const account = await client
+        .get('/api/account', {
+          headers,
+        })
+        .then(response => response.data)
+        .catch(error => {
+          console.log(error.response.data) // eslint-disable-line
+          return {
+            error: error.response && error.response.data,
+          };
+        });
+      console.log('getSession-response', account); // eslint-disable-line
+      return account;
     },
   },
 };

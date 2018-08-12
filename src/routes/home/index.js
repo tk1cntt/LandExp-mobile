@@ -9,16 +9,9 @@
 
 import React from 'react';
 import Home from './Home';
-import loginQuery from './login.graphql';
 import Layout from '../../components/Layout';
 
-async function action(context) {
-  // console.log(context); // eslint-disable-line
-  const data = await context.client.query({
-    query: loginQuery,
-    variables: { username: 'user', password: 'user' },
-  });
-  console.log(data); // eslint-disable-line
+async function action() {
   return {
     title: 'React Starter Kit',
     chunks: ['home'],

@@ -157,7 +157,7 @@ Login.propTypes = {
 };
 
 const mapState = state => ({
-  loading: state.user.loading,
+  loading: state.auth.loading,
 });
 
 const mapDispatch = {

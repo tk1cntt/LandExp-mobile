@@ -1,0 +1,8 @@
+query SessionQuery($token: String!) {
+  getSession(token: $token) {
+    id
+    login
+    email
+    authorities
+  }
+}

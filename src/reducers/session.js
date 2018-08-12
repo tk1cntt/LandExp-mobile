@@ -1,34 +1,34 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR } from '../constants';
+import { SESSION_START, SESSION_SUCCESS, SESSION_ERROR } from '../constants';
 
 const INITIAL_STATE = {
   loading: false,
 };
 
-export default function user(state = {}, action) {
+export default function session(state = {}, action) {
   if (state === null) {
     // server doesn't suppprt state = {}
     return INITIAL_STATE;
   }
   switch (action.type) {
-    case LOGIN_START:
+    case SESSION_START:
       return {
         ...state,
         loading: true,
-        user: null,
+        account: null,
       };
-    case LOGIN_SUCCESS:
+    case SESSION_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
-        user: action.payload.user,
+        account: action.payload.user,
       };
-    case LOGIN_ERROR:
+    case SESSION_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        user: null,
+        account: null,
       };
     default:
       return state;

@@ -21,6 +21,8 @@ import history from './history';
 import createApolloClient from './core/createApolloClient';
 import router from './router';
 
+import { LOGIN_SUCCESS } from './constants';
+
 // Universal HTTP client
 const fetch = createFetch(window.fetch, {
   baseUrl: window.App.apiUrl,
@@ -93,6 +95,16 @@ async function onLocationChange(location, action) {
     if (route.redirect) {
       history.replace(route.redirect);
       return;
+    }
+
+    const token = window.localStorage.getItem('token');
+    console.log("Load token from localStorage",  token); // eslint-disable-line
+    if (token) {
+      console.log("Store token to state",  token); // eslint-disable-line
+      store.dispatch({
+        type: LOGIN_SUCCESS,
+        payload: { id_token: token },
+      });
     }
 
     const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;

@@ -3,27 +3,26 @@ import { LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR } from '../constants';
 import mutateLogin from './login.graphql';
 
 export default function login({ usernameOrEmail, password }) {
-  return async (dispatch, getState, { client }) => {
+  return async (dispatch, getState, { client, history }) => {
     dispatch({
       type: LOGIN_START,
     });
-
+    console.log('login-history', history); // eslint-disable-line
     try {
-      const data = await client.query(
+      const queryResponse = await client.query(
         {
           query: mutateLogin,
           variables: { username: usernameOrEmail, password },
         },
         { cache: false },
       );
-      console.log("query response", data); // eslint-disable-line
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: data,
+        payload: queryResponse,
       });
-      // TODO save token
+      window.localStorage.setItem('token', queryResponse.data.login.id_token);
+      // history.goBack();
     } catch (error) {
-      console.log('error response', error); // eslint-disable-line
       dispatch({
         type: LOGIN_ERROR,
         payload: {
