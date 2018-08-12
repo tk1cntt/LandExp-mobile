@@ -23,7 +23,7 @@ export default function login({ usernameOrEmail, password }) {
       });
       // TODO save token
     } catch (error) {
-      console.log(error); // eslint-disable-line
+      console.log('error response', error); // eslint-disable-line
       dispatch({
         type: LOGIN_ERROR,
         payload: {

@@ -8,7 +8,8 @@ const client = axios.create({
 export const schema = [
   `
   type Authentication {
-    id_token: String
+    id_token: String,
+    error: Error,
   }
 `,
 ];
@@ -29,7 +30,9 @@ export const resolvers = {
           rememberMe: true,
         })
         .then(response => response.data)
-        .catch(error => error.data);
+        .catch(error => ({
+          error: error.response && error.response.data,
+        }));
       // console.log('login-context', response); // eslint-disable-line
       return token;
     },

@@ -1,5 +1,10 @@
 query LoginQuery($username: String!, $password: String!) {
   login(username: $username, password: $password) {
-    id_token
+    id_token,
+    error {
+      title
+      status
+      message
+    }
   }
 }
