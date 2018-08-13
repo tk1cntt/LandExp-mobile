@@ -20,6 +20,12 @@ import {
   queries as AuthenticationQueries,
 } from './graphql/Authentication/schema';
 
+import {
+  schema as HouseSchema,
+  resolvers as HouseResolvers,
+  queries as HouseQueries,
+} from './graphql/House/schema';
+
 const RootQuery = [
   `
   # # React-Starter-Kit Querying API
@@ -35,6 +41,7 @@ const RootQuery = [
     ${NewsQueries}
     ${DatabaseQueries}
     ${AuthenticationQueries}
+    ${HouseQueries}
   }
 `,
 ];
@@ -71,6 +78,7 @@ const resolvers = merge(
   NewsResolvers,
   DatabaseResolvers,
   AuthenticationResolvers,
+  HouseResolvers,
 );
 
 const schema = [
@@ -81,6 +89,7 @@ const schema = [
   ...NewsSchema,
   ...DatabaseSchema,
   ...AuthenticationSchema,
+  ...HouseSchema,
 ];
 
 export default makeExecutableSchema({

@@ -27,7 +27,6 @@ export const queries = [
 export const resolvers = {
   RootQuery: {
     async getSession(parent, args) {
-      console.log('getSession-args', args); // eslint-disable-line
       const headers = args.token
         ? {
             Authorization: `Bearer ${args.token}`,
@@ -38,13 +37,13 @@ export const resolvers = {
           headers,
         })
         .then(response => response.data)
-        .catch(error => {
-          console.log(error.response.data) // eslint-disable-line
-          return {
+        .catch(error =>
+          // console.log(error.response.data) // eslint-disable-line
+          ({
             error: error.response && error.response.data,
-          };
-        });
-      console.log('getSession-response', account); // eslint-disable-line
+          }),
+        );
+      // console.log('getSession-response', account); // eslint-disable-line
       return account;
     },
   },

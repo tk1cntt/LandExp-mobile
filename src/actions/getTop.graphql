@@ -1,0 +1,29 @@
+query TopQuery($page: Int, $size: Int) {
+  getTop(page: $page, size: $size) {
+    id
+    link
+    actionType
+    money
+    bathRoom
+    bedRoom
+    parking
+    landType
+    createAt
+    cityName
+    districtName
+    wardName
+    districtType
+    wardType
+    projectName
+    mobile
+    createByLogin
+    error {
+      type
+      title
+      status
+      detail
+      path
+      message
+    }
+  }
+}

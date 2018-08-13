@@ -4,6 +4,7 @@
 node_modules/
 
 # Compiled output
+.vs
 build
 
 # Runtime data
