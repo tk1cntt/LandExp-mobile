@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Link from 'components/Link';
-import SideBar from 'components/SideBar';
+import SideBar from 'components/Sidebar';
 
 import { Icon } from 'antd';
 import {
@@ -71,12 +71,18 @@ class Home extends React.Component {
     this.props.getTop(1, 8);
   }
 
+  onOpenChange = () => {
+    console.log("onOpenChange"); // eslint-disable-line
+    this.setState({ open: !this.state.open });
+  };
+
   render() {
+    console.log("this.props.houseList", this.props.houseList); // eslint-disable-line
     return (
       <div style={{ height: '100%' }}>
         <NavBar icon={<Icon type="bars" />} onLeftClick={this.onOpenChange}>
           <Link to="/">
-            <img src="/content/images/logo.png" />
+            <img src="/content/images/logo.png" alt="" />
           </Link>
         </NavBar>
         <SearchBar
@@ -86,7 +92,7 @@ class Home extends React.Component {
         />
         <Drawer
           className="my-drawer"
-          style={{ minHeight: 300 }}
+          style={{ minHeight: 600 }}
           contentStyle={{
             color: '#A6A6A6',
             textAlign: 'center',
@@ -103,15 +109,19 @@ class Home extends React.Component {
   }
 }
 
+Home.defaultProps = {
+  houseList: [],
+};
+
 Home.propTypes = {
   // loading: PropTypes.bool.isRequired,
   getSession: PropTypes.func.isRequired,
   getTop: PropTypes.func.isRequired,
-  houseList: PropTypes.array,
+  houseList: PropTypes.arrayOf(PropTypes.shape),
 };
 
 const mapState = state => ({
-  // houseList: state.top.top,
+  houseList: state.top.top,
 });
 
 const mapDispatch = {

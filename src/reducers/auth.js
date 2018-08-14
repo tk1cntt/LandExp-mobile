@@ -2,6 +2,7 @@ import { LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR } from '../constants';
 
 const INITIAL_STATE = {
   loading: false,
+  isAuthenticated: false,
 };
 
 export default function auth(state = {}, action) {

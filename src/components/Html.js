@@ -44,15 +44,11 @@ class Html extends React.Component {
           <title>{title}</title>
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="preload" href="/css/fonts.css" as="script" />
-          <link rel="preload" href="/css/style.css" as="script" />
           {scripts.map(script => (
             <link key={script} rel="preload" href={script} as="script" />
           ))}
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="apple-touch-icon" href="/icon.png" />
-          <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
-          <link rel="stylesheet" type="text/css" href="/css/style.css" />
           {styles.map(style => (
             <style
               key={style.id}
@@ -63,6 +59,7 @@ class Html extends React.Component {
         </head>
         <body>
           <noscript id="deferred-styles">
+            <link rel="stylesheet" type="text/css" href="/css/style.css" />
             <link
               rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"

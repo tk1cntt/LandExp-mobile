@@ -1,13 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import {
-  Drawer,
-  SearchBar,
-  List,
-  NavBar,
-  WhiteSpace,
-  WingBlank,
-} from 'antd-mobile';
+import { List } from 'antd-mobile';
 import { Icon } from 'antd';
 import Link from '../Link';
 
@@ -44,6 +37,10 @@ class SideBar extends React.Component {
     );
   }
 }
+
+SideBar.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = storeState => ({
   isAuthenticated: storeState.auth.isAuthenticated,
