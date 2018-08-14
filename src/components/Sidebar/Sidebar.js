@@ -26,13 +26,6 @@ class SideBar extends React.Component {
         <List.Item arrow="horizontal" thumb={<Icon type="edit" />}>
           <Link to="/tai-khoan/dang-tin">Đăng tin</Link>
         </List.Item>
-        {!this.props.isAuthenticated ? (
-          ''
-        ) : (
-            <List.Item arrow="horizontal" thumb={<Icon type="export" />}>
-              <Link to="/thoat">Thoát</Link>
-            </List.Item>
-          )}
       </List>
     );
   }

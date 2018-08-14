@@ -1,5 +1,5 @@
-query TopQuery($page: Int, $size: Int) {
-  getTop(page: $page, size: $size) {
+query DetailQuery($id: String) {
+  getDetail(id: $id) {
     id
     link
     actionType
