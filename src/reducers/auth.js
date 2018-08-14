@@ -10,12 +10,12 @@ export default function auth(state = {}, action) {
     // server doesn't suppprt state = {}
     return INITIAL_STATE;
   }
-  console.log('action', action) // eslint-disable-line
   switch (action.type) {
     case LOGIN_START:
       return {
         ...state,
         loading: true,
+        isAuthenticated: false,
         auth: null,
       };
     case LOGIN_SUCCESS:
@@ -23,12 +23,14 @@ export default function auth(state = {}, action) {
         ...state,
         loading: false,
         error: null,
+        isAuthenticated: true,
         auth: action.payload,
       };
     case LOGIN_ERROR:
       return {
         ...state,
         loading: false,
+        isAuthenticated: false,
         error: action.payload,
         auth: null,
       };

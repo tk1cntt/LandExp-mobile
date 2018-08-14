@@ -5,50 +5,49 @@ import { Icon } from 'antd';
 import Link from '../Link';
 
 class SideBar extends React.Component {
+  state = {
+    isAuthenticated: false,
+  }
   render() {
     return (
       <List>
         <List.Item arrow="horizontal" thumb={<Icon type="home" />}>
           <Link to="/">Trang chủ</Link>
         </List.Item>
-        {this.props.isAuthenticated ? (
+        {this.state.isAuthenticated ? (
           ''
         ) : (
-          <>
-            <List.Item arrow="horizontal" thumb={<Icon type="user-add" />}>
-              <Link to="/dang-ky">Đăng ký</Link>
-            </List.Item>
-            <List.Item arrow="horizontal" thumb={<Icon type="unlock" />}>
-              <Link to="/dang-nhap">Đăng nhập</Link>
-            </List.Item>
-          </>
-        )}
+            <>
+              <List.Item arrow="horizontal" thumb={<Icon type="user-add" />}>
+                <Link to="/dang-ky">Đăng ký</Link>
+              </List.Item>
+              <List.Item arrow="horizontal" thumb={<Icon type="unlock" />}>
+                <Link to="/dang-nhap">Đăng nhập</Link>
+              </List.Item>
+            </>
+          )}
         <List.Item arrow="horizontal" thumb={<Icon type="edit" />}>
           <Link to="/tai-khoan/dang-tin">Đăng tin</Link>
         </List.Item>
         {!this.props.isAuthenticated ? (
           ''
         ) : (
-          <List.Item arrow="horizontal" thumb={<Icon type="export" />}>
-            <Link to="/thoat">Thoát</Link>
-          </List.Item>
-        )}
+            <List.Item arrow="horizontal" thumb={<Icon type="export" />}>
+              <Link to="/thoat">Thoát</Link>
+            </List.Item>
+          )}
       </List>
     );
   }
 }
 
-SideBar.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = storeState => ({
-  isAuthenticated: storeState.auth.isAuthenticated,
+const mapState = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
-const mapDispatchToProps = {};
+const mapDispatch = {};
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  mapState,
+  mapDispatch,
 )(SideBar);

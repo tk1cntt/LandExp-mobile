@@ -19,15 +19,24 @@ export default function getTop({ page, size }) {
         },
         { cache: false },
       );
-      dispatch({
-        type: TOP_HOUSE_SUCCESS,
-        payload: queryResponse,
-      });
+      const data = queryResponse.data.getTop;
+      if (data.error) {
+        dispatch({
+          type: TOP_HOUSE_ERROR,
+          payload: data.error,
+        });
+      } else {
+        dispatch({
+          type: TOP_HOUSE_SUCCESS,
+          payload: data,
+        });
+      }
     } catch (error) {
       dispatch({
         type: TOP_HOUSE_ERROR,
         payload: {
-          error,
+          status: 100,
+          detail: 'Server undermaintain',
         },
       });
       return false;

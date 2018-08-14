@@ -40,27 +40,6 @@ import getTop from 'actions/getTop';
 
 import s from './Home.css';
 
-const PlaceHolder = () => <div className={s.placeholder}>Block</div>;
-
-const WhiteSpaceExample = () => (
-  <div>
-    <WhiteSpace size="xs" />
-    <PlaceHolder />
-
-    <WhiteSpace size="sm" />
-    <PlaceHolder />
-
-    <WhiteSpace />
-    <PlaceHolder />
-
-    <WhiteSpace size="lg" />
-    <PlaceHolder />
-
-    <WhiteSpace size="xl" />
-    <PlaceHolder />
-  </div>
-);
-
 class Home extends React.Component {
   state = {
     open: false,
@@ -72,7 +51,6 @@ class Home extends React.Component {
   }
 
   onOpenChange = () => {
-    console.log("onOpenChange"); // eslint-disable-line
     this.setState({ open: !this.state.open });
   };
 
@@ -82,7 +60,7 @@ class Home extends React.Component {
       <div style={{ height: '100%' }}>
         <NavBar icon={<Icon type="bars" />} onLeftClick={this.onOpenChange}>
           <Link to="/">
-            <img src="/content/images/logo.png" alt="" />
+            <img src="/images/logo.png" alt="" />
           </Link>
         </NavBar>
         <SearchBar
@@ -93,16 +71,48 @@ class Home extends React.Component {
         <Drawer
           className="my-drawer"
           style={{ minHeight: 600 }}
+          sidebar={<SideBar />}
           contentStyle={{
             color: '#A6A6A6',
             textAlign: 'center',
             paddingTop: 10,
           }}
-          sidebar={<SideBar />}
           open={this.state.open}
           onOpenChange={this.onOpenChange}
         >
-          <div className="flex-container" />
+          <div className="flex-container">
+            {this.props.houseList.map((house, i) => (
+              <div key={`entity-${i}`}>
+                <Flex>
+                  <Flex.Item>
+                    <Card>
+                      <Card.Header
+                        title={`${house.districtType} ${house.districtName}, ${house.cityName}`}
+                      />
+                      <Card.Body>
+                        <Link to={`/bat-dong-san/${encodeId(house.id)}/${house.link}`}>
+                          <div className="item-display">
+                            <img src="/images/item-1.png" />
+                            <div className="item-info">
+                              <div className="title">{getLandType(house.landType)}</div>
+                              <div className="price" dangerouslySetInnerHTML={{ __html: getMoney(house.money, house.actionType) }} />
+                              <div className="property">
+                                <span className="compact">{house.acreage}m2</span>
+                                <span className="bedroom">{house.bedRoom}</span>
+                                <span className="bathroom">{house.bathRoom}</span>
+                                <span className="gara">{house.parking ? <i className="fa fa-check" /> : <i className="fa fa-times" />}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </Flex.Item>
+                </Flex>
+                <WhiteSpace size="md" />
+              </div>
+            ))}
+          </div>
         </Drawer>
       </div>
     );

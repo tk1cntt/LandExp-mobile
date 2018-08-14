@@ -16,15 +16,25 @@ export default function getSession() {
         },
         { cache: false },
       );
-      dispatch({
-        type: SESSION_SUCCESS,
-        payload: queryResponse,
-      });
+      const data = queryResponse.data.getSession;
+      if (data.error) {
+        dispatch({
+          type: SESSION_ERROR,
+          payload: data.error,
+        });
+      } else {
+        dispatch({
+          type: SESSION_SUCCESS,
+          payload: data,
+        });
+      }
+      // console.log(queryResponse.data.getSession); // eslint-disable-line
     } catch (error) {
       dispatch({
         type: SESSION_ERROR,
         payload: {
-          error,
+          status: 100,
+          detail: 'Server undermaintain',
         },
       });
       return false;

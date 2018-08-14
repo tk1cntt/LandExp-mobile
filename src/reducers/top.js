@@ -6,6 +6,7 @@ import {
 
 const INITIAL_STATE = {
   loading: false,
+  top: [],
 };
 
 export default function top(state = {}, action) {
@@ -18,7 +19,7 @@ export default function top(state = {}, action) {
       return {
         ...state,
         loading: true,
-        top: null,
+        top: [],
       };
     case TOP_HOUSE_SUCCESS:
       return {
@@ -32,7 +33,7 @@ export default function top(state = {}, action) {
         ...state,
         loading: false,
         error: action.payload,
-        top: null,
+        top: [],
       };
     default:
       return state;

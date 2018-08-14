@@ -16,17 +16,26 @@ export default function login({ usernameOrEmail, password }) {
         },
         { cache: false },
       );
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: queryResponse,
-      });
-      window.localStorage.setItem('token', queryResponse.data.login.id_token);
-      // history.goBack();
+      const data = queryResponse.data.login;
+      if (data.error) {
+        dispatch({
+          type: LOGIN_ERROR,
+          payload: data.error,
+        });
+      } else {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: data,
+        });
+      }
+      window.localStorage.setItem('token', data.id_token);
+      history.goBack();
     } catch (error) {
       dispatch({
         type: LOGIN_ERROR,
         payload: {
-          error,
+          status: 100,
+          detail: 'Server undermaintain',
         },
       });
       return false;
