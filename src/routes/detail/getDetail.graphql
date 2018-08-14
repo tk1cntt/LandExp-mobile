@@ -1,6 +1,7 @@
 query DetailQuery($id: String) {
   getDetail(id: $id) {
     id
+    title
     link
     actionType
     acreage

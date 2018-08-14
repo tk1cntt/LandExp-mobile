@@ -22,7 +22,7 @@ export const resolvers = {
           response =>
             // console.log('top-response', response.data) // eslint-disable-line
             response.data,
-      )
+        )
         .catch(error => ({
           error: error.response && error.response.data,
         }));

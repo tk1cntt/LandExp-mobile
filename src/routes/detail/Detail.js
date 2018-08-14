@@ -9,26 +9,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Detail.css';
 
 class Detail extends React.Component {
+  static propTypes = {
+    house: PropTypes.shape(PropTypes.object).isRequired,
+  };
+
   render() {
     return (
       <div style={{ height: '100%' }}>
-        Detail
+        {this.props.house.title}
+        {this.props.house.link}
       </div>
     );
   }
 }
-
-const mapState = state => ({
-});
-
-const mapDispatch = {};
-
-export default connect(
-  mapState,
-  mapDispatch,
-)(withStyles(s)(Detail));
+export default Detail;

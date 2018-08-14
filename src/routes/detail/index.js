@@ -13,21 +13,17 @@ import Layout from '../../components/Layout';
 import mutateGetDetail from './getDetail.graphql';
 
 async function action({ params, client }) {
-  console.log(params); // eslint-disable-line
-  // console.log(client); // eslint-disable-line
-  const queryResponse = await client.query(
-    {
-      query: mutateGetDetail,
-      variables: { id: params.id },
-    },
-  );
-  console.log(queryResponse);
+  const queryResponse = await client.query({
+    query: mutateGetDetail,
+    variables: { id: params.id },
+  });
+  const house = queryResponse.data.getDetail;
   return {
-    title: 'React Starter Kit',
+    title: house.title,
     chunks: ['detail'],
     component: (
       <Layout>
-        <Detail />
+        <Detail house={house} />
       </Layout>
     ),
   };
