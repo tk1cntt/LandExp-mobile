@@ -13,6 +13,7 @@ import ReactDOM from 'react-dom';
 import deepForceUpdate from 'react-deep-force-update';
 import queryString from 'query-string';
 import { createPath } from 'history/PathUtils';
+import getSession from 'actions/getSession';
 import App from './components/App';
 import createFetch from './createFetch';
 import configureStore from './store/configureStore';
@@ -21,7 +22,7 @@ import history from './history';
 import createApolloClient from './core/createApolloClient';
 import router from './router';
 
-import { LOGIN_SUCCESS } from './constants';
+import { LOGIN_SUCCESS, SETTING_SUCCESS } from './constants';
 
 // Universal HTTP client
 const fetch = createFetch(window.fetch, {
@@ -64,6 +65,11 @@ let appInstance;
 
 const scrollPositionsHistory = {};
 
+store.dispatch({
+  type: SETTING_SUCCESS,
+  payload: { widthScreen: window.innerWidth, heightScreen: window.innerHeight },
+});
+
 // Re-render the app when window.location changes
 async function onLocationChange(location, action) {
   // Remember the latest scroll position for the previous location
@@ -98,14 +104,19 @@ async function onLocationChange(location, action) {
     }
 
     const token = window.localStorage.getItem('token');
-    console.log("Load token from localStorage",  token); // eslint-disable-line
     if (token) {
-      console.log("Store token to state",  token); // eslint-disable-line
       store.dispatch({
         type: LOGIN_SUCCESS,
         payload: { id_token: token },
       });
     }
+
+    store.dispatch(getSession());
+
+    store.dispatch({
+      type: SETTING_SUCCESS,
+      payload: { currentLocation },
+    });
 
     const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
     appInstance = renderReactApp(

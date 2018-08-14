@@ -5,16 +5,13 @@ import { Icon } from 'antd';
 import Link from '../Link';
 
 class SideBar extends React.Component {
-  state = {
-    isAuthenticated: false,
-  }
   render() {
     return (
       <List>
         <List.Item arrow="horizontal" thumb={<Icon type="home" />}>
           <Link to="/">Trang chủ</Link>
         </List.Item>
-        {this.state.isAuthenticated ? (
+        {this.props.isAuthenticated ? (
           ''
         ) : (
             <>
@@ -41,13 +38,4 @@ class SideBar extends React.Component {
   }
 }
 
-const mapState = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-const mapDispatch = {};
-
-export default connect(
-  mapState,
-  mapDispatch,
-)(SideBar);
+export default SideBar;

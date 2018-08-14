@@ -11,9 +11,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import Link from 'components/Link';
-import SideBar from 'components/Sidebar';
-
 import { Icon } from 'antd';
 import {
   Flex,
@@ -35,7 +32,8 @@ import {
   getMoney,
   encodeId,
 } from 'constants/utils';
-import getSession from 'actions/getSession';
+import Link from 'components/Link';
+import SideBar from 'components/Sidebar';
 import getTop from 'actions/getTop';
 
 import s from './Home.css';
@@ -46,7 +44,6 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getSession();
     this.props.getTop(1, 8);
   }
 
@@ -55,7 +52,6 @@ class Home extends React.Component {
   };
 
   render() {
-    console.log("this.props.houseList", this.props.houseList); // eslint-disable-line
     return (
       <div style={{ height: '100%' }}>
         <NavBar icon={<Icon type="bars" />} onLeftClick={this.onOpenChange}>
@@ -71,7 +67,7 @@ class Home extends React.Component {
         <Drawer
           className="my-drawer"
           style={{ minHeight: 600 }}
-          sidebar={<SideBar />}
+          sidebar={<SideBar isAuthenticated={this.props.isAuthenticated} />}
           contentStyle={{
             color: '#A6A6A6',
             textAlign: 'center',
@@ -124,18 +120,21 @@ Home.defaultProps = {
 };
 
 Home.propTypes = {
-  // loading: PropTypes.bool.isRequired,
-  getSession: PropTypes.func.isRequired,
   getTop: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  widthScreen: PropTypes.number.isRequired,
+  heightScreen: PropTypes.number.isRequired,
   houseList: PropTypes.arrayOf(PropTypes.shape),
 };
 
 const mapState = state => ({
+  isAuthenticated: state.session.isAuthenticated,
+  heightScreen: state.setting.heightScreen,
+  widthScreen: state.setting.widthScreen,
   houseList: state.top.top,
 });
 
 const mapDispatch = {
-  getSession,
   getTop,
 };
 
