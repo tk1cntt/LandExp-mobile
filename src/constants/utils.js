@@ -4,6 +4,8 @@ const Hashids = require('hashids');
 const hashids = new Hashids('id.landexp.com.vn');
 const hashpayments = new Hashids('payment.landexp.com.vn');
 
+export const SERVER_API_URL = 'http://api.tinvang.com.vn';
+
 export const getActionType = type => {
   if (type === 'FOR_SELL') {
     return 'Bán bất động sản';
@@ -47,10 +49,13 @@ export const getLandType = type => {
 export const getCityType = value => {
   let address = '';
   if (value.cities) {
+    // eslint-disable-next-line
     value.cities.map(city => {
       if (city.id === value.cityId) {
+        // eslint-disable-next-line
         city.districts.map(district => {
           if (district.id === value.districtId) {
+            // eslint-disable-next-line
             district.wards.map(ward => {
               if (ward.id === value.wardId) {
                 address += `${ward.name} - `;
@@ -151,6 +156,8 @@ export const getStatusType = type => {
   }
 };
 
+export const humanize = x => x.toFixed(2).replace(/\.?0*$/, '');
+
 export const getMoney = (money, actionType) => {
   let moneyFormat = '<span>';
   if (money >= 1000000000) {
@@ -171,8 +178,6 @@ export const getMoney = (money, actionType) => {
   }
   return moneyFormat;
 };
-
-export const humanize = x => x.toFixed(2).replace(/\.?0*$/, '');
 
 export const encodeId = id => hashids.encode(id, 20190101);
 
@@ -207,6 +212,7 @@ export const queryStringMapping = parameters => {
   queryString += parameters.mobile
     ? `mobile.contains=${parameters.mobile}&`
     : '';
+  // eslint-disable-next-line
   switch (parseInt(parameters.money)) {
     case 1:
       queryString += 'money.lessThan=500000001&';
@@ -226,6 +232,7 @@ export const queryStringMapping = parameters => {
     default:
       break;
   }
+  // eslint-disable-next-line
   switch (parseInt(parameters.acreage)) {
     case 1:
       queryString += 'acreage.lessThan=50&';
@@ -249,16 +256,17 @@ export const queryStringMapping = parameters => {
 };
 
 export const queryString = parameters => {
+  // eslint-disable-next-line
   let queryString = '';
+  // eslint-disable-next-line
   for (const key in parameters) {
-    if (parameters[key]) {
-      queryString += `${key}=${parameters[key]}&`;
-    }
+    queryString += `${key}=${parameters[key]}&`;
   }
   return queryString.slice(0, -1);
 };
 
 export const getPriceByNumber = price => {
+  // eslint-disable-next-line
   switch (parseInt(price)) {
     case 1:
       return '&lt; 500 triệu';
@@ -276,6 +284,7 @@ export const getPriceByNumber = price => {
 };
 
 export const getAcreageByNumber = acreage => {
+  // eslint-disable-next-line
   switch (parseInt(acreage)) {
     case 1:
       return '&lt; 50 m2';

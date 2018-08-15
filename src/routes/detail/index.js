@@ -23,7 +23,7 @@ async function action({ params, client }) {
     chunks: ['detail'],
     component: (
       <Layout>
-        <Detail houseEntity={house.house} />
+        <Detail houseEntity={house.house} housePhotoList={house.images} />
       </Layout>
     ),
   };

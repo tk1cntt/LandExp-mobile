@@ -1,7 +1,7 @@
 @import url(fonts.css);
 
 body {
-  margin: 0px;
+  margin: 0;
   font-family: Helvetica Neue !important;
   font-weight: 300;
   font-size: 14px;
@@ -67,12 +67,12 @@ a:hover {
   box-sizing: border-box;
 }
 
-.app-container .am-card-body a {
+.app-container .am-card-body .item-display a {
   color: #454545;
   text-decoration: none;
 }
 
-.app-container .am-card-body a:hover {
+.app-container .am-card-body .item-display a:hover {
   color: #454545;
 }
 
@@ -84,24 +84,24 @@ a:hover {
   margin-right: 40px;
 }
 
-.app-container .item-display {
+.app-container .am-card-body .item-display {
   display: flex;
   padding: 15px 0 0 10px;
 }
 
-.app-container .item-display img {
+.app-container .am-card-body .item-display img {
   object-fit: cover; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
   width: 110px;
   height: 95px;
 }
 
-.app-container .item-info {
+.app-container .am-card-body .item-display .item-info {
   line-height: 1;
-  margin: 0px 10px;
+  margin: 0 10px;
 }
 
-.app-container .item-info .like-button {
+.app-container .am-card-body .item-display .item-info .like-button {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -109,13 +109,13 @@ a:hover {
   font-size: 24px;
 }
 
-.app-container .item-info .title {
+.app-container .am-card-body .item-display .item-info .title {
   margin: 0;
   font-size: 16px;
   color: #222;
 }
 
-.app-container .item-info .title h3 {
+.app-container .am-card-body .item-display .item-info .title h3 {
   background: transparent;
   padding-bottom: 0;
   padding: 0;
@@ -126,14 +126,14 @@ a:hover {
   color: #222;
 }
 
-.app-container .item-info .subtitle {
+.app-container .am-card-body .item-display .item-info .subtitle {
   margin: 0;
   color: #aaa;
   font-size: 12px;
   min-height: 18px;
 }
 
-.app-container .item-info .type-sell {
+.app-container .am-card-body .item-display .item-info .type-sell {
   width: 82px;
   height: 24px;
   line-height: 24px;
@@ -142,9 +142,9 @@ a:hover {
   color: #fff;
   text-align: center;
   background: url(/images/sell_bg.png) no-repeat;
-} 
+}
 
-.app-container .item-info .type-rent {
+.app-container .am-card-body .item-display .item-info .type-rent {
   width: 82px;
   height: 24px;
   line-height: 24px;
@@ -155,15 +155,15 @@ a:hover {
   background: url(/images/rent_bg.png) no-repeat;
 }
 
-.app-container .item-info .price {
+.app-container .am-card-body .item-display .item-info .price {
   margin: 8px auto;
 }
 
-.app-container .item-info .price span {
+.app-container .am-card-body .item-display .item-info .price span {
   font-size: 30px;
 }
 
-.app-container .item-info .post-date {
+.app-container .am-card-body .item-display .item-info .post-date {
   position: absolute;
   top: 62px;
   right: 10px;
@@ -176,7 +176,7 @@ a:hover {
   margin-top: 20px;
 }
 
-.app-container .item-info .post-date span {
+.app-container .am-card-body .item-display .item-info .post-date span {
   font-size: 14px;
   color: #3a65f9;
 }
@@ -187,14 +187,8 @@ a:hover {
   margin-left: -13px;
   margin-right: -15px;
   padding-left: 13px;
-}
-
-.app-container .am-card-body .location {
   margin-top: 25px;
   border-top: 1px solid #dfdfdf;
-}
-
-.app-container .am-card-body .location {
   color: #888;
   margin: 10px auto;
   max-height: 50px;
@@ -240,70 +234,64 @@ a:hover {
 
 /* Detail page start */
 
-.app-container .slider .slider-list img {
-  object-fit: cover; /* Do not scale the image */
-  object-position: center; /* Center the image within the element */
-  height: 255px;
-}
-
-.app-container .product-info {
+.app-container .am-flexbox-item .product-info {
   border: 1px solid #dfdfdf;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #fff;
 }
 
-.app-container .product-info h1 {
-  margin-bottom: 0px;
+.app-container .am-flexbox-item .product-info h1 {
+  margin-bottom: 0;
   font-size: 18px;
   font-weight: bold;
 }
 
-.app-container .product-info .post-date {
+.app-container .am-flexbox-item .product-info .post-date {
   display: contents;
   margin: 0;
-  color: #888888;
+  color: #888;
 }
 
-.app-container .product-info .price {
+.app-container .am-flexbox-item .product-info .price {
   font-size: 22px;
   color: #3a65f9;
   margin-top: 9px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
-.app-container .product-info .property {
+.app-container .am-flexbox-item .product-info .property {
   background: transparent;
 }
 
-.app-container .product-info .property span {
+.app-container .am-flexbox-item .product-info .property span {
   font-weight: bold;
 }
 
-.app-container .product-info .location {
+.app-container .am-flexbox-item .product-info .location {
   border-top: 1px solid #f6f6f6;
   position: relative;
   padding-top: 17px;
-  margin: 20px 0px;
+  margin: 20px 0;
 }
 
-.app-container .product-info .location span.title {
+.app-container .am-flexbox-item .product-info .location span.title {
   position: absolute;
   top: -12px;
   display: block;
   padding-right: 5px;
   background: #fff;
-  color: #888888;
+  color: #888;
 }
 
-.app-container .product-info .button-group {
+.app-container .am-flexbox-item .product-info .button-group {
   border: none;
   text-align: inherit;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-.app-container .product-info a {
+.app-container .am-flexbox-item .product-info a {
   display: inline-block;
   height: 30px;
   line-height: 30px;
@@ -311,27 +299,33 @@ a:hover {
   width: 123px;
 }
 
-.app-container .product-info a img {
+.app-container .am-flexbox-item .product-info a img {
   padding: 5px;
   border-radius: 3px;
   margin-right: 10px;
 }
 
-.app-container .product-info a.like {
+.app-container .am-flexbox-item .product-info a.like {
   color: #fe475e;
 }
 
-.app-container .product-info a.report {
+.app-container .am-flexbox-item .product-info a.report {
   text-align: right;
   color: #ffa76e;
 }
 
-.app-container .product-info a.like img {
+.app-container .am-flexbox-item .product-info a.like img {
   border: 1px solid #fe475e;
 }
 
-.app-container .product-info a.report img {
+.app-container .am-flexbox-item .product-info a.report img {
   border: 1px solid #ffa76e;
+}
+
+.app-container .am-card-body .slider .slider-list img {
+  object-fit: cover; /* Do not scale the image */
+  object-position: center; /* Center the image within the element */
+  height: 255px;
 }
 
 /* Detail page end */

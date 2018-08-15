@@ -12,6 +12,7 @@ query DetailQuery($id: String) {
       parking
       landType
       createAt
+      address
       cityName
       districtName
       wardName
@@ -20,14 +21,19 @@ query DetailQuery($id: String) {
       projectName
       mobile
       createByLogin
-      error {
-        type
-        title
-        status
-        detail
-        path
-        message
-      }
+    }
+
+    images {
+      id
+    }
+
+    error {
+      type
+      title
+      status
+      detail
+      path
+      message
     }
   }
 }
