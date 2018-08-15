@@ -1,22 +1,32 @@
 import { api } from 'config';
 import axios from 'axios';
+import Promise from 'bluebird';
 import { decodeId } from 'constants/utils';
 
 const client = axios.create({
   baseURL: api.remoteUrl,
 });
 
+export const schema = [
+  `
+  type HouseDetail {
+    house: House
+    images: HouseImage
+  }
+`,
+];
+
 export const queries = [
   `
-  getDetail(id: String): House
+  getDetail(id: String): HouseDetail
 `,
 ];
 
 export const resolvers = {
   RootQuery: {
     async getDetail(parent, args) {
-      // console.log('top-args', args) // eslint-disable-line
-      const data = await client
+      console.log('getDetail-args', args) // eslint-disable-line
+      const house = client
         .get(`/api/houses/${decodeId(args.id)}`)
         .then(
           response =>
@@ -26,8 +36,23 @@ export const resolvers = {
         .catch(error => ({
           error: error.response && error.response.data,
         }));
-      // console.log('top-response', data) // eslint-disable-line
-      return data;
+
+      const images = client
+        .get(`/api/house-photos/${decodeId(args.id)}/houses`)
+        .then(
+          response =>
+            // console.log('house-photos-response', response.data); // eslint-disable-line
+            response.data,
+        )
+        .catch(error => ({
+          error: error.response && error.response.data,
+        }));
+      const json = await Promise.props({
+        // wait for all promises to resolve
+        house,
+        images,
+      });
+      return json;
     },
   },
 };

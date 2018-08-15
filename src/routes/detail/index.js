@@ -19,11 +19,11 @@ async function action({ params, client }) {
   });
   const house = queryResponse.data.getDetail;
   return {
-    title: house.title,
+    title: house.house.title,
     chunks: ['detail'],
     component: (
       <Layout>
-        <Detail house={house} />
+        <Detail house={house.house} />
       </Layout>
     ),
   };

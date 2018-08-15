@@ -1,31 +1,33 @@
 query DetailQuery($id: String) {
   getDetail(id: $id) {
-    id
-    title
-    link
-    actionType
-    acreage
-    money
-    bathRoom
-    bedRoom
-    parking
-    landType
-    createAt
-    cityName
-    districtName
-    wardName
-    districtType
-    wardType
-    projectName
-    mobile
-    createByLogin
-    error {
-      type
+    house {
+      id
       title
-      status
-      detail
-      path
-      message
+      link
+      actionType
+      acreage
+      money
+      bathRoom
+      bedRoom
+      parking
+      landType
+      createAt
+      cityName
+      districtName
+      wardName
+      districtType
+      wardType
+      projectName
+      mobile
+      createByLogin
+      error {
+        type
+        title
+        status
+        detail
+        path
+        message
+      }
     }
   }
 }

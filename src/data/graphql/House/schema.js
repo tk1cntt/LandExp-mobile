@@ -8,12 +8,27 @@ import {
 } from './house/top';
 
 import {
+  schema as getImages,
+  queries as getImagesQueries,
+  resolvers as getImagesResolver,
+} from './house/images';
+
+import {
+  schema as getDetail,
   queries as getDetailQueries,
   resolvers as getDetailResolver,
 } from './house/detail';
 
-export const schema = [...getTop];
+export const schema = [...getTop, ...getImages, ...getDetail];
 
-export const queries = [...getTopQueries, ...getDetailQueries];
+export const queries = [
+  ...getTopQueries,
+  ...getImagesQueries,
+  ...getDetailQueries,
+];
 
-export const resolvers = merge(getTopResolver, getDetailResolver);
+export const resolvers = merge(
+  getTopResolver,
+  getImagesResolver,
+  getDetailResolver,
+);
