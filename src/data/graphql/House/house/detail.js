@@ -11,7 +11,8 @@ export const schema = [
   `
   type HouseDetail {
     house: House
-    images: HouseImage
+    images: [HouseImage]
+    error: Error
   }
 `,
 ];

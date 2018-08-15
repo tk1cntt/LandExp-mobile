@@ -15,6 +15,10 @@ export const schema = [
     mobileLink: String
     webLink: String
     houseId: Int
+  }
+
+  type HouseImages {
+    contents: [HouseImage]
     error: Error
   }
 `,
@@ -22,7 +26,7 @@ export const schema = [
 
 export const queries = [
   `
-  getImages(id: String): [HouseImage]
+  getImages(id: String): HouseImages
 `,
 ];
 
@@ -33,9 +37,12 @@ export const resolvers = {
       const data = await client
         .get(`/api/house-photos/${decodeId(args.id)}/houses`)
         .then(
-          response =>
+          response => {
             // console.log('top-response', response.data) // eslint-disable-line
-            response.data,
+            return {
+              contents: response.data,
+            }
+          }
         )
         .catch(error => ({
           error: error.response && error.response.data,

@@ -111,7 +111,7 @@ class Home extends React.Component {
                               )}
                             </span>
                           </div>
-                          <p className="location">Quận Hà Đông, Hà Nội</p>
+                          <p className="location">{house.districtType} {house.districtName}, {house.cityName}</p>
                         </Link>
                       </Card.Body>
                     </Card>
