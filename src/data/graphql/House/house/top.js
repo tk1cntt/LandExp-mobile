@@ -90,9 +90,9 @@ export const schema = [
     googleId: String
     type: [String]
     address: String
-    distance: Int
-    longitude: Int
-    latitude: Int
+    distance: Float
+    longitude: Float
+    latitude: Float
   }
 
   type House {
@@ -171,9 +171,10 @@ export const resolvers = {
       const data = await client
         .get('/api/houses/top')
         .then(
-          response =>
+          response => {
             // console.log('top-response', response.data) // eslint-disable-line
-            response.data,
+            return response.data;
+          }
         )
         .catch(error => ({
           error: error.response && error.response.data,

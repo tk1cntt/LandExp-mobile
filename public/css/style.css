@@ -238,6 +238,8 @@ a:hover {
   border: 1px solid #dfdfdf;
   padding-left: 20px;
   padding-right: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
   background-color: #fff;
 }
 
@@ -322,10 +324,124 @@ a:hover {
   border: 1px solid #ffa76e;
 }
 
-.app-container .am-card-body .slider .slider-list img {
+.app-container .am-flexbox-item .slider .slider-list img {
   object-fit: cover; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
   height: 255px;
 }
 
+
+/* Contact box */
+
+.app-container .am-flexbox-item .contact-box {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.app-container .am-flexbox-item .contact {
+  border: 1px solid #dfdfdf;
+  background-color: #fff;
+  padding: 22px 10px;
+}
+
+.app-container .am-flexbox-item .contact h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.app-container .am-flexbox-item .contact i {
+  width: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.app-container .am-flexbox-item .contact i.fa-mobile {
+  font-size: 22px;
+}
+
+.app-container .am-flexbox-item .contact i.fa-square {
+  font-size: 10px;
+  color: #aaaaaa;
+}
+
+.app-container .am-flexbox-item .contact:hover {
+  background: #f4f7ff;
+}
+
+.app-container .am-flexbox-item .contact a {
+  color: #3a65f9;
+  border: 1px solid #3a65f9;
+  background: transparent;
+}
+
+.app-container .am-flexbox-item .contact a:hover {
+  color: #ffffff;
+  background: #3a65f9;
+}
+
+.app-container .am-flexbox-item .contact:hover a {
+  color: #ffffff;
+  background: #3a65f9;
+}
+
+.app-container .am-flexbox-item .call-chat {
+  margin: 15px auto;
+  padding: 15px 30px;
+  background: #6b92ff;
+}
+
+.app-container .am-flexbox-item .call-chat a {
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  padding-left: 33px;
+  color: #fff;
+}
+
+.app-container .am-flexbox-item .call-chat a:hover {
+  color: #ffffff;
+}
+
+.app-container .am-flexbox-item .call-chat a.call {
+  background: url('/images/icon/ic_call.png') no-repeat left;
+  border-right: 1px solid #fff;
+  width: 103px;
+}
+
+.app-container .am-flexbox-item .call-chat a.chat {
+  background: url('/images/icon/ic_chat.png') no-repeat left;
+  margin-left: 30px;
+}
+
+/* location search */
+
+.app-container .am-flexbox-item .location-search {
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #fff;
+}
+
+.app-container .am-flexbox-item .location-search .nearby div {
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline-block;
+}
+
+.app-container .am-flexbox-item .location-search .nearby div .title {
+  color: #3a65f9;
+  font-weight: 400;
+}
+
+.app-container .am-flexbox-item .location-search .nearby div p span {
+  float: right;
+  font-weight: 300 !important;
+  color: #aaaaaa;
+}
+
+.app-container .am-flexbox-item .location-search .nearby {
+  overflow-y: scroll;
+  height: 320px;
+}
 /* Detail page end */

@@ -10,15 +10,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Icon } from 'antd';
 import { Flex, Carousel, Drawer, NavBar, WhiteSpace } from 'antd-mobile';
 import {
   getLandType,
   getDirection,
   getMoney,
   encodeId,
+  humanize,
   SERVER_API_URL,
 } from 'constants/utils';
+import { Tabs, Icon } from 'antd';
+const TabPane = Tabs.TabPane;
 
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
@@ -59,25 +61,25 @@ class Detail extends React.Component {
         />
         <div className="property">
           <p className="compact">
-            Diện tích:<span>{this.props.houseEntity.acreage} m2</span>
+            Diện tích: <span>{this.props.houseEntity.acreage} m2</span>
           </p>
           <p className="compass">
-            Hướng:<span>{getDirection(this.props.houseEntity.direction)}</span>
+            Hướng: <span>{getDirection(this.props.houseEntity.direction)}</span>
           </p>
           <p className="bedroom">
-            Phòng ngủ:<span>{this.props.houseEntity.bedRoom}</span>
+            Phòng ngủ: <span>{this.props.houseEntity.bedRoom}</span>
           </p>
           <p className="bathroom">
-            Phòng tắm:<span>{this.props.houseEntity.bathRoom}</span>
+            Phòng tắm: <span>{this.props.houseEntity.bathRoom}</span>
           </p>
           <p className="gara">
-            Chỗ để ô tô:<span>
+            Chỗ để ô tô: <span>
               {this.props.houseEntity.parking ? 'Có' : 'Không'}
             </span>
           </p>
         </div>
         <div className="location">
-          <span className="title">Địa chỉ</span>
+          <span className="title">Địa chỉ:</span>
           <p>{this.houseAdressFull()}</p>
         </div>
         <div className="button-group">
@@ -90,6 +92,102 @@ class Detail extends React.Component {
             <img src="/images/icon/warning.png" alt="" />Báo xấu
           </a>
         </div>
+      </div>
+    );
+  }
+
+  houseContactForm() {
+    return (
+      <div className="contact-box">
+        <div className="contact">
+          <h3>Liên hệ chủ nhà</h3>
+          <p>
+            <i className="fa fa-user" /> {this.props.houseEntity.customer}
+          </p>
+          <p>
+            <i className="fa fa-mobile" /> {this.props.houseEntity.mobile}
+          </p>
+          <p>
+            <i className="fa fa-envelope-o" /> {this.props.houseEntity.email}
+          </p>
+        </div>
+        <div className="call-chat">
+          <a href="#" className="call">
+            Gọi điện
+          </a>
+          <a href="#" className="chat">
+            Chat
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  houseNearByForm() {
+    return (
+      <div className="location-search">
+        <Tabs defaultActiveKey="1" style={{ border: '1px solid #dfdfdf', padding: 10, minHeight: 400, maxHeight: 400 }}>
+          <TabPane
+            tab={
+              <span>
+                <i className="fa fa-home" /> Mua sắm
+            </span>
+            }
+            key="1"
+            className="nearby"
+          >
+            {this.props.houseEntity.restaurants &&
+              this.props.houseEntity.restaurants.map((restaurant, i) => (
+                <div key={`restaurant-id-${i}`}>
+                  <div className="title">{restaurant.title}</div>
+                  <p style={{ padding: 5 }}>
+                    {restaurant.address}
+                    <span>{humanize(restaurant.distance / 1000)}km</span>
+                  </p>
+                </div>
+              ))}
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <i className="fa fa-shopping-cart" /> Bệnh viện
+            </span>
+            }
+            key="2"
+            className="nearby"
+          >
+            {this.props.houseEntity.hospitals &&
+              this.props.houseEntity.hospitals.map((restaurant, i) => (
+                <div key={`restaurant-id-${i}`}>
+                  <h3>
+                    <div className="title">{restaurant.title}</div>
+                    <span>{humanize(restaurant.distance / 1000)}km</span>
+                  </h3>
+                  <p style={{ padding: 5 }}>{restaurant.address}</p>
+                </div>
+              ))}
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <i className="fa fa-graduation-cap" /> Trường học
+            </span>
+            }
+            key="3"
+            className="nearby"
+          >
+            {this.props.houseEntity.schools &&
+              this.props.houseEntity.schools.map((restaurant, i) => (
+                <div key={`restaurant-id-${i}`}>
+                  <h3>
+                    <div className="title">{restaurant.title}</div>
+                    <span>{humanize(restaurant.distance / 1000)}km</span>
+                  </h3>
+                  <p style={{ padding: 5 }}>{restaurant.address}</p>
+                </div>
+              ))}
+          </TabPane>
+        </Tabs>
       </div>
     );
   }
@@ -138,6 +236,14 @@ class Detail extends React.Component {
             <WhiteSpace size="md" />
             <Flex>
               <Flex.Item>{this.houseDetailForm()}</Flex.Item>
+            </Flex>
+            <WhiteSpace size="md" />
+            <Flex>
+              <Flex.Item>{this.houseContactForm()}</Flex.Item>
+            </Flex>
+            <WhiteSpace size="md" />
+            <Flex>
+              <Flex.Item>{this.houseNearByForm()}</Flex.Item>
             </Flex>
             <WhiteSpace size="md" />
           </div>
