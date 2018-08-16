@@ -20,10 +20,10 @@ import {
   SERVER_API_URL,
 } from 'constants/utils';
 import { Tabs, Icon } from 'antd';
-const TabPane = Tabs.TabPane;
-
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
+
+const TabPane = Tabs.TabPane; // eslint-disable-line
 
 class Detail extends React.Component {
   state = {
@@ -73,9 +73,8 @@ class Detail extends React.Component {
             Phòng tắm: <span>{this.props.houseEntity.bathRoom}</span>
           </p>
           <p className="gara">
-            Chỗ để ô tô: <span>
-              {this.props.houseEntity.parking ? 'Có' : 'Không'}
-            </span>
+            Chỗ để ô tô:
+            <span>{this.props.houseEntity.parking ? 'Có' : 'Không'}</span>
           </p>
         </div>
         <div className="location">
@@ -112,9 +111,11 @@ class Detail extends React.Component {
           </p>
         </div>
         <div className="call-chat">
+          {/* eslint-disable-next-line */}
           <a href="#" className="call">
             Gọi điện
           </a>
+          {/* eslint-disable-next-line */}
           <a href="#" className="chat">
             Chat
           </a>
@@ -126,23 +127,31 @@ class Detail extends React.Component {
   houseNearByForm() {
     return (
       <div className="location-search">
-        <Tabs defaultActiveKey="1" style={{ border: '1px solid #dfdfdf', padding: 10, minHeight: 400, maxHeight: 400 }}>
+        <Tabs
+          defaultActiveKey="1"
+          style={{
+            border: '1px solid #dfdfdf',
+            padding: 10,
+            minHeight: 400,
+            maxHeight: 400,
+          }}
+        >
           <TabPane
             tab={
               <span>
-                <i className="fa fa-home" /> Mua sắm
-            </span>
+                <i className="fa fa-shopping-cart" /> Bệnh viện
+              </span>
             }
-            key="1"
+            key="2"
             className="nearby"
           >
-            {this.props.houseEntity.restaurants &&
-              this.props.houseEntity.restaurants.map((restaurant, i) => (
-                <div key={`restaurant-id-${i}`}>
+            {this.props.houseEntity.hospitals &&
+              this.props.houseEntity.hospitals.map((restaurant, i) => (
+                <div key={`restaurant-id-${i}`}> {/* eslint-disable-line */}
                   <div className="title">{restaurant.title}</div>
                   <p style={{ padding: 5 }}>
                     {restaurant.address}
-                    <span>{humanize(restaurant.distance / 1000)}km</span>
+                    <span>{humanize(restaurant.distance / 1000)} km</span>
                   </p>
                 </div>
               ))}
@@ -150,40 +159,40 @@ class Detail extends React.Component {
           <TabPane
             tab={
               <span>
-                <i className="fa fa-shopping-cart" /> Bệnh viện
-            </span>
-            }
-            key="2"
-            className="nearby"
-          >
-            {this.props.houseEntity.hospitals &&
-              this.props.houseEntity.hospitals.map((restaurant, i) => (
-                <div key={`restaurant-id-${i}`}>
-                  <h3>
-                    <div className="title">{restaurant.title}</div>
-                    <span>{humanize(restaurant.distance / 1000)}km</span>
-                  </h3>
-                  <p style={{ padding: 5 }}>{restaurant.address}</p>
-                </div>
-              ))}
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
                 <i className="fa fa-graduation-cap" /> Trường học
-            </span>
+              </span>
             }
             key="3"
             className="nearby"
           >
             {this.props.houseEntity.schools &&
               this.props.houseEntity.schools.map((restaurant, i) => (
-                <div key={`restaurant-id-${i}`}>
-                  <h3>
-                    <div className="title">{restaurant.title}</div>
-                    <span>{humanize(restaurant.distance / 1000)}km</span>
-                  </h3>
-                  <p style={{ padding: 5 }}>{restaurant.address}</p>
+                <div key={`restaurant-id-${i}`}> {/* eslint-disable-line */}
+                  <div className="title">{restaurant.title}</div>
+                  <p style={{ padding: 5 }}>
+                    {restaurant.address}
+                    <span>{humanize(restaurant.distance / 1000)} km</span>
+                  </p>
+                </div>
+              ))}
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <i className="fa fa-home" /> Mua sắm
+              </span>
+            }
+            key="1"
+            className="nearby"
+          >
+            {this.props.houseEntity.restaurants &&
+              this.props.houseEntity.restaurants.map((restaurant, i) => (
+                <div key={`restaurant-id-${i}`}> {/* eslint-disable-line */}
+                  <div className="title">{restaurant.title}</div>
+                  <p style={{ padding: 5 }}>
+                    {restaurant.address}
+                    <span>{humanize(restaurant.distance / 1000)} km</span>
+                  </p>
                 </div>
               ))}
           </TabPane>

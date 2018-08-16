@@ -424,6 +424,7 @@ a:hover {
 }
 
 .app-container .am-flexbox-item .location-search .nearby div {
+  width: 100%;
   padding-left: 5px;
   padding-right: 5px;
   display: inline-block;

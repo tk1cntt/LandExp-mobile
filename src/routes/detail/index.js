@@ -18,7 +18,6 @@ async function action({ params, client }) {
     variables: { id: params.id },
   });
   const house = queryResponse.data.getDetail;
-  console.log(house);
   return {
     title: house.house.title,
     chunks: ['detail'],

@@ -12,6 +12,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import deepForceUpdate from 'react-deep-force-update';
 import queryString from 'query-string';
+import ReactPiwik from 'react-piwik';
 import { createPath } from 'history/PathUtils';
 import getSession from 'actions/getSession';
 import App from './components/App';
@@ -23,6 +24,14 @@ import createApolloClient from './core/createApolloClient';
 import router from './router';
 
 import { LOGIN_SUCCESS, SETTING_SUCCESS } from './constants';
+
+const piwik = new ReactPiwik({
+  url: 'tracking.tinvang.com.vn',
+  siteId: 2,
+  trackErrors: true,
+});
+
+piwik.connectToHistory(history);
 
 // Universal HTTP client
 const fetch = createFetch(window.fetch, {
