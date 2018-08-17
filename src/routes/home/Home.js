@@ -15,6 +15,7 @@ import { Flex, Card, Drawer, SearchBar, NavBar, WhiteSpace } from 'antd-mobile';
 import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
+import Footer from 'components/Footer';
 import getTop from 'actions/getTop';
 
 class Home extends React.Component {
@@ -111,7 +112,10 @@ class Home extends React.Component {
                               )}
                             </span>
                           </div>
-                          <p className="location">{house.districtType} {house.districtName}, {house.cityName}</p>
+                          <p className="location">
+                            {house.districtType} {house.districtName},{' '}
+                            {house.cityName}
+                          </p>
                         </Link>
                       </Card.Body>
                     </Card>
@@ -121,6 +125,11 @@ class Home extends React.Component {
               </div>
             ))}
           </div>
+          <Flex>
+            <Flex.Item>
+              <Footer />
+            </Flex.Item>
+          </Flex>
         </Drawer>
       </div>
     );
