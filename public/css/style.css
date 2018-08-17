@@ -234,6 +234,13 @@ a:hover {
 
 /* Detail page start */
 
+.app-container .breadcrumb {
+  border: 1px solid #dfdfdf;
+  background: #fff;
+  padding: 10px;
+  font-weight: 400;
+}
+
 .app-container .am-flexbox-item .product-info {
   border: 1px solid #dfdfdf;
   padding-left: 20px;
@@ -446,3 +453,50 @@ a:hover {
   height: 320px;
 }
 /* Detail page end */
+
+
+/* Footer page */
+
+.footer {
+  padding-top: 20px;
+  color: #fff;
+}
+
+.footer .info {
+  padding-top: 10px;
+  text-align: center;
+  background: linear-gradient(#63c9ff, #3a65f9);
+  color: #fff;
+}
+
+.footer .link-app {
+  margin-left: -10px;
+}
+
+.footer .social-icon a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 21px;
+  border: 1px solid #fff;
+  margin-right: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer .copyright {
+  border-top: 1px solid #ffff54;
+  margin-top: 40px;
+  padding: 23px 0px;
+  text-align: center;
+  font-size: 12px;
+  color: #9bb2ff;
+}
+
+.footer .copyright p {
+  margin: 0px;
+}
+
