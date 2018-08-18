@@ -24,6 +24,10 @@ const routes = {
       load: () => import(/* webpackChunkName: 'contact' */ './contact'),
     },
     {
+      path: '/tai-khoan/dang-tin',
+      load: () => import(/* webpackChunkName: 'post' */ './post'),
+    },
+    {
       path: '/login',
       load: () => import(/* webpackChunkName: 'login' */ './login'),
     },

@@ -233,14 +233,14 @@ class Detail extends React.Component {
         <Drawer
           className="my-drawer"
           style={{
-            minHeight: this.props.heightScreen ? this.props.heightScreen : 600,
+            minHeight: this.props.heightScreen,
           }}
           contentStyle={{
             color: '#A6A6A6',
             textAlign: 'center',
             paddingTop: 10,
           }}
-          sidebar={<SideBar />}
+          sidebar={<SideBar isAuthenticated={this.props.isAuthenticated} />}
           open={this.state.open}
           onOpenChange={this.onOpenChange}
         >
@@ -298,10 +298,16 @@ class Detail extends React.Component {
   }
 }
 
+Detail.defaultProps = {
+  heightScreen: 1000,
+  isAuthenticated: false,
+};
+
 Detail.propTypes = {
+  isAuthenticated: PropTypes.bool,
   houseEntity: PropTypes.shape(PropTypes.object).isRequired,
   housePhotoList: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  heightScreen: PropTypes.number.isRequired,
+  heightScreen: PropTypes.number,
 };
 
 const mapState = state => ({

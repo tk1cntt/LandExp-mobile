@@ -52,6 +52,7 @@ export const resolvers = {
         // wait for all promises to resolve
         house,
         images,
+        error: house.error,
       });
       return json;
     },

@@ -19,16 +19,23 @@ import {
   resolvers as getDetailResolver,
 } from './house/detail';
 
+import {
+  queries as getInitQueries,
+  resolvers as getInitResolvers,
+} from './house/init';
+
 export const schema = [...getTop, ...getImages, ...getDetail];
 
 export const queries = [
   ...getTopQueries,
   ...getImagesQueries,
   ...getDetailQueries,
+  ...getInitQueries,
 ];
 
 export const resolvers = merge(
   getTopResolver,
   getImagesResolver,
   getDetailResolver,
+  getInitResolvers,
 );

@@ -47,7 +47,7 @@ class Home extends React.Component {
         <Drawer
           className="my-drawer"
           style={{
-            minHeight: this.props.heightScreen ? this.props.heightScreen : 600,
+            minHeight: this.props.heightScreen,
           }}
           sidebar={<SideBar isAuthenticated={this.props.isAuthenticated} />}
           contentStyle={{
@@ -138,12 +138,14 @@ class Home extends React.Component {
 
 Home.defaultProps = {
   houseList: [],
+  heightScreen: 1000,
+  isAuthenticated: false,
 };
 
 Home.propTypes = {
   getTop: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  heightScreen: PropTypes.number.isRequired,
+  isAuthenticated: PropTypes.bool,
+  heightScreen: PropTypes.number,
   houseList: PropTypes.arrayOf(PropTypes.shape),
 };
 
