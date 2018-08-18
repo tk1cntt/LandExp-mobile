@@ -12,11 +12,13 @@ import Post from './Post';
 import Layout from '../../components/Layout';
 import mutateGetHouse from './getHouse.graphql';
 
-async function action({ store, client }) {
-  console.log(store.getState().auth); // eslint-disable-line
-  console.log(store.getState().session); // eslint-disable-line
-  console.log(store.getState().auth.isAuthorized); // eslint-disable-line
-  const queryResponse = await client.query({
+async function action(context) {
+  console.log("post-context", context); // eslint-disable-line
+  const state = context.store.getState();
+  if (context.route.protected && state.session.isAuthenticated !== true) {
+    return { redirect: '/dang-nhap', from: context.pathname }; // <== where the redirect come from?
+  }
+  const queryResponse = await context.client.query({
     query: mutateGetHouse,
   });
   const house = queryResponse.data.getInit;

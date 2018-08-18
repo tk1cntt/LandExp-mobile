@@ -25,14 +25,15 @@ const routes = {
     },
     {
       path: '/tai-khoan/dang-tin',
+      protected: true,
       load: () => import(/* webpackChunkName: 'post' */ './post'),
     },
     {
-      path: '/login',
+      path: '/dang-nhap',
       load: () => import(/* webpackChunkName: 'login' */ './login'),
     },
     {
-      path: '/register',
+      path: '/dang-ky',
       load: () => import(/* webpackChunkName: 'register' */ './register'),
     },
     {
