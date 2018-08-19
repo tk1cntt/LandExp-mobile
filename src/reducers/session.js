@@ -24,7 +24,7 @@ export default function session(state = {}, action) {
         loading: false,
         isAuthenticated: true,
         error: null,
-        account: action.payload.user,
+        account: action.payload,
       };
     case SESSION_ERROR:
       return {

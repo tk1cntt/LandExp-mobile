@@ -23,7 +23,11 @@ import history from './history';
 import createApolloClient from './core/createApolloClient';
 import router from './router';
 
-import { LOGIN_SUCCESS, SETTING_SUCCESS } from './constants';
+import {
+  LOGIN_SUCCESS,
+  SETTING_SUCCESS,
+  SET_LOCATION_PATH_VARIABLE,
+} from './constants';
 
 const piwik = new ReactPiwik({
   url: 'tracking.tinvang.com.vn',
@@ -122,9 +126,10 @@ async function onLocationChange(location, action) {
 
     store.dispatch(getSession());
 
+    // Save path name to store
     store.dispatch({
-      type: SETTING_SUCCESS,
-      payload: { currentLocation },
+      type: SET_LOCATION_PATH_VARIABLE,
+      locationPath: currentLocation.pathname,
     });
 
     const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;

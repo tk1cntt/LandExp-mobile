@@ -225,7 +225,14 @@ class Detail extends React.Component {
   render() {
     return (
       <div style={{ height: '100%' }}>
-        <NavBar icon={<Icon type="bars" />} onLeftClick={this.onOpenChange}>
+        <NavBar
+          icon={<Icon type="bars" />}
+          onLeftClick={this.onOpenChange}
+          rightContent={[
+            <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+            <Icon key="1" type="ellipsis" />,
+          ]}
+        >
           <Link to="/">
             <img src="/images/logo.png" alt="" />
           </Link>

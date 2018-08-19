@@ -35,6 +35,8 @@ import schema from './data/schema';
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
+import { setLocationPath } from './actions/locationPath';
+
 import config from './config';
 
 process.on('unhandledRejection', (reason, p) => {
@@ -184,6 +186,12 @@ app.get('*', async (req, res, next) => {
       // Apollo Client for use with react-apollo
       client: apolloClient,
     };
+
+    store.dispatch(
+      setLocationPath({
+        locationPath: req.path,
+      }),
+    );
 
     const route = await router.resolve(context);
 

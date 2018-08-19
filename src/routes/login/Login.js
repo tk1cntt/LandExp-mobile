@@ -34,6 +34,9 @@ class Login extends React.Component {
 
   render() {
     const { usernameOrEmail, password } = this.state;
+    if (this.props.isAuthenticated) {
+      window.location = '/';
+    }
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -151,13 +154,19 @@ class Login extends React.Component {
   }
 }
 
+Login.defaultProps = {
+  isAuthenticated: false,
+};
+
 Login.propTypes = {
   loading: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapState = state => ({
   loading: state.auth.loading,
+  isAuthenticated: state.session.isAuthenticated,
 });
 
 const mapDispatch = {

@@ -11,7 +11,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon } from 'antd';
-import { Flex, Card, Drawer, SearchBar, NavBar, WhiteSpace } from 'antd-mobile';
+import { Flex, Card, Drawer, NavBar, WhiteSpace, NoticeBar } from 'antd-mobile';
 import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
@@ -34,16 +34,22 @@ class Home extends React.Component {
   render() {
     return (
       <div style={{ height: '100%' }}>
-        <NavBar icon={<Icon type="bars" />} onLeftClick={this.onOpenChange}>
+        <NavBar
+          icon={<Icon type="bars" />}
+          onLeftClick={this.onOpenChange}
+          rightContent={[
+            <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+            <Icon key="1" type="ellipsis" />,
+          ]}
+        >
           <Link to="/">
             <img src="/images/logo.png" alt="" />
           </Link>
         </NavBar>
-        <SearchBar
-          placeholder="Tìm kiếm thông tin nhà đất"
-          onCancel={this.onSearch}
-          cancelText="Tìm"
-        />
+        <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
+          Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
+          trong tháng 8/2018
+        </NoticeBar>
         <Drawer
           className="my-drawer"
           style={{
