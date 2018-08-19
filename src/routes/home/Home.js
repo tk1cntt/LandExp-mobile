@@ -46,10 +46,6 @@ class Home extends React.Component {
             <img src="/images/logo.png" alt="" />
           </Link>
         </NavBar>
-        <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
-          Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
-          trong tháng 8/2018
-        </NoticeBar>
         <Drawer
           className="my-drawer"
           style={{
@@ -64,6 +60,12 @@ class Home extends React.Component {
           open={this.state.open}
           onOpenChange={this.onOpenChange}
         >
+          <NoticeBar
+            marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}
+          >
+            Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
+            trong tháng 8/2018
+          </NoticeBar>
           <div className="flex-container">
             {this.props.houseList.map(house => (
               <div key={`entity-${house.id}`}>

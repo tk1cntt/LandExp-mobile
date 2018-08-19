@@ -28,7 +28,6 @@ class Post extends React.Component {
   };
 
   render() {
-    console.log(this.props.houseEntity); // eslint-disable-line
     return (
       <div style={{ height: '100%' }}>
         <NavBar
@@ -88,7 +87,7 @@ Post.defaultProps = {
 
 Post.propTypes = {
   isAuthenticated: PropTypes.bool,
-  houseEntity: PropTypes.shape(PropTypes.object).isRequired,
+  // houseEntity: PropTypes.shape(PropTypes.object).isRequired,
   heightScreen: PropTypes.number,
 };
 
