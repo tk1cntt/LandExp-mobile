@@ -55,7 +55,6 @@ class Home extends React.Component {
           contentStyle={{
             color: '#A6A6A6',
             textAlign: 'center',
-            paddingTop: 10,
           }}
           open={this.state.open}
           onOpenChange={this.onOpenChange}

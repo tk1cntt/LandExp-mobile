@@ -245,7 +245,6 @@ class Detail extends React.Component {
           contentStyle={{
             color: '#A6A6A6',
             textAlign: 'center',
-            paddingTop: 10,
           }}
           sidebar={<SideBar isAuthenticated={this.props.isAuthenticated} />}
           open={this.state.open}

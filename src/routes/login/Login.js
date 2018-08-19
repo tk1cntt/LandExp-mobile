@@ -69,14 +69,13 @@ class Login extends React.Component {
           contentStyle={{
             color: '#A6A6A6',
             textAlign: 'center',
-            paddingTop: 10,
           }}
           sidebar={<SideBar isAuthenticated={this.props.isAuthenticated} />}
           open={this.state.open}
           onOpenChange={this.onOpenChange}
         >
           <div className="flex-container">
-            <WingBlank className={s.root}>
+            <WingBlank className={s.root} size="sm">
               <h1>{this.props.title}</h1>
               <p className={s.lead}>
                 Log in with your username or company email address.

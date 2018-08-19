@@ -9,7 +9,11 @@
 @import '../../components/variables.css';
 
 .root {
-  background-color: #fff;
+  border: 1px solid #dfdfdf;
+  background: #fff;
+  margin-top: 5px;
+  padding: 10px;
+  color: #000;
 }
 
 .lead {
