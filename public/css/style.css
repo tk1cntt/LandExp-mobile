@@ -18,6 +18,27 @@ a:hover {
   color: #4a8dff;
 }
 
+.search-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: papayawhip;
+}
+
+.search-box .search-box-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 50px;
+  height: 50px;
+  background-color: #5e23dc;
+  color: #fff;
+  width: 100%;
+  z-index: 101;
+}
+
 /* Home page start */
 
 .app-container .my-drawer {

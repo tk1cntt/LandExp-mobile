@@ -12,6 +12,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Flex, Drawer, NavBar, WhiteSpace } from 'antd-mobile';
 import { Breadcrumb, Tabs, Icon } from 'antd';
+import ReactModal from 'react-modal';
+
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
 import Footer from 'components/Footer';
@@ -19,13 +21,28 @@ import Footer from 'components/Footer';
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
 class Post extends React.Component {
-  state = {
-    open: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      showModal: false,
+      open: false,
+    };
+
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
 
   onOpenChange = () => {
     this.setState({ open: !this.state.open });
   };
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ showModal: false });
+  }
 
   render() {
     return (
@@ -67,12 +84,25 @@ class Post extends React.Component {
                 </Breadcrumb>
               </Flex.Item>
             </Flex>
+            <button onClick={this.handleOpenModal}>Trigger Modal</button>
             <WhiteSpace size="md" />
             <Flex>
               <Flex.Item>
                 <Footer />
               </Flex.Item>
             </Flex>
+            <ReactModal
+              isOpen={this.state.showModal}
+              contentLabel="onRequestClose Example"
+              onRequestClose={this.handleCloseModal}
+              className="search-box"
+            >
+              <div className="search-box-header">
+                <Icon type="arrow-left" onClick={this.handleCloseModal} />{' '}
+                Report Error
+              </div>
+              <button onClick={this.handleCloseModal}>Close Modal</button>
+            </ReactModal>
           </div>
         </Drawer>
       </div>
