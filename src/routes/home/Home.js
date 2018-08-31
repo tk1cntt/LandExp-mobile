@@ -16,6 +16,7 @@ import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
 import Footer from 'components/Footer';
+import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
 
 class Home extends React.Component {
@@ -66,6 +67,7 @@ class Home extends React.Component {
             trong tháng 8/2018
           </NoticeBar>
           <div className="flex-container">
+            <Tag closable title="Velachery" />
             {this.props.houseList.map(house => (
               <div key={`entity-${house.id}`}>
                 <Flex>
