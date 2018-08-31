@@ -9,6 +9,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import TouchFeedback from 'rmc-feedback';
 import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Icon } from 'antd';
@@ -42,7 +43,9 @@ class Tag extends React.Component {
   render() {
     const { title, closable } = this.props;
     const closableDom = closable ? (
-      <Icon onClick={this.onTagClose} className={s.iconClose} type="close" />
+      <TouchFeedback>
+        <Icon onClick={this.onTagClose} className={s.iconClose} type="close" />
+      </TouchFeedback>
     ) : null;
 
     return !this.state.closed ? (

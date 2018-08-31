@@ -16,6 +16,8 @@ import ReactModal from 'react-modal';
 
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
+// import ReportError from 'components/ReportError';
+import SearchBox from 'components/SearchBox';
 import Footer from 'components/Footer';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
@@ -95,12 +97,10 @@ class Post extends React.Component {
               isOpen={this.state.showModal}
               contentLabel="onRequestClose Example"
               onRequestClose={this.handleCloseModal}
-              className="search-box"
+              ariaHideApp={false}
+              className="popup"
             >
-              <div className="search-box-header">
-                <Icon type="arrow-left" onClick={this.handleCloseModal} />{' '}
-                Report Error
-              </div>
+              <SearchBox onClose={this.handleCloseModal} />
               <button onClick={this.handleCloseModal}>Close Modal</button>
             </ReactModal>
           </div>
