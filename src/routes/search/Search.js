@@ -19,7 +19,7 @@ import Footer from 'components/Footer';
 import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
 
-class Home extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -186,13 +186,13 @@ class Home extends React.Component {
   }
 }
 
-Home.defaultProps = {
+Search.defaultProps = {
   houseList: [],
   heightScreen: 1000,
   isAuthenticated: false,
 };
 
-Home.propTypes = {
+Search.propTypes = {
   getTop: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
   heightScreen: PropTypes.number,
@@ -212,4 +212,4 @@ const mapDispatch = {
 export default connect(
   mapState,
   mapDispatch,
-)(Home);
+)(Search);

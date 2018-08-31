@@ -13,7 +13,7 @@ import Layout from '../../components/Layout';
 import mutateGetHouse from './getHouse.graphql';
 
 async function action(context) {
-  console.log("post-context", context); // eslint-disable-line
+  console.log('post-context', context); // eslint-disable-line
   const state = context.store.getState();
   if (context.route.protected && state.session.isAuthenticated !== true) {
     return { redirect: '/dang-nhap', from: context.pathname }; // <== where the redirect come from?

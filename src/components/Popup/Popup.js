@@ -9,28 +9,33 @@ class Popup extends React.Component {
     header: PropTypes.node,
     body: PropTypes.node,
     footer: PropTypes.node,
+    showBackButton: PropTypes.bool,
   };
 
   static defaultProps = {
     header: undefined,
     body: undefined,
     footer: undefined,
+    showBackButton: true,
   };
 
   render() {
+    const { showBackButton } = this.props;
+    const backButton = showBackButton ? (
+      <TouchFeedback>
+        <div className="popup-header-left">
+          <Icon
+            type="arrow-left"
+            style={{ fontSize: 20 }}
+            onClick={this.props.onClose}
+          />
+        </div>
+      </TouchFeedback>
+    ) : null;
     return (
       <div className="popup-container">
         <div className="popup-header">
-          <TouchFeedback>
-            <div className="popup-header-left">
-              <Icon
-                type="arrow-left"
-                style={{ fontSize: 20 }}
-                onClick={this.props.onClose}
-              />
-            </div>
-          </TouchFeedback>{' '}
-          {this.props.header}
+          {backButton} {this.props.header}
         </div>
         <div className="popup-body">{this.props.body}</div>
         <div className="popup-footer">{this.props.footer}</div>

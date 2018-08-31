@@ -24,7 +24,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: papayawhip;
+  background-color: #fff;
 }
 
 .popup .popup-container {
@@ -50,6 +50,10 @@ a:hover {
   text-align: center;
   width: 40px;
   line-height: 50px;
+}
+
+.popup .popup-container .popup-body {
+  margin-top: 50px;
 }
 
 /* Home page start */

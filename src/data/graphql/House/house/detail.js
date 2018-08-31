@@ -26,7 +26,7 @@ export const queries = [
 export const resolvers = {
   RootQuery: {
     async getDetail(parent, args) {
-      console.log('getDetail-args', args) // eslint-disable-line
+      console.log('getDetail-args', args); // eslint-disable-line
       const house = client
         .get(`/api/houses/${decodeId(args.id)}`)
         .then(

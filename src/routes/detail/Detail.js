@@ -155,7 +155,9 @@ class Detail extends React.Component {
                   >
                     {this.props.houseEntity.hospitals &&
                       this.props.houseEntity.hospitals.map((restaurant, i) => (
-                        <div key={`restaurant-id-${i}`}> {/* eslint-disable-line */}
+                        <div key={`restaurant-id-${i}`}>
+                          {' '}
+                          {/* eslint-disable-line */}
                           <div className="title">{restaurant.title}</div>
                           <p style={{ padding: 5 }}>
                             {restaurant.address}
@@ -177,7 +179,9 @@ class Detail extends React.Component {
                   >
                     {this.props.houseEntity.schools &&
                       this.props.houseEntity.schools.map((restaurant, i) => (
-                        <div key={`restaurant-id-${i}`}> {/* eslint-disable-line */}
+                        <div key={`restaurant-id-${i}`}>
+                          {' '}
+                          {/* eslint-disable-line */}
                           <div className="title">{restaurant.title}</div>
                           <p style={{ padding: 5 }}>
                             {restaurant.address}
@@ -200,7 +204,9 @@ class Detail extends React.Component {
                     {this.props.houseEntity.restaurants &&
                       this.props.houseEntity.restaurants.map(
                         (restaurant, i) => (
-                        <div key={`restaurant-id-${i}`}> {/* eslint-disable-line */}
+                          <div key={`restaurant-id-${i}`}>
+                            {' '}
+                            {/* eslint-disable-line */}
                             <div className="title">{restaurant.title}</div>
                             <p style={{ padding: 5 }}>
                               {restaurant.address}

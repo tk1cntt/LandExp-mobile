@@ -17,8 +17,8 @@ import ReactModal from 'react-modal';
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
 // import ReportError from 'components/ReportError';
-import SearchBox from 'components/SearchBox';
-import Footer from 'components/Footer';
+import CitySelection from 'components/CitySelection';
+// import Footer from 'components/Footer';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
@@ -88,11 +88,6 @@ class Post extends React.Component {
             </Flex>
             <button onClick={this.handleOpenModal}>Trigger Modal</button>
             <WhiteSpace size="md" />
-            <Flex>
-              <Flex.Item>
-                <Footer />
-              </Flex.Item>
-            </Flex>
             <ReactModal
               isOpen={this.state.showModal}
               contentLabel="onRequestClose Example"
@@ -100,8 +95,7 @@ class Post extends React.Component {
               ariaHideApp={false}
               className="popup"
             >
-              <SearchBox onClose={this.handleCloseModal} />
-              <button onClick={this.handleCloseModal}>Close Modal</button>
+              <CitySelection onClose={this.handleCloseModal} />
             </ReactModal>
           </div>
         </Drawer>

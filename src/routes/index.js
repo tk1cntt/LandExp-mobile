@@ -52,6 +52,10 @@ const routes = {
       path: '/bat-dong-san/:id/:link',
       load: () => import(/* webpackChunkName: 'detail' */ './detail'),
     },
+    {
+      path: '/tim-kiem',
+      load: () => import(/* webpackChunkName: 'search' */ './search'),
+    },
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
     {
       path: '(.*)',
