@@ -23,7 +23,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: window.innerHeight, // eslint-disable-line
+      height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
       message: 'not at bottom',
     };
     this.handleScroll = this.handleScroll.bind(this);
