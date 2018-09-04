@@ -12,17 +12,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon } from 'antd';
 import { Flex, Card, Drawer, NavBar, WhiteSpace, NoticeBar } from 'antd-mobile';
+import ReactModal from 'react-modal';
+
 import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
 import Footer from 'components/Footer';
 import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
+import CitySelection from 'components/CitySelection';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showModal: false,
       height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
       message: 'not at bottom',
     };
@@ -44,6 +48,14 @@ class Home extends React.Component {
 
   onOpenChange = () => {
     this.setState({ open: !this.state.open });
+  };
+
+  handleOpenModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
   };
 
   handleScroll() {
@@ -109,6 +121,7 @@ class Home extends React.Component {
           </NoticeBar>
           <div className="flex-container">
             <Tag closable title="Velachery" />
+            <button onClick={this.handleOpenModal}>Open Modal</button>
             {this.props.houseList.map(house => (
               <div key={`entity-${house.id}`}>
                 <Flex>
@@ -172,6 +185,15 @@ class Home extends React.Component {
                   </Flex.Item>
                 </Flex>
                 <WhiteSpace size="md" />
+                <ReactModal
+                  isOpen={this.state.showModal}
+                  contentLabel="onRequestClose Example"
+                  onRequestClose={this.handleCloseModal}
+                  ariaHideApp={false}
+                  className="popup"
+                >
+                  <CitySelection onClose={this.handleCloseModal} />
+                </ReactModal>
               </div>
             ))}
           </div>

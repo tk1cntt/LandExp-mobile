@@ -36,7 +36,7 @@ const piwik = new ReactPiwik({
   trackErrors: true,
 });
 
-let userId = window.localStorage.get('uid');
+let userId = window.localStorage.getItem('uid');
 if (!userId) {
   userId = uid();
   window.localStorage.setItem('uid', userId);
