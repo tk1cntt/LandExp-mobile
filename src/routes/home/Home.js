@@ -18,7 +18,7 @@ import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
 import Footer from 'components/Footer';
-import Tag from 'components/Tag';
+// import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
 import CitySelection from 'components/CitySelection';
 
@@ -92,7 +92,12 @@ class Home extends React.Component {
           icon={<Icon type="bars" />}
           onLeftClick={this.onOpenChange}
           rightContent={[
-            <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+            <Icon
+              key="0"
+              type="search"
+              style={{ marginRight: '16px' }}
+              onClick={this.handleOpenModal}
+            />,
             <Icon key="1" type="ellipsis" />,
           ]}
         >
@@ -120,8 +125,6 @@ class Home extends React.Component {
             trong tháng 8/2018
           </NoticeBar>
           <div className="flex-container">
-            <Tag closable title="Velachery" />
-            <button onClick={this.handleOpenModal}>Open Modal</button>
             {this.props.houseList.map(house => (
               <div key={`entity-${house.id}`}>
                 <Flex>

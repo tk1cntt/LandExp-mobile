@@ -18,7 +18,7 @@ class CitySelection extends React.Component {
         onClose={this.props.onClose}
         header={<CityHeader />}
         body={<CityBody />}
-        footer={<CityFooter />}
+        footer={<CityFooter onClose={this.props.onClose} />}
       />
     );
   }
