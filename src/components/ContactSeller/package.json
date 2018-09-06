@@ -1,0 +1,6 @@
+{
+  "name": "ContactSeller",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ContactSeller.js"
+}

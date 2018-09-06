@@ -232,7 +232,7 @@ app.use((err, req, res, next) => {
 // Launch the server
 // -----------------------------------------------------------------------------
 if (!module.hot) {
-  app.listen(config.port, () => {
+  app.listen(4000, () => {
     console.info(`The server is running at http://localhost:${config.port}/`);
   });
 }

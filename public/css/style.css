@@ -18,34 +18,45 @@ a:hover {
   color: #4a8dff;
 }
 
-/* Home page start */
-
-.app-container .my-drawer {
-  position: relative;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.app-container .my-drawer .am-drawer-sidebar {
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #fff;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
-.app-container .my-drawer .am-drawer-sidebar .am-list {
-  width: 300px;
-  padding: 0;
+.popup .popup-container {
+  width: 100%;
 }
 
-.app-container .am-navbar {
-  background-color: #fff !important;
-  color: #000;
+.popup .popup-container .popup-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 50px;
+  width: 100%;
+  height: 50px;
+  background-color: #5e23dc;
+  color: #fff;
+  z-index: 101;
 }
 
-.app-container .am-navbar img {
+.popup .popup-container .popup-header-left {
+  font-size: 16px;
+  color: #fff;
   float: left;
-  height: 20px;
+  text-align: center;
+  width: 40px;
+  line-height: 50px;
 }
+
+.popup .popup-container .popup-body {
+  margin-top: 50px;
+}
+
+/* Home page start */
 
 .app-container .am-card-body {
   padding: 0;
@@ -394,8 +405,8 @@ a:hover {
 }
 
 .app-container .am-flexbox-item .call-chat {
-  margin: 15px auto;
-  padding: 15px 30px;
+  margin: 15px 0 0 0;
+  padding: 15px 30px 15px 80px;
   background: #6b92ff;
 }
 
@@ -456,6 +467,10 @@ a:hover {
 
 
 /* Footer page */
+
+.dummy-footer {
+  margin-bottom: 56px;
+}
 
 .footer {
   color: #fff;

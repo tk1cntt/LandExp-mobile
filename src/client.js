@@ -16,6 +16,7 @@ import ReactPiwik from 'react-piwik';
 import { createPath } from 'history/PathUtils';
 import getSession from 'actions/getSession';
 import App from './components/App';
+import { uid } from './constants/utils';
 import createFetch from './createFetch';
 import configureStore from './store/configureStore';
 import { updateMeta } from './DOMUtils';
@@ -34,6 +35,14 @@ const piwik = new ReactPiwik({
   siteId: 2,
   trackErrors: true,
 });
+
+let userId = window.localStorage.getItem('uid');
+if (!userId) {
+  userId = uid();
+  window.localStorage.setItem('uid', userId);
+}
+ReactPiwik.push(['enableHeartBeatTimer']);
+ReactPiwik.push(['setUserId', userId]);
 
 piwik.connectToHistory(history);
 

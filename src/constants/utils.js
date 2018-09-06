@@ -1,5 +1,6 @@
 /* tslint:disable */
 const Hashids = require('hashids');
+const uniqid = require('uniqid');
 
 const hashids = new Hashids('id.landexp.com.vn');
 const hashpayments = new Hashids('payment.landexp.com.vn');
@@ -335,4 +336,14 @@ export const showBedRoom = landType => {
     return true;
   }
   return false;
+};
+
+export const uid = () => uniqid.time();
+
+export const getUid = () => {
+  const userId = window.localStorage.get('uid');
+  if (userId) {
+    return userId;
+  }
+  return undefined;
 };

@@ -1,0 +1,20 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  height: 50px;
+  z-index: 99;
+}
+
+.submit {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background: #1dd38f;
+  border-radius: 5px;
+  color: #fff;
+  line-height: 50px;
+  text-align: center;
+}

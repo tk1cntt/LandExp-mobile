@@ -1,0 +1,6 @@
+{
+  "name": "ReportError",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ReportError.js"
+}

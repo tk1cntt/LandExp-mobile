@@ -8,109 +8,51 @@
  */
 
 import React from 'react';
-import { Collapse } from 'antd';
+import PropTypes from 'prop-types';
+import TouchFeedback from 'rmc-feedback';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import cx from 'classnames';
+import { Icon, Row, Col } from 'antd';
 
-/* eslint-disable-next-line */
-const Panel = Collapse.Panel;
+import history from '../../history';
+import Link from '../Link';
+import s from './Footer.css';
 
 class Footer extends React.Component {
+  static propTypes = {
+    activeTab: PropTypes.string.isRequired,
+  };
+
+  gotoPage = (link) => {
+    history.push(link);
+  };
+
   render() {
+    const { activeTab } = this.props;
+    const homeStyle = activeTab === 'home' ? cx(s.tab, s.tabActive) : cx(s.tab);
+    const favoritesStyle = activeTab === 'favorites' ? cx(s.tab, s.tabActive) : cx(s.tab);
+    const profileStyle = activeTab === 'profile' ? cx(s.tab, s.tabActive) : cx(s.tab);
     return (
-      <div className="footer">
-        <Collapse defaultActiveKey={['1']}>
-          <Panel header="LandExp.com.vn" key="1">
-            <p>Hotline office: 0909333333</p>
-            <p>Email: office@landexp.com.vn</p>
-            <p>Phone: 0220 383 9999</p>
-            <p>
-              Địa chỉ: Số 02, ngách 158/51 Nguyễn Khánh Toàn,<br /> P.Quan Hoa,
-              Q.Cầu Giấy, TP.Hà Nội
-            </p>
-            <img src="/images/dadangky.png" alt="Bat dong san LandExp" />
-          </Panel>
-          <Panel header="Về chúng tôi" key="2">
-            <ul>
-              <li>
-                {/* eslint-disable-next-line */}
-                <a href="#">Giới thiệu</a>
-              </li>
-              <li>
-                {/* eslint-disable-next-line */}
-                <a href="#">Giải pháp</a>
-              </li>
-              <li>
-                {/* eslint-disable-next-line */}
-                <a href="#">Đội ngũ nhân sự</a>
-              </li>
-              <li>
-                {/* eslint-disable-next-line */}
-                <a href="#">Liên hệ</a>
-              </li>
-            </ul>
-          </Panel>
-          <Panel header="Hỗ trợ" key="3">
-            <ul>
-              <li>
-                {/* eslint-disable-next-line */}
-                <a href="#">Dành cho người bán</a>
-              </li>
-              <li>
-                {/* eslint-disable-next-line */}
-                <a href="#">Dành cho người mua</a>
-              </li>
-              <li>
-                {/* eslint-disable-next-line */}
-                <a href="#">Chính sách hợp tác</a>
-              </li>
-            </ul>
-          </Panel>
-        </Collapse>
-        <div className="info">
-          <p className="link-app">
-            {/* eslint-disable-next-line */}
-            <a href="#">
-              <img
-                src="/images/icon/IOS.png"
-                alt="Ung dung bat dong san cho android"
-              />
-            </a>
-            {/* eslint-disable-next-line */}
-            <a href="#">
-              <img
-                src="/images/icon/ANDROID.png"
-                alt="Ung dung bat dong san cho ios"
-              />
-            </a>
-          </p>
-          <div className="social-icon">
-            {/* eslint-disable-next-line */}
-            <a href="#">
-              <i className="fa fa-facebook" />
-            </a>
-            {/* eslint-disable-next-line */}
-            <a href="#">
-              <i className="fa fa-twitter" />
-            </a>
-            {/* eslint-disable-next-line */}
-            <a href="#">
-              <i className="fa fa-linkedin" />
-            </a>
-            {/* eslint-disable-next-line */}
-            <a href="#">
-              <i className="fa fa-youtube" />
-            </a>
-            {/* eslint-disable-next-line */}
-            <a href="#">
-              <i className="fa fa-google-plus" />
-            </a>
-          </div>
-          <div className="copyright">
-            <p>Copyright © 2018 LandExp. All rights reserved.</p>
-          </div>
+      <div>
+        <div className={s.footerContainer}>
+          <Row>
+            <Col span={8} className={homeStyle}>
+              <Icon style={{ fontSize: 23 }} type="home" onClick={this.gotoPage.bind(this, '/')} />
+              <div className={s.text}>Trang chủ</div>
+            </Col>
+            <Col span={8} className={favoritesStyle}>
+              <Icon style={{ fontSize: 23 }} type="heart" onClick={this.gotoPage.bind(this, '/tai-khoang/tin-yeu-thich')} />
+              <div className={s.text}>Yêu thích</div>
+            </Col>
+            <Col span={8} className={profileStyle}>
+              <Icon style={{ fontSize: 23 }} type="user" onClick={this.gotoPage.bind(this, '/tai-khoan/thong-tin-ca-nhan')} />
+              <div className={s.text}>Tài khoản</div>
+            </Col>
+          </Row>
         </div>
       </div>
     );
   }
 }
 
-export default Footer;
+export default withStyles(s)(Footer);

@@ -1,0 +1,27 @@
+.footerContainer {
+  position: fixed;
+  bottom: 0;
+  height: 56px;
+  width: 100%;
+  background: #313131;
+  transition: all 0.3s;
+  color: #7f7f7f;
+}
+
+.tab {
+  text-align: center;
+  padding: 12px 0 10px;
+  position: relative;
+}
+
+.tabActive {
+  color: #1dd38f;
+}
+
+.text {
+  font-size: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
