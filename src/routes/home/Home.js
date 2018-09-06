@@ -25,17 +25,14 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      open: false,
       showModal: false,
       height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
       message: 'not at bottom',
     };
     this.handleScroll = this.handleScroll.bind(this);
   }
-
-  state = {
-    open: false,
-  };
-
+  
   componentDidMount() {
     this.props.getTop(1, 8);
     window.addEventListener('scroll', this.handleScroll);
@@ -179,7 +176,7 @@ class Home extends React.Component {
         </div>
         <Flex>
           <Flex.Item>
-            <Footer />
+            <Footer activeTab={'home'}/>
           </Flex.Item>
         </Flex>
         <ReactModal

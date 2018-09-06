@@ -29,6 +29,16 @@ const routes = {
       load: () => import(/* webpackChunkName: 'post' */ './post'),
     },
     {
+      path: '/tai-khoan/thong-tin-ca-nhan',
+      protected: true,
+      load: () => import(/* webpackChunkName: 'post' */ './home'),
+    },
+    {
+      path: '/tai-khoan/tin-yeu-thich',
+      protected: true,
+      load: () => import(/* webpackChunkName: 'post' */ './home'),
+    },
+    {
       path: '/dang-nhap',
       load: () => import(/* webpackChunkName: 'login' */ './login'),
     },

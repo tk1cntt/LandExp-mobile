@@ -11,6 +11,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Flex, Carousel, NavBar, WhiteSpace } from 'antd-mobile';
+import { Breadcrumb, Tabs, Icon } from 'antd';
+import ReactModal from 'react-modal';
+
 import {
   getActionType,
   getLandType,
@@ -20,23 +23,24 @@ import {
   humanize,
   SERVER_API_URL,
 } from 'constants/utils';
-import { Breadcrumb, Tabs, Icon } from 'antd';
 import Link from 'components/Link';
 import Footer from 'components/Footer';
+import ContactSeller from 'components/ContactSeller';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+      showModal: false,
+      height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
+    };
     this.contactRef = React.createRef();
     this.scrollRef = React.createRef();
     this.handleScroll = this.handleScroll.bind(this);
   }
-
-  state = {
-    open: false,
-  };
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
@@ -48,6 +52,14 @@ class Detail extends React.Component {
 
   onOpenChange = () => {
     this.setState({ open: !this.state.open });
+  };
+
+  handleOpenModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
   };
 
   handleScroll(event) {
@@ -265,7 +277,12 @@ class Detail extends React.Component {
           icon={<Icon type="bars" />}
           onLeftClick={this.onOpenChange}
           rightContent={[
-            <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+            <Icon
+              key="0"
+              type="search"
+              style={{ marginRight: '16px' }}
+              onClick={this.handleOpenModal}
+            />,
             <Icon key="1" type="ellipsis" />,
           ]}
         >
@@ -317,10 +334,19 @@ class Detail extends React.Component {
           {this.houseNearByForm()}
           <Flex>
             <Flex.Item>
-              <Footer />
+              <Footer activeTab={'home'} />
             </Flex.Item>
           </Flex>
         </div>
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel="onRequestClose Example"
+          onRequestClose={this.handleCloseModal}
+          ariaHideApp={false}
+          className="popup"
+        >
+          <ContactSeller onClose={this.handleCloseModal} />
+        </ReactModal>
       </div>
     );
   }

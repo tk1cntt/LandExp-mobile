@@ -1,0 +1,17 @@
+.body {
+  padding-top: 20px;
+}
+
+.selection {
+  text-align: center;
+}
+
+.profileImg {
+  margin-top: 4px;
+  width: 58px;
+  height: 58px;
+  border-radius: 100px;
+  background-size: cover;
+  background-position: 50%;
+  background-image: url(/images/icon/profile.png);
+}
