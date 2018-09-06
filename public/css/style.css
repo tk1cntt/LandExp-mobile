@@ -56,6 +56,11 @@ a:hover {
   margin-top: 50px;
 }
 
+.popup .popup-container .popup-body .am-list-item .am-input-control input,
+.popup .popup-container .popup-body .am-list-item .am-input-label {
+  font-size: 15px !important;
+}
+
 /* Home page start */
 
 .app-container .am-navbar {

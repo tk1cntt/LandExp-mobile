@@ -1,10 +1,9 @@
-import React from 'react';
+﻿import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Radio } from 'antd';
-import s from './ContactBody.css';
+import { InputItem } from 'antd-mobile';
+import { InputNumber } from 'antd';
 
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
+import s from './ContactBody.css';
 
 class ContactBody extends React.Component {
   onChange = e => {
@@ -14,14 +13,26 @@ class ContactBody extends React.Component {
   render() {
     return (
       <div className={s.body}>
-        <div className="crf-cnfg slr-slctd small" data-uuid="95f2086c-b73f-4a5b-9487-fa17577616df">
+        <div className={s.title}>Thông tin người bán</div>
+        <div className={s.card}>
           <div className={s.profileImg} />
-          <div className="prfl-name-cnfg ib">
-            <div className="prfl-name">Adesh Jain</div>
-            <div className="prfl-type">Housing Select Agent</div>
-            <div className="prfl-num">+91-XXXXXXXXXX</div>
+          <div className={s.profileInfo}>
+            <div className="prfl-name">Anh A</div>
+            <div className={s.profileType}>Chính chủ</div>
+            <div className={s.profileNumber}>+84-XXXXXXXXXX</div>
           </div>
         </div>
+        <div className={s.inputGroup}>
+          <InputItem
+            clear
+            placeholder="Thông tin liên lạc"
+          >Liên hệ</InputItem>
+          <InputItem
+            type="phone"
+            placeholder="098xxxxxxxxx"
+          >Điện thoại</InputItem>
+        </div>
+        <button class={s.submit}>Nhận thông tin người bán</button>
       </div>
     );
   }
