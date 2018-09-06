@@ -10,7 +10,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Flex, Carousel, Drawer, NavBar, WhiteSpace } from 'antd-mobile';
+import { Flex, Carousel, NavBar, WhiteSpace } from 'antd-mobile';
 import {
   getActionType,
   getLandType,
@@ -22,14 +22,15 @@ import {
 } from 'constants/utils';
 import { Breadcrumb, Tabs, Icon } from 'antd';
 import Link from 'components/Link';
-import SideBar from 'components/Sidebar';
+import Footer from 'components/Footer';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
-    this.myRef = React.createRef();
+    this.contactRef = React.createRef();
+    this.scrollRef = React.createRef();
     this.handleScroll = this.handleScroll.bind(this);
   }
 
@@ -50,23 +51,24 @@ class Detail extends React.Component {
   };
 
   handleScroll(event) {
-    console.log('handleScroll event', event); // eslint-disable-line
     const windowHeight =
       'innerHeight' in window
         ? window.innerHeight
         : document.documentElement.offsetHeight;
+    const body = document.body; // eslint-disable-line
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight,
+    );
     const windowBottom = windowHeight + window.pageYOffset;
-    console.log(this.myRef); // eslint-disable-line
-    console.log(this.myRef.current.offsetTop); // eslint-disable-line
-    console.log(windowBottom); // eslint-disable-line
-    if (
-      this.myRef.current &&
-      windowBottom >=
-        this.myRef.current.offsetTop - this.myRef.current.offsetHeight
-    ) {
-      console.log('Scroll over'); // eslint-disable-line
+    if (windowBottom >= docHeight) {
+      console.log('bottom reached'); // eslint-disable-line
     } else {
-      console.log('Scroll inside'); // eslint-disable-line
+      console.log('not at bottom'); // eslint-disable-line
     }
   }
 
@@ -133,7 +135,7 @@ class Detail extends React.Component {
 
   houseContactForm() {
     return (
-      <div className="contact-box" ref={this.myRef}>
+      <div className="contact-box" ref={this.contactRef}>
         <div className="contact">
           <h3>Liên hệ chủ nhà</h3>
           <p>
@@ -188,15 +190,15 @@ class Detail extends React.Component {
                     className="nearby"
                   >
                     {this.props.houseEntity.hospitals &&
-                      this.props.houseEntity.hospitals.map(restaurant => (
-                        <div key={`restaurant-id-${restaurant.title}`}>
+                       this.props.houseEntity.hospitals.map(hospital => (
+                        <div key={`restaurant-id-${hospital.title}`}>
                           {' '}
                           {/* eslint-disable-line */}
-                          <div className="title">{restaurant.title}</div>
+                          <div className="title">{hospital.title}</div>
                           <p style={{ padding: 5 }}>
-                            {restaurant.address}
+                            {hospital.address}
                             <span>
-                              {humanize(restaurant.distance / 1000)} km
+                              {humanize(hospital.distance / 1000)} km
                             </span>
                           </p>
                         </div>
@@ -234,14 +236,14 @@ class Detail extends React.Component {
                     className="nearby"
                   >
                     {this.props.houseEntity.restaurants &&
-                      this.props.houseEntity.restaurants.map(house => (
-                        <div key={`restaurant-id-${house.title}`}>
+                       this.props.houseEntity.restaurants.map(restaurant => (
+                        <div key={`restaurant-id-${restaurant.title}`}>
                           {' '}
                             {/* eslint-disable-line */}
-                          <div className="title">{house.title}</div>
+                          <div className="title">{restaurant.title}</div>
                           <p style={{ padding: 5 }}>
-                            {house.address}
-                            <span>{humanize(house.distance / 1000)} km</span>
+                            {restaurant.address}
+                            <span>{humanize(restaurant.distance / 1000)} km</span>
                           </p>
                         </div>
                       ))}
@@ -271,63 +273,54 @@ class Detail extends React.Component {
             <img src="/images/logo.png" alt="" />
           </Link>
         </NavBar>
-        <Drawer
-          className="my-drawer"
-          style={{
-            minHeight: this.props.heightScreen,
-          }}
-          contentStyle={{
-            color: '#A6A6A6',
-            textAlign: 'center',
-          }}
-          sidebar={<SideBar isAuthenticated={this.props.isAuthenticated} />}
-          open={this.state.open}
-          onOpenChange={this.onOpenChange}
-        >
-          <div className="flex-container">
-            <Flex>
-              <Flex.Item>
-                <Breadcrumb className="breadcrumb">
-                  <Breadcrumb.Item>Tin bất động sản</Breadcrumb.Item>
-                  <Breadcrumb.Item href="">
-                    <strong>
-                      {getActionType(this.props.houseEntity.actionType)}
-                    </strong>
-                  </Breadcrumb.Item>
-                </Breadcrumb>
-              </Flex.Item>
-            </Flex>
-            <WhiteSpace size="md" />
-            <Flex>
-              <Flex.Item>
-                <Carousel autoplay infinite>
-                  {this.props.housePhotoList.map(file => (
-                    <img
-                      key={`id-${file.id}`}
-                      src={`${SERVER_API_URL}/api/house-photos/${encodeId(
-                        file.id,
-                      )}/contents/${this.props.houseEntity.link}-${encodeId(
-                        file.id,
-                      )}.jpg`}
-                      style={{ width: '100%', verticalAlign: 'top' }}
-                      alt=""
-                    />
-                  ))}
-                </Carousel>
-              </Flex.Item>
-            </Flex>
-            <WhiteSpace size="md" />
-            <Flex>
-              <Flex.Item>{this.houseDetailForm()}</Flex.Item>
-            </Flex>
-            <WhiteSpace size="md" />
-            <Flex>
-              <Flex.Item>{this.houseContactForm()}</Flex.Item>
-            </Flex>
-            <WhiteSpace size="md" />
-            {this.houseNearByForm()}
-          </div>
-        </Drawer>
+        <div className="flex-container dummy-footer">
+          <Flex>
+            <Flex.Item>
+              <Breadcrumb className="breadcrumb">
+                <Breadcrumb.Item>Tin bất động sản</Breadcrumb.Item>
+                <Breadcrumb.Item href="">
+                  <strong>
+                    {getActionType(this.props.houseEntity.actionType)}
+                  </strong>
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </Flex.Item>
+          </Flex>
+          <WhiteSpace size="md" />
+          <Flex>
+            <Flex.Item>
+              <Carousel autoplay infinite>
+                {this.props.housePhotoList.map(file => (
+                  <img
+                    key={`id-${file.id}`}
+                    src={`${SERVER_API_URL}/api/house-photos/${encodeId(
+                      file.id,
+                    )}/contents/${this.props.houseEntity.link}-${encodeId(
+                      file.id,
+                    )}.jpg`}
+                    style={{ width: '100%', verticalAlign: 'top' }}
+                    alt=""
+                  />
+                ))}
+              </Carousel>
+            </Flex.Item>
+          </Flex>
+          <WhiteSpace size="md" />
+          <Flex>
+            <Flex.Item>{this.houseDetailForm()}</Flex.Item>
+          </Flex>
+          <WhiteSpace size="md" />
+          <Flex>
+            <Flex.Item>{this.houseContactForm()}</Flex.Item>
+          </Flex>
+          <WhiteSpace size="md" />
+          {this.houseNearByForm()}
+          <Flex>
+            <Flex.Item>
+              <Footer />
+            </Flex.Item>
+          </Flex>
+        </div>
       </div>
     );
   }
