@@ -23,18 +23,52 @@ import {
 import { Breadcrumb, Tabs, Icon } from 'antd';
 import Link from 'components/Link';
 import SideBar from 'components/Sidebar';
-import Footer from 'components/Footer';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
 class Detail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
   state = {
     open: false,
   };
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
   onOpenChange = () => {
     this.setState({ open: !this.state.open });
   };
+
+  handleScroll(event) {
+    console.log('handleScroll event', event); // eslint-disable-line
+    const windowHeight =
+      'innerHeight' in window
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
+    const windowBottom = windowHeight + window.pageYOffset;
+    console.log(this.myRef); // eslint-disable-line
+    console.log(this.myRef.current.offsetTop); // eslint-disable-line
+    console.log(windowBottom); // eslint-disable-line
+    if (
+      this.myRef.current &&
+      windowBottom >=
+        this.myRef.current.offsetTop - this.myRef.current.offsetHeight
+    ) {
+      console.log('Scroll over'); // eslint-disable-line
+    } else {
+      console.log('Scroll inside'); // eslint-disable-line
+    }
+  }
 
   houseAdressFull() {
     return (
@@ -99,7 +133,7 @@ class Detail extends React.Component {
 
   houseContactForm() {
     return (
-      <div className="contact-box">
+      <div className="contact-box" ref={this.myRef}>
         <div className="contact">
           <h3>Liên hệ chủ nhà</h3>
           <p>
@@ -154,8 +188,8 @@ class Detail extends React.Component {
                     className="nearby"
                   >
                     {this.props.houseEntity.hospitals &&
-                      this.props.houseEntity.hospitals.map((restaurant, i) => (
-                        <div key={`restaurant-id-${i}`}>
+                      this.props.houseEntity.hospitals.map(restaurant => (
+                        <div key={`restaurant-id-${restaurant.title}`}>
                           {' '}
                           {/* eslint-disable-line */}
                           <div className="title">{restaurant.title}</div>
@@ -178,16 +212,14 @@ class Detail extends React.Component {
                     className="nearby"
                   >
                     {this.props.houseEntity.schools &&
-                      this.props.houseEntity.schools.map((restaurant, i) => (
-                        <div key={`restaurant-id-${i}`}>
+                      this.props.houseEntity.schools.map(school => (
+                        <div key={`restaurant-id-${school.title}`}>
                           {' '}
                           {/* eslint-disable-line */}
-                          <div className="title">{restaurant.title}</div>
+                          <div className="title">{school.title}</div>
                           <p style={{ padding: 5 }}>
-                            {restaurant.address}
-                            <span>
-                              {humanize(restaurant.distance / 1000)} km
-                            </span>
+                            {school.address}
+                            <span>{humanize(school.distance / 1000)} km</span>
                           </p>
                         </div>
                       ))}
@@ -202,21 +234,17 @@ class Detail extends React.Component {
                     className="nearby"
                   >
                     {this.props.houseEntity.restaurants &&
-                      this.props.houseEntity.restaurants.map(
-                        (restaurant, i) => (
-                          <div key={`restaurant-id-${i}`}>
-                            {' '}
+                      this.props.houseEntity.restaurants.map(house => (
+                        <div key={`restaurant-id-${house.title}`}>
+                          {' '}
                             {/* eslint-disable-line */}
-                            <div className="title">{restaurant.title}</div>
-                            <p style={{ padding: 5 }}>
-                              {restaurant.address}
-                              <span>
-                                {humanize(restaurant.distance / 1000)} km
-                              </span>
-                            </p>
-                          </div>
-                        ),
-                      )}
+                          <div className="title">{house.title}</div>
+                          <p style={{ padding: 5 }}>
+                            {house.address}
+                            <span>{humanize(house.distance / 1000)} km</span>
+                          </p>
+                        </div>
+                      ))}
                   </TabPane>
                 </Tabs>
               </div>
@@ -298,11 +326,6 @@ class Detail extends React.Component {
             </Flex>
             <WhiteSpace size="md" />
             {this.houseNearByForm()}
-            <Flex>
-              <Flex.Item>
-                <Footer />
-              </Flex.Item>
-            </Flex>
           </div>
         </Drawer>
       </div>

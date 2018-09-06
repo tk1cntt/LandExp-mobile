@@ -124,7 +124,7 @@ class Home extends React.Component {
             Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
             trong tháng 8/2018
           </NoticeBar>
-          <div className="flex-container">
+          <div className="flex-container dummy-footer">
             {this.props.houseList.map(house => (
               <div key={`entity-${house.id}`}>
                 <Flex>
@@ -188,15 +188,6 @@ class Home extends React.Component {
                   </Flex.Item>
                 </Flex>
                 <WhiteSpace size="md" />
-                <ReactModal
-                  isOpen={this.state.showModal}
-                  contentLabel="onRequestClose Example"
-                  onRequestClose={this.handleCloseModal}
-                  ariaHideApp={false}
-                  className="popup"
-                >
-                  <CitySelection onClose={this.handleCloseModal} />
-                </ReactModal>
               </div>
             ))}
           </div>
@@ -206,6 +197,15 @@ class Home extends React.Component {
             </Flex.Item>
           </Flex>
         </Drawer>
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel="onRequestClose Example"
+          onRequestClose={this.handleCloseModal}
+          ariaHideApp={false}
+          className="popup"
+        >
+          <CitySelection onClose={this.handleCloseModal} />
+        </ReactModal>
       </div>
     );
   }

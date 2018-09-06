@@ -432,8 +432,8 @@ a:hover {
 }
 
 .app-container .am-flexbox-item .call-chat {
-  margin: 15px auto;
-  padding: 15px 30px;
+  margin: 15px 0 0 0;
+  padding: 15px 30px 15px 80px;
   background: #6b92ff;
 }
 
@@ -494,6 +494,10 @@ a:hover {
 
 
 /* Footer page */
+
+.dummy-footer {
+  margin-bottom: 56px;
+}
 
 .footer {
   color: #fff;
