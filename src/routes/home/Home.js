@@ -32,7 +32,7 @@ class Home extends React.Component {
     };
     this.handleScroll = this.handleScroll.bind(this);
   }
-  
+
   componentDidMount() {
     this.props.getTop(1, 8);
     window.addEventListener('scroll', this.handleScroll);
@@ -102,9 +102,7 @@ class Home extends React.Component {
           </div>
         </NavBar>
 
-        <NoticeBar
-          marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}
-        >
+        <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
           Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
           trong tháng 8/2018
         </NoticeBar>
@@ -118,9 +116,7 @@ class Home extends React.Component {
                     <Card.Body>
                       <Link
                         className="post-item"
-                        to={`/bat-dong-san/${encodeId(house.id)}/${
-                          house.link
-                          }`}
+                        to={`/bat-dong-san/${encodeId(house.id)}/${house.link}`}
                       >
                         <div className="item-display">
                           <img src="/images/item-1.png" alt="" />
@@ -135,15 +131,12 @@ class Home extends React.Component {
                             {house.actionType === 'FOR_SELL' ? (
                               <div className="type-sell">BÁN</div>
                             ) : (
-                                <div className="type-rent">CHO THUÊ</div>
-                              )}
+                              <div className="type-rent">CHO THUÊ</div>
+                            )}
                             <div
                               className="price"
                               dangerouslySetInnerHTML={{
-                                __html: getMoney(
-                                  house.money,
-                                  house.actionType,
-                                ),
+                                __html: getMoney(house.money, house.actionType),
                               }}
                             />
                             <div className="post-date">
@@ -159,8 +152,8 @@ class Home extends React.Component {
                             {house.parking ? (
                               <i className="fa fa-check" />
                             ) : (
-                                <i className="fa fa-times" />
-                              )}
+                              <i className="fa fa-times" />
+                            )}
                           </span>
                         </div>
                         <p className="location">
@@ -178,12 +171,11 @@ class Home extends React.Component {
         </div>
         <Flex>
           <Flex.Item>
-            <Footer activeTab={'home'}/>
+            <Footer activeTab="home" />
           </Flex.Item>
         </Flex>
         <ReactModal
           isOpen={this.state.showModal}
-          contentLabel="onRequestClose Example"
           onRequestClose={this.handleCloseModal}
           ariaHideApp={false}
           className="popup"
@@ -197,20 +189,20 @@ class Home extends React.Component {
 
 Home.defaultProps = {
   houseList: [],
-  heightScreen: 1000,
-  isAuthenticated: false,
+  // heightScreen: 1000,
+  // isAuthenticated: false,
 };
 
 Home.propTypes = {
   getTop: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-  heightScreen: PropTypes.number,
+  // isAuthenticated: PropTypes.bool,
+  // heightScreen: PropTypes.number,
   houseList: PropTypes.arrayOf(PropTypes.shape),
 };
 
 const mapState = state => ({
-  isAuthenticated: state.session.isAuthenticated,
-  heightScreen: state.setting.heightScreen,
+  // isAuthenticated: state.session.isAuthenticated,
+  // heightScreen: state.setting.heightScreen,
   houseList: state.top.top,
 });
 

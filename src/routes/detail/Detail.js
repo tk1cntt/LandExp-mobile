@@ -23,7 +23,7 @@ import {
   humanize,
   SERVER_API_URL,
 } from 'constants/utils';
-import Link from 'components/Link';
+// import Link from 'components/Link';
 import Footer from 'components/Footer';
 import ContactSeller from 'components/ContactSeller';
 
@@ -62,7 +62,7 @@ class Detail extends React.Component {
     this.setState({ showModal: false });
   };
 
-  handleScroll(event) {
+  handleScroll() {
     const windowHeight =
       'innerHeight' in window
         ? window.innerHeight
@@ -78,9 +78,13 @@ class Detail extends React.Component {
     );
     const windowBottom = windowHeight + window.pageYOffset;
     if (windowBottom >= docHeight) {
-      console.log('bottom reached'); // eslint-disable-line
+      this.setState({
+        message: 'bottom reached',
+      });
     } else {
-      console.log('not at bottom'); // eslint-disable-line
+      this.setState({
+        message: 'not at bottom',
+      });
     }
   }
 
@@ -202,16 +206,14 @@ class Detail extends React.Component {
                     className="nearby"
                   >
                     {this.props.houseEntity.hospitals &&
-                       this.props.houseEntity.hospitals.map(hospital => (
+                      this.props.houseEntity.hospitals.map(hospital => (
                         <div key={`restaurant-id-${hospital.title}`}>
                           {' '}
                           {/* eslint-disable-line */}
                           <div className="title">{hospital.title}</div>
                           <p style={{ padding: 5 }}>
                             {hospital.address}
-                            <span>
-                              {humanize(hospital.distance / 1000)} km
-                            </span>
+                            <span>{humanize(hospital.distance / 1000)} km</span>
                           </p>
                         </div>
                       ))}
@@ -248,14 +250,16 @@ class Detail extends React.Component {
                     className="nearby"
                   >
                     {this.props.houseEntity.restaurants &&
-                       this.props.houseEntity.restaurants.map(restaurant => (
+                      this.props.houseEntity.restaurants.map(restaurant => (
                         <div key={`restaurant-id-${restaurant.title}`}>
                           {' '}
                             {/* eslint-disable-line */}
                           <div className="title">{restaurant.title}</div>
                           <p style={{ padding: 5 }}>
                             {restaurant.address}
-                            <span>{humanize(restaurant.distance / 1000)} km</span>
+                            <span>
+                              {humanize(restaurant.distance / 1000)} km
+                            </span>
                           </p>
                         </div>
                       ))}
@@ -271,6 +275,7 @@ class Detail extends React.Component {
   }
 
   render() {
+    console.log(this.state.message); // eslint-disable-line
     return (
       <div style={{ height: '100%' }}>
         <NavBar
@@ -334,7 +339,7 @@ class Detail extends React.Component {
           {this.houseNearByForm()}
           <Flex>
             <Flex.Item>
-              <Footer activeTab={'home'} />
+              <Footer activeTab="home" />
             </Flex.Item>
           </Flex>
         </div>
@@ -353,20 +358,20 @@ class Detail extends React.Component {
 }
 
 Detail.defaultProps = {
-  heightScreen: 1000,
-  isAuthenticated: false,
+  // heightScreen: 1000,
+  // isAuthenticated: false,
 };
 
 Detail.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  // isAuthenticated: PropTypes.bool,
   houseEntity: PropTypes.shape(PropTypes.object).isRequired,
   housePhotoList: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  heightScreen: PropTypes.number,
+  // heightScreen: PropTypes.number,
 };
 
-const mapState = state => ({
-  isAuthenticated: state.session.isAuthenticated,
-  heightScreen: state.setting.heightScreen,
+const mapState = () => ({
+  // isAuthenticated: state.session.isAuthenticated,
+  // heightScreen: state.setting.heightScreen,
 });
 
 const mapDispatch = {};
