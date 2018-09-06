@@ -36,12 +36,12 @@ export const resolvers = {
       // console.log('top-args', args) // eslint-disable-line
       const data = await client
         .get(`/api/house-photos/${decodeId(args.id)}/houses`)
-        .then(response => {
+        .then(response =>
           // console.log('top-response', response.data) // eslint-disable-line
-          return {
+          ({
             contents: response.data,
-          };
-        })
+          }),
+        )
         .catch(error => ({
           error: error.response && error.response.data,
         }));

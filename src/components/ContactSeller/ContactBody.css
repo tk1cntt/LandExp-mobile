@@ -64,8 +64,8 @@
   font-size: 12px;
   font-weight: 500;
   color: #000;
-  -webkit-transition: color .5s;
-  transition: color .5s;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
 }
 
 .inputGroup {

@@ -43,7 +43,6 @@ class Login extends React.Component {
   };
 
   render() {
-
     const { usernameOrEmail, password } = this.state;
     if (this.props.isAuthenticated) {
       // window.location = '/';
@@ -68,7 +67,7 @@ class Login extends React.Component {
             <h1>{this.props.title}</h1>
             <p className={s.lead}>
               Log in with your username or company email address.
-              </p>
+            </p>
             <div className={s.formGroup}>
               <a className={s.facebook} href="/login/facebook">
                 <svg
@@ -137,7 +136,7 @@ class Login extends React.Component {
               <div className={s.formGroup}>
                 <label className={s.label} htmlFor="usernameOrEmail">
                   Username or email address:
-                    <input
+                  <input
                     className={s.input}
                     id="usernameOrEmail"
                     type="text"
@@ -153,15 +152,13 @@ class Login extends React.Component {
               <div className={s.formGroup}>
                 <label className={s.label} htmlFor="password">
                   Password:
-                    <input
+                  <input
                     className={s.input}
                     id="password"
                     type="password"
                     name="password"
                     value={password}
-                    onChange={e =>
-                      this.setState({ password: e.target.value })
-                    }
+                    onChange={e => this.setState({ password: e.target.value })}
                   />
                 </label>
               </div>
@@ -172,7 +169,7 @@ class Login extends React.Component {
                   disabled={this.props.loading}
                 >
                   Log in
-                  </button>
+                </button>
               </div>
             </form>
           </WingBlank>
@@ -189,7 +186,7 @@ class Login extends React.Component {
 }
 
 Login.defaultProps = {
-  heightScreen: 1000,
+  // heightScreen: 1000,
   isAuthenticated: false,
 };
 
@@ -197,7 +194,7 @@ Login.propTypes = {
   loading: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  heightScreen: PropTypes.number,
+  // heightScreen: PropTypes.number,
 };
 
 const mapState = state => ({

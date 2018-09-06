@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Flex, NavBar, WhiteSpace } from 'antd-mobile';
 import { Breadcrumb, Tabs, Icon } from 'antd';
@@ -64,19 +64,19 @@ class Post extends React.Component {
 }
 
 Post.defaultProps = {
-  heightScreen: 1000,
-  isAuthenticated: false,
+  // heightScreen: 1000,
+  // isAuthenticated: false,
 };
 
 Post.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  // isAuthenticated: PropTypes.bool,
   // houseEntity: PropTypes.shape(PropTypes.object).isRequired,
-  heightScreen: PropTypes.number,
+  // heightScreen: PropTypes.number,
 };
 
-const mapState = state => ({
-  isAuthenticated: state.session.isAuthenticated,
-  heightScreen: state.setting.heightScreen,
+const mapState = () => ({
+  // isAuthenticated: state.session.isAuthenticated,
+  // heightScreen: state.setting.heightScreen,
 });
 
 const mapDispatch = {};

@@ -166,14 +166,15 @@ export const queries = [
 
 export const resolvers = {
   RootQuery: {
-    async getTop(parent, args) {
+    async getTop() {
       // console.log('top-args', args) // eslint-disable-line
       const data = await client
         .get('/api/houses/top')
-        .then(response => {
-          // console.log('top-response', response.data) // eslint-disable-line
-          return response.data;
-        })
+        .then(
+          response =>
+            // console.log('top-response', response.data) // eslint-disable-line
+            response.data,
+        )
         .catch(error => ({
           error: error.response && error.response.data,
         }));

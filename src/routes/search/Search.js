@@ -11,11 +11,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon } from 'antd';
-import { Flex, Card, NavBar, WhiteSpace, NoticeBar } from 'antd-mobile';
-import { getLandType, getMoney, encodeId } from 'constants/utils';
+import { Flex, NavBar } from 'antd-mobile';
 import Link from 'components/Link';
 import Footer from 'components/Footer';
-import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
 
 class Search extends React.Component {
@@ -87,9 +85,7 @@ class Search extends React.Component {
             <img src="/images/logo.png" alt="" />
           </Link>
         </NavBar>
-        <div className="flex-container">
-          Search
-        </div>
+        <div className="flex-container">Search</div>
         <Flex>
           <Flex.Item>
             <Footer />
@@ -101,22 +97,22 @@ class Search extends React.Component {
 }
 
 Search.defaultProps = {
-  houseList: [],
-  heightScreen: 1000,
-  isAuthenticated: false,
+  // houseList: [],
+  // heightScreen: 1000,
+  // isAuthenticated: false,
 };
 
 Search.propTypes = {
   getTop: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-  heightScreen: PropTypes.number,
-  houseList: PropTypes.arrayOf(PropTypes.shape),
+  // isAuthenticated: PropTypes.bool,
+  // heightScreen: PropTypes.number,
+  // houseList: PropTypes.arrayOf(PropTypes.shape),
 };
 
-const mapState = state => ({
-  isAuthenticated: state.session.isAuthenticated,
-  heightScreen: state.setting.heightScreen,
-  houseList: state.top.top,
+const mapState = () => ({
+  // isAuthenticated: state.session.isAuthenticated,
+  // heightScreen: state.setting.heightScreen,
+  // houseList: state.top.top,
 });
 
 const mapDispatch = {
