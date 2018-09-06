@@ -286,9 +286,9 @@ class Detail extends React.Component {
             <Icon key="1" type="ellipsis" />,
           ]}
         >
-          <Link to="/">
-            <img src="/images/logo.png" alt="" />
-          </Link>
+          <div className="logo">
+            <Icon type="home" /> Land<font color="red">Exp</font>
+          </div>
         </NavBar>
         <div className="flex-container dummy-footer">
           <Flex>

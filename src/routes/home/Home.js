@@ -97,16 +97,18 @@ class Home extends React.Component {
             <Icon key="1" type="ellipsis" />,
           ]}
         >
-          <Link to="/">
-            <img src="/images/logo.png" alt="" />
-          </Link>
+          <div className="logo">
+            <Icon type="home" /> Land<font color="red">Exp</font>
+          </div>
         </NavBar>
+
         <NoticeBar
           marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}
         >
           Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
           trong tháng 8/2018
         </NoticeBar>
+
         <div className="flex-container dummy-footer">
           {this.props.houseList.map(house => (
             <div key={`entity-${house.id}`}>
