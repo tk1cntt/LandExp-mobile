@@ -40,7 +40,8 @@ class Footer extends React.Component {
               <Icon
                 style={{ fontSize: 23 }}
                 type="home"
-                onClick={this.gotoPage('/')}
+                // eslint-disable-next-line
+                onClick={this.gotoPage.bind(this, '/')}
               />
               <div className={s.text}>Trang chủ</div>
             </Col>
@@ -48,7 +49,8 @@ class Footer extends React.Component {
               <Icon
                 style={{ fontSize: 23 }}
                 type="heart"
-                onClick={this.gotoPage('/tai-khoang/tin-yeu-thich')}
+                // eslint-disable-next-line
+                onClick={this.gotoPage.bind(this, '/tai-khoang/tin-yeu-thich')}
               />
               <div className={s.text}>Yêu thích</div>
             </Col>
@@ -56,7 +58,11 @@ class Footer extends React.Component {
               <Icon
                 style={{ fontSize: 23 }}
                 type="user"
-                onClick={this.gotoPage('/tai-khoan/thong-tin-ca-nhan')}
+                // eslint-disable-next-line
+                onClick={this.gotoPage.bind(
+                  this,
+                  '/tai-khoan/thong-tin-ca-nhan',
+                )}
               />
               <div className={s.text}>Tài khoản</div>
             </Col>
