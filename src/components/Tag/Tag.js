@@ -18,13 +18,19 @@ import s from './Tag.css';
 class Tag extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
+    color: PropTypes.string,
     closable: PropTypes.bool,
+    addable: PropTypes.bool,
     onClose: PropTypes.func,
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {
     closable: false,
+    color: '#c7ccd5',
+    addable: false,
     onClose() {},
+    onClick() {},
   };
 
   state = {
@@ -41,20 +47,32 @@ class Tag extends React.Component {
   };
 
   render() {
-    const { title, closable } = this.props;
+    const { title, addable, closable } = this.props;
+    const addableDom = addable ? (
+      <TouchFeedback>
+        <Icon className={s.iconAdd} type="plus" />
+      </TouchFeedback>
+    ) : null;
     const closableDom = closable ? (
       <TouchFeedback>
         <Icon onClick={this.onTagClose} className={s.iconClose} type="close" />
       </TouchFeedback>
     ) : null;
-
+    const onClickHandle = addable ? (
+      <div className={s.rippleParent} style={{ zIndex: 40 }} onClick={this.props.onClick}>
+        <div className={s.ripple} />
+      </div>
+    ) : (
+      <div className={s.rippleParent} style={{ zIndex: 40 }}>
+        <div className={s.ripple} />
+      </div>
+    )
     return !this.state.closed ? (
-      <span className={cx(s.tag, s.headerTag)}>
+      <span className={cx(s.tag, s.headerTag)} style={{ backgroundColor: this.props.color }}>
         <div className={s.text}>{title}</div>
         <span>
-          <div className={s.rippleParent} style={{ zIndex: 40 }}>
-            <div className={s.ripple} />
-          </div>
+          {addableDom}
+          {onClickHandle}
           {closableDom}
         </span>
       </span>

@@ -52,6 +52,36 @@ a:hover {
   line-height: 50px;
 }
 
+.popup .popup-container .popup-header-right {
+  width: 80px;
+  font-size: 14px;
+  padding: 0 10px;
+  line-height: 50px;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup .popup-container .popup-header-middle {
+  left: 40px;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  line-height: 50px;
+  width: 70%;
+  height: 50px;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .popup .popup-container .popup-body {
   margin-top: 50px;
 }

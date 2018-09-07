@@ -14,6 +14,7 @@ import { Icon } from 'antd';
 import { Flex, Card, NavBar, WhiteSpace, NoticeBar } from 'antd-mobile';
 import ReactModal from 'react-modal';
 
+import history from '../../history';
 import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
 import Logo from 'components/Logo';
@@ -81,6 +82,10 @@ class Home extends React.Component {
     }
   }
 
+  gotoPage = (link) => {
+    history.push(link);
+  }
+
   render() {
     console.log(this.state.message); // eslint-disable-line
     return (
@@ -93,7 +98,7 @@ class Home extends React.Component {
               key="0"
               type="search"
               style={{ marginRight: '16px' }}
-              onClick={this.handleOpenModal}
+              onClick={this.gotoPage.bind(this, '/tim-kiem')}
             />,
             <Icon key="1" type="ellipsis" />,
           ]}

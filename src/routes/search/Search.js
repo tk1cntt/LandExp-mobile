@@ -12,7 +12,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon } from 'antd';
 import { Flex, NavBar } from 'antd-mobile';
+import TouchFeedback from 'rmc-feedback';
 import Link from 'components/Link';
+import Tag from 'components/Tag';
 import Footer from 'components/Footer';
 import getTop from 'actions/getTop';
 
@@ -69,28 +71,52 @@ class Search extends React.Component {
     }
   }
 
+  gotoPage = () => {
+    history.go(-1);
+  }
+
+  clearFilter = () => {
+    console.log('Clear filter'); //eslint-disable-line
+  }
+
+  addFilter = () => {
+    console.log('Add filter'); //eslint-disable-line
+  }
+
   render() {
     console.log(this.state.message); // eslint-disable-line
     return (
-      <div style={{ height: '100%' }}>
-        <NavBar
-          icon={<Icon type="bars" />}
-          onLeftClick={this.onOpenChange}
-          rightContent={[
-            <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-            <Icon key="1" type="ellipsis" />,
-          ]}
-        >
-          <Link to="/">
-            <img src="/images/logo.png" alt="" />
-          </Link>
-        </NavBar>
-        <div className="flex-container">Search</div>
-        <Flex>
-          <Flex.Item>
-            <Footer />
-          </Flex.Item>
-        </Flex>
+      <div className="popup">
+        <div className="popup-container">
+          <div className="popup-header">
+            <TouchFeedback>
+              <div className="popup-header-left">
+                <Icon
+                  type="arrow-left"
+                  style={{ fontSize: 20 }}
+                  onClick={this.gotoPage}
+                />
+              </div>
+            </TouchFeedback>
+            <div className="popup-header-middle">
+              Tìm kiếm
+            </div>
+            <TouchFeedback>
+              <div className="popup-header-right">
+                <Icon
+                  type="reload"
+                  style={{ fontSize: 20 }}
+                  onClick={this.clearFilter}
+                />
+              </div>
+            </TouchFeedback>
+          </div>
+          <div className="popup-body">
+             <Tag title="Cầu Giấy" closable color="#5e23dc" />
+             <Tag title="Thêm địa chỉ" addable onClick={this.addFilter}/>
+          </div>
+          <div className="popup-footer">{this.props.footer}</div>
+        </div>
       </div>
     );
   }
