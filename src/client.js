@@ -44,7 +44,7 @@ if (!userId) {
 ReactPiwik.push(['enableHeartBeatTimer']);
 ReactPiwik.push(['setUserId', userId]);
 
-piwik.connectToHistory(history);
+// piwik.connectToHistory(history);
 
 // Universal HTTP client
 const fetch = createFetch(window.fetch, {
@@ -194,6 +194,9 @@ async function onLocationChange(location, action) {
         if (window.ga) {
           window.ga('send', 'pageview', createPath(location));
         }
+
+        // Tracking after document.title have been updated
+        piwik.track(currentLocation);
       },
     );
   } catch (error) {

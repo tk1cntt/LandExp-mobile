@@ -78,8 +78,8 @@ const routes = {
     const route = await next();
 
     // Provide default values for title, description etc.
-    route.title = `${route.title || 'Untitled Page'} - www.reactstarterkit.com`;
-    route.description = route.description || '';
+    route.title = `${route.title || 'Lamo - Tư vấn bất động sản thời 4.0'}`;
+    route.description = route.description || 'Lạ và mới. Kênh tư vấn, đầu tư bất động sản thời 4.0. Mang lại hiệu quả cho việc mua bán của bạn.';
 
     return route;
   },
