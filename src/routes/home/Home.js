@@ -16,6 +16,7 @@ import ReactModal from 'react-modal';
 
 import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
+import Logo from 'components/Logo';
 import Footer from 'components/Footer';
 // import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
@@ -97,9 +98,7 @@ class Home extends React.Component {
             <Icon key="1" type="ellipsis" />,
           ]}
         >
-          <div className="logo">
-            <Icon type="home" /> Land<font color="red">Exp</font>
-          </div>
+          <Logo />
         </NavBar>
 
         <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>

@@ -23,7 +23,9 @@ import {
   humanize,
   SERVER_API_URL,
 } from 'constants/utils';
+import history from '../../history';
 // import Link from 'components/Link';
+import Logo from 'compoments/Logo';
 import Footer from 'components/Footer';
 import ContactSeller from 'components/ContactSeller';
 
@@ -35,6 +37,7 @@ class Detail extends React.Component {
     this.state = {
       open: false,
       showModal: false,
+      showContactFooter: true,
       height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
     };
     this.contactRef = React.createRef();
@@ -67,23 +70,14 @@ class Detail extends React.Component {
       'innerHeight' in window
         ? window.innerHeight
         : document.documentElement.offsetHeight;
-    const body = document.body; // eslint-disable-line
-    const html = document.documentElement;
-    const docHeight = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight,
-    );
     const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= docHeight) {
+    if (windowBottom >= (this.contactRef.current.offsetTop + this.contactRef.current.offsetHeight / 2)) {
       this.setState({
-        message: 'bottom reached',
+        showContactFooter: false,
       });
     } else {
       this.setState({
-        message: 'not at bottom',
+        showContactFooter: true,
       });
     }
   }
@@ -96,6 +90,22 @@ class Detail extends React.Component {
         {this.props.houseEntity.districtName}, {this.props.houseEntity.cityName}
       </>
     );
+  }
+
+  houseContactButtonFooter() {
+    const contactForm = this.state.showContactFooter ? this.houseContactButton() : null;
+    return contactForm;
+  }
+
+  houseContactButton() {
+    const contactButton = (
+      <div className="contact-footer">
+        <div className="contact-footer-button" onClick={this.handleOpenModal}>
+          <div className="contact-title" />
+          Liên hệ chủ nhà
+        </div>
+      </div>);
+    return contactButton;
   }
 
   houseDetailForm() {
@@ -127,7 +137,7 @@ class Detail extends React.Component {
             Phòng tắm: <span>{this.props.houseEntity.bathRoom}</span>
           </p>
           <p className="gara">
-            Chỗ để ô tô:
+            Chỗ để ô tô:{' '}
             <span>{this.props.houseEntity.parking ? 'Có' : 'Không'}</span>
           </p>
         </div>
@@ -153,26 +163,20 @@ class Detail extends React.Component {
     return (
       <div className="contact-box" ref={this.contactRef}>
         <div className="contact">
-          <h3>Liên hệ chủ nhà</h3>
+          <h3>Chủ nhà</h3>
           <p>
             <i className="fa fa-user" /> {this.props.houseEntity.customer}
           </p>
           <p>
-            <i className="fa fa-mobile" /> {this.props.houseEntity.mobile}
+            <i className="fa fa-mobile" /> 09xxxxxxxxx
           </p>
           <p>
-            <i className="fa fa-envelope-o" /> {this.props.houseEntity.email}
+            <i className="fa fa-envelope-o" /> xxx@xxx.com
           </p>
-        </div>
-        <div className="call-chat">
-          {/* eslint-disable-next-line */}
-          <a href="#" className="call">
-            Gọi điện
-          </a>
-          {/* eslint-disable-next-line */}
-          <a href="#" className="chat">
-            Chat
-          </a>
+          <div className="contact-footer-button" onClick={this.handleOpenModal}>
+             <div className="contact-title" />
+             Liên hệ chủ nhà
+          </div>
         </div>
       </div>
     );
@@ -291,11 +295,9 @@ class Detail extends React.Component {
             <Icon key="1" type="ellipsis" />,
           ]}
         >
-          <div className="logo">
-            <Icon type="home" /> Land<font color="red">Exp</font>
-          </div>
+          <Logo />
         </NavBar>
-        <div className="flex-container dummy-footer">
+        <div className="flex-container">
           <Flex>
             <Flex.Item>
               <Breadcrumb className="breadcrumb">
@@ -337,12 +339,8 @@ class Detail extends React.Component {
           </Flex>
           <WhiteSpace size="md" />
           {this.houseNearByForm()}
-          <Flex>
-            <Flex.Item>
-              <Footer activeTab="home" />
-            </Flex.Item>
-          </Flex>
         </div>
+        {this.houseContactButtonFooter()}
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="onRequestClose Example"
@@ -350,7 +348,7 @@ class Detail extends React.Component {
           ariaHideApp={false}
           className="popup"
         >
-          <ContactSeller onClose={this.handleCloseModal} />
+          <ContactSeller houseEntity={this.props.houseEntity} onClose={this.handleCloseModal} />
         </ReactModal>
       </div>
     );

@@ -481,6 +481,51 @@ a:hover {
   overflow-y: scroll;
   height: 320px;
 }
+
+.app-container .contact-footer {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  padding: 10px 12px;
+  background: #fff;
+  border-top: 1px solid #e6e6e6;
+}
+
+.app-container .contact-footer-button {
+  display: inline-block;
+  height: 44px;
+  width: 100%;
+  line-height: 44px;
+  outline: 0;
+  padding: 0 15px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 2px;
+  border: 1px solid #1dd38f;
+  background: #1dd38f;
+  color: #fff;
+  -webkit-transition: .2s;
+  transition: .2s;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-container .contact-footer .contact-parent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
 /* Detail page end */
 
 

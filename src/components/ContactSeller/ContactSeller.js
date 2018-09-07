@@ -7,6 +7,7 @@ import ContactBody from './ContactBody';
 class ContactSeller extends React.Component {
   static propTypes = {
     onClose: PropTypes.func.isRequired,
+    houseEntity: PropTypes.shape(PropTypes.object).isRequired,
   };
 
   render() {
@@ -14,7 +15,7 @@ class ContactSeller extends React.Component {
       <Popup
         onClose={this.props.onClose}
         header="Contact seller"
-        body={<ContactBody />}
+        body={<ContactBody houseEntity={this.props.houseEntity} />}
       />
     );
   }
