@@ -59,16 +59,26 @@ class Tag extends React.Component {
       </TouchFeedback>
     ) : null;
     const onClickHandle = addable ? (
-      <div className={s.rippleParent} style={{ zIndex: 40 }} onClick={this.props.onClick}>
+      <div
+        className={s.rippleParent}
+        style={{ zIndex: 40 }}
+        onClick={this.props.onClick}
+        onKeyPress={() => {}}
+        tabIndex={0}
+        role="button"
+      >
         <div className={s.ripple} />
       </div>
     ) : (
       <div className={s.rippleParent} style={{ zIndex: 40 }}>
         <div className={s.ripple} />
       </div>
-    )
+    );
     return !this.state.closed ? (
-      <span className={cx(s.tag, s.headerTag)} style={{ backgroundColor: this.props.color }}>
+      <span
+        className={cx(s.tag, s.headerTag)}
+        style={{ backgroundColor: this.props.color }}
+      >
         <div className={s.text}>{title}</div>
         <span>
           {addableDom}

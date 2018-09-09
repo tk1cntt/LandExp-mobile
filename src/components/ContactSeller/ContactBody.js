@@ -21,7 +21,9 @@ class ContactBody extends React.Component {
         <div className={s.card}>
           <div className={s.profileImg} />
           <div className={s.profileInfo}>
-            <div className={s.profileName}>{this.props.houseEntity.customer}</div>
+            <div className={s.profileName}>
+              {this.props.houseEntity.customer}
+            </div>
             <div className={s.profileType}>Chính chủ</div>
             <div className={s.profileNumber}>09xxxxxxxx</div>
           </div>
