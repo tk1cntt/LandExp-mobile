@@ -1,0 +1,6 @@
+{
+  "name": "HorizontalList",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./HorizontalList.js"
+}

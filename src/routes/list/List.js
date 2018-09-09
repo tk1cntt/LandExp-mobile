@@ -10,13 +10,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Flex, Card, WhiteSpace, NoticeBar } from 'antd-mobile';
+import { Icon } from 'antd';
+import { Flex, Card, NavBar, WhiteSpace, NoticeBar } from 'antd-mobile';
 import ReactModal from 'react-modal';
 
 import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
-import HorizontalList from 'components/HorizontalList';
-import SearchHeader from 'components/SearchHeader';
+import Logo from 'components/Logo';
 import Footer from 'components/Footer';
 // import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
@@ -24,7 +24,7 @@ import CitySelection from 'components/CitySelection';
 
 import history from '../../history';
 
-class Home extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -91,7 +91,21 @@ class Home extends React.Component {
     console.log(this.state.message); // eslint-disable-line
     return (
       <div style={{ height: '100%' }}>
-        <SearchHeader />
+        <NavBar
+          icon={<Icon type="bars" />}
+          onLeftClick={this.onOpenChange}
+          rightContent={[
+            <Icon
+              key="0"
+              type="search"
+              style={{ marginRight: '16px' }}
+              onClick={() => this.gotoPage('/tim-kiem')}
+            />,
+            <Icon key="1" type="ellipsis" />,
+          ]}
+        >
+          <Logo />
+        </NavBar>
 
         <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
           Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
@@ -99,7 +113,6 @@ class Home extends React.Component {
         </NoticeBar>
 
         <div className="flex-container dummy-footer">
-          <HorizontalList houseList={this.props.houseList} />
           {this.props.houseList.map(house => (
             <div key={`entity-${house.id}`}>
               <Flex>
@@ -163,7 +176,7 @@ class Home extends React.Component {
         </div>
         <Flex>
           <Flex.Item>
-            <Footer activeTab="home" />
+            <Footer activeTab="List" />
           </Flex.Item>
         </Flex>
         <ReactModal
@@ -179,13 +192,13 @@ class Home extends React.Component {
   }
 }
 
-Home.defaultProps = {
+List.defaultProps = {
   houseList: [],
   // heightScreen: 1000,
   // isAuthenticated: false,
 };
 
-Home.propTypes = {
+List.propTypes = {
   getTop: PropTypes.func.isRequired,
   // isAuthenticated: PropTypes.bool,
   // heightScreen: PropTypes.number,
@@ -205,4 +218,4 @@ const mapDispatch = {
 export default connect(
   mapState,
   mapDispatch,
-)(Home);
+)(List);

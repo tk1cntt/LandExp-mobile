@@ -1,0 +1,109 @@
+.horizontalList {
+    width: auto;
+    height: 120px;
+    margin-top: 12px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.horizontalList a {
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-weight: 400;
+    margin: 0;
+    background-color: transparent;
+    color: #000;
+    text-decoration: none;
+}
+
+.ib {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.hListItem {
+    background: #fff;
+    width: 260px;
+    height: 112px;
+    padding: 5px;
+    position: relative;
+    margin-right: 10px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.08);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+
+.hListItem .listImg {
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-color: #cdcdcd;
+}
+
+.hListItem .noImg {
+    background-image: url(https://assets-0.housingcdn.com/mobile/images/loading_placeholder-1fecbcf….png);
+}
+
+.hListItem .imageSection {
+    margin-right: 12px;
+}
+
+.hListItem .imageSection>img {
+    background-position: 50%;
+    background-size: cover;
+}
+
+.hListItem .contentSection {
+    width: 140px;
+}
+
+.hListItem .contentSection>div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.hListItem .listHeading {
+    font-weight: 300;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.hListItem .listLocality {
+    color: rgba(0,0,0,.4);
+    margin-bottom: 10px;
+}
+
+.hListItem .listLocality, .hListItem .listSubheading {
+    line-height: 22px;
+    color: #7f7f7f;
+}
+
+.hListItem .contentSection .listContent .listPrice {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.hListItem .typeSell {
+    width: 82px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 10px;
+    padding-right: 10px;
+    color: #fff;
+    text-align: center;
+    background: url(/images/sell_bg.png) no-repeat;
+}
+
+.hListItem .typeRent {
+    width: 82px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 10px;
+    padding-right: 10px;
+    color: #fff;
+    text-align: center;
+    background: url(/images/rent_bg.png) no-repeat;
+}

@@ -1,3 +1,4 @@
+// eslint-disable
 import React from 'react';
 import { Icon } from 'antd';
 import history from '../../history';
@@ -8,7 +9,8 @@ class Logo extends React.Component {
   };
 
   render() {
-    return (
+    {/* eslint-disable-line */}
+    const logoDom = (
       <div
         className="logo"
         onClick={() => this.gotoPage('/')}
@@ -19,6 +21,7 @@ class Logo extends React.Component {
         <Icon type="home" /> Land<font color="red">Exp</font>
       </div>
     );
+    return logoDom;
   }
 }
 

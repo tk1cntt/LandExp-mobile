@@ -23,11 +23,10 @@ import {
   humanize,
   SERVER_API_URL,
 } from 'constants/utils';
-import history from '../../history';
-// import Link from 'components/Link';
-import Logo from 'compoments/Logo';
-import Footer from 'components/Footer';
 import ContactSeller from 'components/ContactSeller';
+
+import history from '../../history';
+import Logo from './Logo';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
@@ -71,7 +70,11 @@ class Detail extends React.Component {
         ? window.innerHeight
         : document.documentElement.offsetHeight;
     const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= (this.contactRef.current.offsetTop + this.contactRef.current.offsetHeight / 2)) {
+    if (
+      windowBottom >=
+      this.contactRef.current.offsetTop +
+        this.contactRef.current.offsetHeight / 2
+    ) {
       this.setState({
         showContactFooter: false,
       });
@@ -93,18 +96,27 @@ class Detail extends React.Component {
   }
 
   houseContactButtonFooter() {
-    const contactForm = this.state.showContactFooter ? this.houseContactButton() : null;
+    const contactForm = this.state.showContactFooter
+      ? this.houseContactButton()
+      : null;
     return contactForm;
   }
 
   houseContactButton() {
     const contactButton = (
       <div className="contact-footer">
-        <div className="contact-footer-button" onClick={this.handleOpenModal}>
+        <div
+          className="contact-footer-button"
+          onClick={this.handleOpenModal}
+          onKeyPress={() => {}}
+          tabIndex={0}
+          role="button"
+        >
           <div className="contact-title" />
           Liên hệ chủ nhà
         </div>
-      </div>);
+      </div>
+    );
     return contactButton;
   }
 
@@ -173,9 +185,15 @@ class Detail extends React.Component {
           <p>
             <i className="fa fa-envelope-o" /> xxx@xxx.com
           </p>
-          <div className="contact-footer-button" onClick={this.handleOpenModal}>
-             <div className="contact-title" />
-             Liên hệ chủ nhà
+          <div
+            className="contact-footer-button"
+            onClick={this.handleOpenModal}
+            onKeyPress={() => {}}
+            tabIndex={0}
+            role="button"
+          >
+            <div className="contact-title" />
+            Liên hệ chủ nhà
           </div>
         </div>
       </div>
@@ -257,7 +275,7 @@ class Detail extends React.Component {
                       this.props.houseEntity.restaurants.map(restaurant => (
                         <div key={`restaurant-id-${restaurant.title}`}>
                           {' '}
-                            {/* eslint-disable-line */}
+                          {/* eslint-disable-line */}
                           <div className="title">{restaurant.title}</div>
                           <p style={{ padding: 5 }}>
                             {restaurant.address}
@@ -278,6 +296,10 @@ class Detail extends React.Component {
     return <div>{houseNearByForm}</div>;
   }
 
+  gotoPage = link => {
+    history.push(link);
+  };
+
   render() {
     console.log(this.state.message); // eslint-disable-line
     return (
@@ -290,7 +312,7 @@ class Detail extends React.Component {
               key="0"
               type="search"
               style={{ marginRight: '16px' }}
-              onClick={this.handleOpenModal}
+              onClick={() => this.gotoPage('/tim-kiem')}
             />,
             <Icon key="1" type="ellipsis" />,
           ]}
@@ -348,7 +370,10 @@ class Detail extends React.Component {
           ariaHideApp={false}
           className="popup"
         >
-          <ContactSeller houseEntity={this.props.houseEntity} onClose={this.handleCloseModal} />
+          <ContactSeller
+            houseEntity={this.props.houseEntity}
+            onClose={this.handleCloseModal}
+          />
         </ReactModal>
       </div>
     );
