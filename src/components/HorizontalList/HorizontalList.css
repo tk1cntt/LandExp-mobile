@@ -98,6 +98,7 @@
   font-weight: 300;
   line-height: 24px;
   font-size: 14px;
+  color: #000000;
 }
 
 .hListItem .listLocality {
@@ -113,11 +114,15 @@
 .hListItem .contentSection .listContent .listPrice {
   font-size: 14px;
   font-weight: 500;
+  color: #000000;
 }
 
 .hListItem .typeSell {
   width: 82px;
   height: 24px;
+  position: absolute;
+  top: 6px;
+  left: 6px;
   line-height: 24px;
   font-size: 10px;
   padding-right: 10px;
@@ -129,6 +134,9 @@
 .hListItem .typeRent {
   width: 82px;
   height: 24px;
+  position: absolute;
+  top: 6px;
+  left: 6px;
   line-height: 24px;
   font-size: 10px;
   padding-right: 10px;
