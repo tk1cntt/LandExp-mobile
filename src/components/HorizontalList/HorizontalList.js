@@ -8,6 +8,11 @@ import history from '../../history';
 import s from './HorizontalList.css';
 
 class HorizontalList extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+  };
+
   gotoPage = link => {
     history.push(link);
   };
@@ -59,22 +64,16 @@ class HorizontalList extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="title">
-          <div className="hl-title ib">
-            <div className="card-title-container">
-              <div className="card-title">Similar Properties</div>
-              <div className="card-subtitle">
-                Based on properties you have viewed
-              </div>
+      <div className={s.cardContent}>
+        <div className={s.title}>
+          <div className={cx(s.hlTitle, s.ib)}>
+            <div>
+              <div className={s.cardTitle}>{this.props.title}</div>
+              <div className={s.cardSubtitle}>{this.props.subtitle}</div>
             </div>
           </div>
         </div>
         <div className={s.horizontalList}>
-          {this.houseListForm()}
-          {this.houseListForm()}
-          {this.houseListForm()}
-          {this.houseListForm()}
           {this.houseListForm()}
           <div className={cx(s.ib)}>
             <a

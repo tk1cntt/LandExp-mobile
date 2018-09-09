@@ -99,7 +99,11 @@ class Home extends React.Component {
         </NoticeBar>
 
         <div className="flex-container dummy-footer">
-          <HorizontalList houseList={this.props.houseList} />
+          <HorizontalList
+            houseList={this.props.houseList}
+            title="Tin nhà đất tương tự"
+            subtitle="Dựa trên các tin nhà đất bạn đã xem"
+          />
           {this.props.houseList.map(house => (
             <div key={`entity-${house.id}`}>
               <Flex>
