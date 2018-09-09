@@ -16,7 +16,8 @@ class SearchHeader extends React.Component {
             <div className={s.searchBoxContainer}>
               <span className={s.title} />
               <a className={s.citySelect} href="/?op=true">
-                Tìm mua tại Hà Nội <Icon type="down" />
+                Tìm mua tại Hà Nội{' '}
+                <Icon type="down" style={{ fontSize: '16px' }} />
               </a>
               <div className={s.dummyNearby}>
                 <div className={s.text}>

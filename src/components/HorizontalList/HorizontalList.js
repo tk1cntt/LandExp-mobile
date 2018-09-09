@@ -59,154 +59,166 @@ class HorizontalList extends React.Component {
 
   render() {
     return (
-      <div className={s.horizontalList}>
-        {this.houseListForm()}
-        {this.houseListForm()}
-        {this.houseListForm()}
-        {this.houseListForm()}
-        {this.houseListForm()}
-        <div className={cx(s.ib)}>
-          <a
-            className={cx(s.hListItem, s.ib)}
-            data-key={2099224}
-            href="/rent/V18zrs"
-          >
-            <div className={cx(s.imageSection, s.ib)}>
-              <img
-                className={cx(s.listImg)}
-                style={{
-                  backgroundImage:
-                    'url("https://is1-2.housingcdn.com/01c16c28/fb902a7f8f5f57a4686f051b498b4acf/v0/medium.jpg")',
-                }}
-                alt=""
-              />
-            </div>
-            <div className={cx(s.contentSection, s.ib)}>
-              <div className={cx(s.listHeading)}>3 BHK Apartment</div>
-              <div className={cx(s.listSubheading)}>
-                Semi Furnished 1700 sqft
-              </div>
-              <div className={cx(s.listLocality)}>Perungudi</div>
-              <div className={cx(s.listContent)}>
-                <span className={cx(s.listPrice)}>
-                  <i className="icon-rupee" />32,000
-                </span>
+      <div>
+        <div className="title">
+          <div className="hl-title ib">
+            <div className="card-title-container">
+              <div className="card-title">Similar Properties</div>
+              <div className="card-subtitle">
+                Based on properties you have viewed
               </div>
             </div>
-          </a>
+          </div>
         </div>
-        <div className={cx(s.ib)}>
-          <a
-            className={cx(s.hListItem, s.ib)}
-            data-key={2115961}
-            href="/rent/V19cop"
-          >
-            <div className={cx(s.imageSection, s.ib)}>
-              <img className={cx(s.listImg, s.noImg)} alt="" />
-            </div>
-            <div className={cx(s.contentSection, s.ib)}>
-              <div className={cx(s.listHeading)}>3 BHK Apartment</div>
-              <div className={cx(s.listSubheading)}>
-                Semi Furnished 1400 sqft
+        <div className={s.horizontalList}>
+          {this.houseListForm()}
+          {this.houseListForm()}
+          {this.houseListForm()}
+          {this.houseListForm()}
+          {this.houseListForm()}
+          <div className={cx(s.ib)}>
+            <a
+              className={cx(s.hListItem, s.ib)}
+              data-key={2099224}
+              href="/rent/V18zrs"
+            >
+              <div className={cx(s.imageSection, s.ib)}>
+                <img
+                  className={cx(s.listImg)}
+                  style={{
+                    backgroundImage:
+                      'url("https://is1-2.housingcdn.com/01c16c28/fb902a7f8f5f57a4686f051b498b4acf/v0/medium.jpg")',
+                  }}
+                  alt=""
+                />
               </div>
-              <div className={cx(s.listLocality)}>Adyar</div>
-              <div className={cx(s.listContent)}>
-                <span className={cx(s.listPrice)}>
-                  <i className="icon-rupee" />33,000
-                </span>
+              <div className={cx(s.contentSection, s.ib)}>
+                <div className={cx(s.listHeading)}>3 BHK Apartment</div>
+                <div className={cx(s.listSubheading)}>
+                  Semi Furnished 1700 sqft
+                </div>
+                <div className={cx(s.listLocality)}>Perungudi</div>
+                <div className={cx(s.listContent)}>
+                  <span className={cx(s.listPrice)}>
+                    <i className="icon-rupee" />32,000
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-        <div className={cx(s.ib)}>
-          <a
-            className={cx(s.hListItem, s.ib)}
-            data-key={2018628}
-            href="/rent/V179l0"
-          >
-            <div className={cx(s.imageSection, s.ib)}>
-              <img
-                className={cx(s.listImg)}
-                style={{
-                  backgroundImage:
-                    'url("https://is1-3.housingcdn.com/01c16c28/6d16af9b0b2957f0eff976947b9f7c56/v2/medium.jpg")',
-                }}
-                alt=""
-              />
-            </div>
-            <div className={cx(s.contentSection, s.ib)}>
-              <div className={cx(s.listHeading)}>3 BHK Apartment</div>
-              <div className={cx(s.listSubheading)}>
-                Semi Furnished 1243 sqft
+            </a>
+          </div>
+          <div className={cx(s.ib)}>
+            <a
+              className={cx(s.hListItem, s.ib)}
+              data-key={2115961}
+              href="/rent/V19cop"
+            >
+              <div className={cx(s.imageSection, s.ib)}>
+                <img className={cx(s.listImg, s.noImg)} alt="" />
               </div>
-              <div className={cx(s.listLocality)}>Velachery</div>
-              <div className={cx(s.listContent)}>
-                <span className={cx(s.listPrice)}>
-                  <i className="icon-rupee" />33,000
-                </span>
+              <div className={cx(s.contentSection, s.ib)}>
+                <div className={cx(s.listHeading)}>3 BHK Apartment</div>
+                <div className={cx(s.listSubheading)}>
+                  Semi Furnished 1400 sqft
+                </div>
+                <div className={cx(s.listLocality)}>Adyar</div>
+                <div className={cx(s.listContent)}>
+                  <span className={cx(s.listPrice)}>
+                    <i className="icon-rupee" />33,000
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-        <div className={cx(s.ib)}>
-          <a
-            className={cx(s.hListItem, s.ib)}
-            data-key={1984229}
-            href="/rent/V16j1h"
-          >
-            <div className={cx(s.imageSection, s.ib)}>
-              <img
-                className={cx(s.listImg)}
-                style={{
-                  backgroundImage:
-                    'url("https://is1-2.housingcdn.com/01c16c28/a3f14bbcba5b7b86803a760672364996/v2/medium.jpg")',
-                }}
-                alt=""
-              />
-            </div>
-            <div className={cx(s.contentSection, s.ib)}>
-              <div className={cx(s.listHeading)}>3 BHK Apartment</div>
-              <div className={cx(s.listSubheading)}>
-                Semi Furnished 2100 sqft
+            </a>
+          </div>
+          <div className={cx(s.ib)}>
+            <a
+              className={cx(s.hListItem, s.ib)}
+              data-key={2018628}
+              href="/rent/V179l0"
+            >
+              <div className={cx(s.imageSection, s.ib)}>
+                <img
+                  className={cx(s.listImg)}
+                  style={{
+                    backgroundImage:
+                      'url("https://is1-3.housingcdn.com/01c16c28/6d16af9b0b2957f0eff976947b9f7c56/v2/medium.jpg")',
+                  }}
+                  alt=""
+                />
               </div>
-              <div className={cx(s.listLocality)}>Thoraipakkam</div>
-              <div className={cx(s.listContent)}>
-                <span className={cx(s.listPrice)}>
-                  <i className="icon-rupee" />32,000
-                </span>
+              <div className={cx(s.contentSection, s.ib)}>
+                <div className={cx(s.listHeading)}>3 BHK Apartment</div>
+                <div className={cx(s.listSubheading)}>
+                  Semi Furnished 1243 sqft
+                </div>
+                <div className={cx(s.listLocality)}>Velachery</div>
+                <div className={cx(s.listContent)}>
+                  <span className={cx(s.listPrice)}>
+                    <i className="icon-rupee" />33,000
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-        <div className={cx(s.ib)}>
-          <a
-            className={cx(s.hListItem, s.ib)}
-            data-key={2076850}
-            href="/rent/V18iia"
-          >
-            <div className={cx(s.imageSection, s.ib)}>
-              <img
-                className={cx(s.listImg)}
-                style={{
-                  backgroundImage:
-                    'url("https://is1-3.housingcdn.com/01c16c28/52c4ae1ea56597c292029421632cf307/v0/medium.jpg")',
-                }}
-                alt=""
-              />
-            </div>
-            <div className={cx(s.contentSection, s.ib)}>
-              <div className={cx(s.listHeading)}>3 BHK Independent House</div>
-              <div className={cx(s.listSubheading)}>
-                Semi Furnished 2300 sqft
+            </a>
+          </div>
+          <div className={cx(s.ib)}>
+            <a
+              className={cx(s.hListItem, s.ib)}
+              data-key={1984229}
+              href="/rent/V16j1h"
+            >
+              <div className={cx(s.imageSection, s.ib)}>
+                <img
+                  className={cx(s.listImg)}
+                  style={{
+                    backgroundImage:
+                      'url("https://is1-2.housingcdn.com/01c16c28/a3f14bbcba5b7b86803a760672364996/v2/medium.jpg")',
+                  }}
+                  alt=""
+                />
               </div>
-              <div className={cx(s.listLocality)}>Neelankarai</div>
-              <div className={cx(s.listContent)}>
-                <span className={cx(s.listPrice)}>
-                  <i className="icon-rupee" />33,000
-                </span>
+              <div className={cx(s.contentSection, s.ib)}>
+                <div className={cx(s.listHeading)}>3 BHK Apartment</div>
+                <div className={cx(s.listSubheading)}>
+                  Semi Furnished 2100 sqft
+                </div>
+                <div className={cx(s.listLocality)}>Thoraipakkam</div>
+                <div className={cx(s.listContent)}>
+                  <span className={cx(s.listPrice)}>
+                    <i className="icon-rupee" />32,000
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
+          <div className={cx(s.ib)}>
+            <a
+              className={cx(s.hListItem, s.ib)}
+              data-key={2076850}
+              href="/rent/V18iia"
+            >
+              <div className={cx(s.imageSection, s.ib)}>
+                <img
+                  className={cx(s.listImg)}
+                  style={{
+                    backgroundImage:
+                      'url("https://is1-3.housingcdn.com/01c16c28/52c4ae1ea56597c292029421632cf307/v0/medium.jpg")',
+                  }}
+                  alt=""
+                />
+              </div>
+              <div className={cx(s.contentSection, s.ib)}>
+                <div className={cx(s.listHeading)}>3 BHK Independent House</div>
+                <div className={cx(s.listSubheading)}>
+                  Semi Furnished 2300 sqft
+                </div>
+                <div className={cx(s.listLocality)}>Neelankarai</div>
+                <div className={cx(s.listContent)}>
+                  <span className={cx(s.listPrice)}>
+                    <i className="icon-rupee" />33,000
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     );
