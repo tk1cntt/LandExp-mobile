@@ -27,7 +27,7 @@ class Tag extends React.Component {
 
   static defaultProps = {
     closable: false,
-    color: '#c7ccd5',
+    color: 'rgba(0,0,0,.2)',
     addable: false,
     onClose() {},
     onClick() {},

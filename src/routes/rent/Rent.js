@@ -10,13 +10,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Icon } from 'antd';
-import { Flex, Card, NavBar, WhiteSpace, NoticeBar } from 'antd-mobile';
+import { Flex, Card, WhiteSpace, NoticeBar } from 'antd-mobile';
 import ReactModal from 'react-modal';
 
 import { getLandType, getMoney, encodeId } from 'constants/utils';
 import Link from 'components/Link';
-import Logo from 'components/Logo';
+import HorizontalList from 'components/HorizontalList';
+import SearchHeader from 'components/SearchHeader';
 import Footer from 'components/Footer';
 // import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
@@ -24,7 +24,7 @@ import CitySelection from 'components/CitySelection';
 
 import history from '../../history';
 
-class List extends React.Component {
+class Rent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -91,21 +91,7 @@ class List extends React.Component {
     console.log(this.state.message); // eslint-disable-line
     return (
       <div style={{ height: '100%' }}>
-        <NavBar
-          icon={<Icon type="bars" />}
-          onLeftClick={this.onOpenChange}
-          rightContent={[
-            <Icon
-              key="0"
-              type="search"
-              style={{ marginRight: '16px' }}
-              onClick={() => this.gotoPage('/tim-kiem')}
-            />,
-            <Icon key="1" type="ellipsis" />,
-          ]}
-        >
-          <Logo />
-        </NavBar>
+        <SearchHeader />
 
         <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
           Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
@@ -113,6 +99,11 @@ class List extends React.Component {
         </NoticeBar>
 
         <div className="flex-container dummy-footer">
+          <HorizontalList
+            houseList={this.props.houseList}
+            title="Tin nhà đất tương tự"
+            subtitle="Dựa trên các tin nhà đất bạn đã xem"
+          />
           {this.props.houseList.map(house => (
             <div key={`entity-${house.id}`}>
               <Flex>
@@ -192,13 +183,13 @@ class List extends React.Component {
   }
 }
 
-List.defaultProps = {
+Rent.defaultProps = {
   houseList: [],
   // heightScreen: 1000,
   // isAuthenticated: false,
 };
 
-List.propTypes = {
+Rent.propTypes = {
   getTop: PropTypes.func.isRequired,
   // isAuthenticated: PropTypes.bool,
   // heightScreen: PropTypes.number,
@@ -218,4 +209,4 @@ const mapDispatch = {
 export default connect(
   mapState,
   mapDispatch,
-)(List);
+)(Rent);

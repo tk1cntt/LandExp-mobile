@@ -66,6 +66,14 @@ const routes = {
       path: '/tim-kiem',
       load: () => import(/* webpackChunkName: 'search' */ './search'),
     },
+    {
+      path: '/tim-mua-nha',
+      load: () => import(/* webpackChunkName: 'sell' */ './sell'),
+    },
+    {
+      path: '/tim-cho-thue-nha',
+      load: () => import(/* webpackChunkName: 'rent' */ './rent'),
+    },
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
     {
       path: '(.*)',
