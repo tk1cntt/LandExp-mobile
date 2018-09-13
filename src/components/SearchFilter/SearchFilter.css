@@ -20,8 +20,6 @@
   height: 50px;
   background-color: #5e23dc;
   color: #fff;
-  padding-left: 10px;
-  padding-top: 1px;
 }
 
 .filterHeaderLeft {
@@ -31,6 +29,8 @@
   text-align: center;
   width: 40px;
   line-height: 50px;
+  padding-left: 10px;
+  padding-top: 1px;
 }
 
 .filterHeaderMiddle {

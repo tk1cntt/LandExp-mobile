@@ -10,16 +10,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Flex, Card, WhiteSpace, NoticeBar } from 'antd-mobile';
+import { NoticeBar } from 'antd-mobile';
 import ReactModal from 'react-modal';
 
-import { getLandType, getMoney, encodeId } from 'constants/utils';
-import Link from 'components/Link';
+import getTop from 'actions/getTop';
 import HorizontalList from 'components/HorizontalList';
 import SearchHeader from 'components/SearchHeader';
 import Footer from 'components/Footer';
 // import Tag from 'components/Tag';
-import getTop from 'actions/getTop';
 import CitySelection from 'components/CitySelection';
 
 import history from '../../history';
@@ -104,72 +102,8 @@ class Home extends React.Component {
             title="Tin nhà đất tương tự"
             subtitle="Dựa trên các tin nhà đất bạn đã xem"
           />
-          {this.props.houseList.map(house => (
-            <div key={`entity-${house.id}`}>
-              <Flex>
-                <Flex.Item>
-                  <Card>
-                    <Card.Body>
-                      <Link
-                        className="post-item"
-                        to={`/bat-dong-san/${encodeId(house.id)}/${house.link}`}
-                      >
-                        <div className="item-display">
-                          <img src="/images/item-1.png" alt="" />
-                          <div className="item-info">
-                            <div href="#" className="like-button">
-                              <i className="fa fa-heart-o" />
-                            </div>
-                            <div className="title">
-                              <h3>{getLandType(house.landType)}</h3>
-                            </div>
-                            <p className="subtitle">{house.projectName}</p>
-                            {house.actionType === 'FOR_SELL' ? (
-                              <div className="type-sell">BÁN</div>
-                            ) : (
-                              <div className="type-rent">CHO THUÊ</div>
-                            )}
-                            <div
-                              className="price"
-                              dangerouslySetInnerHTML={{
-                                __html: getMoney(house.money, house.actionType),
-                              }}
-                            />
-                            <div className="post-date">
-                              Ngày đăng <span>{house.createAt}</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="property">
-                          <span className="compact">{house.acreage} m2</span>
-                          <span className="bedroom">{house.bedRoom}</span>
-                          <span className="bathroom">{house.bathRoom}</span>
-                          <span className="gara">
-                            {house.parking ? (
-                              <i className="fa fa-check" />
-                            ) : (
-                              <i className="fa fa-times" />
-                            )}
-                          </span>
-                        </div>
-                        <p className="location">
-                          {house.districtType} {house.districtName},{' '}
-                          {house.cityName}
-                        </p>
-                      </Link>
-                    </Card.Body>
-                  </Card>
-                </Flex.Item>
-              </Flex>
-              <WhiteSpace size="md" />
-            </div>
-          ))}
         </div>
-        <Flex>
-          <Flex.Item>
-            <Footer activeTab="home" />
-          </Flex.Item>
-        </Flex>
+        <Footer activeTab="home" />
         <ReactModal
           isOpen={this.state.showModal}
           onRequestClose={this.handleCloseModal}
