@@ -2,9 +2,14 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Icon } from 'antd';
 
+import history from '../../history';
 import s from './SearchHeader.css';
 
 class SearchHeader extends React.Component {
+  gotoPage = link => () => {
+    history.push(link);
+  };
+
   render() {
     return (
       <div>
@@ -19,7 +24,13 @@ class SearchHeader extends React.Component {
                 Tìm mua tại Hà Nội{' '}
                 <Icon type="down" style={{ fontSize: '16px' }} />
               </a>
-              <div className={s.dummyNearby}>
+              <div
+                className={s.dummyNearby}
+                onClick={this.gotoPage('/tim-kiem')}
+                onKeyPress={() => {}}
+                tabIndex={0}
+                role="button"
+              >
                 <div className={s.text}>
                   <Icon className={s.searchIcon} type="search" />
                   <span className="default-text">

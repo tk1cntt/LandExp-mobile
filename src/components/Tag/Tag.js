@@ -61,7 +61,6 @@ class Tag extends React.Component {
     const onClickHandle = addable ? (
       <div
         className={s.rippleParent}
-        style={{ zIndex: 40 }}
         onClick={this.props.onClick}
         onKeyPress={() => {}}
         tabIndex={0}
@@ -70,7 +69,7 @@ class Tag extends React.Component {
         <div className={s.ripple} />
       </div>
     ) : (
-      <div className={s.rippleParent} style={{ zIndex: 40 }}>
+      <div className={s.rippleParent}>
         <div className={s.ripple} />
       </div>
     );

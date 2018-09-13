@@ -60,8 +60,8 @@
   position: relative;
   margin-right: 10px;
   border-radius: 2px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .hListItem .listImg {
@@ -79,7 +79,7 @@
   margin-right: 12px;
 }
 
-.hListItem .imageSection>img {
+.hListItem .imageSection > img {
   background-position: 50%;
   background-size: cover;
 }
@@ -88,7 +88,7 @@
   width: 140px;
 }
 
-.hListItem .contentSection>div {
+.hListItem .contentSection > div {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -98,15 +98,16 @@
   font-weight: 300;
   line-height: 24px;
   font-size: 14px;
-  color: #000000;
+  color: #000;
 }
 
 .hListItem .listLocality {
-  color: rgba(0,0,0,0.4);
+  color: rgba(0, 0, 0, 0.4);
   margin-bottom: 10px;
 }
 
-.hListItem .listLocality, .hListItem .listSubheading {
+.hListItem .listLocality,
+.hListItem .listSubheading {
   line-height: 22px;
   color: #7f7f7f;
 }
@@ -114,7 +115,7 @@
 .hListItem .contentSection .listContent .listPrice {
   font-size: 14px;
   font-weight: 500;
-  color: #000000;
+  color: #000;
 }
 
 .hListItem .typeSell {

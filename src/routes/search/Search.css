@@ -17,19 +17,3 @@
 .body {
   padding: 10px;
 }
-
-.filterTitle {
-  font-weight: 500;
-  display: block;
-  background: 0 0;
-  color: #000;
-  font-size: 14px;
-  margin-top: 12px;
-  padding-left: 3px;
-  text-shadow: 0 0 1px #fff;
-  text-transform: uppercase;
-}
-
-.filterBody {
-  padding-top: 20px;
-}

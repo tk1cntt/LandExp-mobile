@@ -296,7 +296,11 @@ class Detail extends React.Component {
     return <div>{houseNearByForm}</div>;
   }
 
-  gotoPage = link => {
+  gotoPrevious = () => {
+    history.go(-1);
+  };
+
+  gotoPage = link => () => {
     history.push(link);
   };
 
@@ -305,16 +309,16 @@ class Detail extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         <NavBar
-          icon={<Icon type="bars" />}
+          icon={
+            <Icon
+              type="arrow-left"
+              style={{ fontSize: 20 }}
+              onClick={this.gotoPrevious}
+            />
+          }
           onLeftClick={this.onOpenChange}
           rightContent={[
-            <Icon
-              key="0"
-              type="search"
-              style={{ marginRight: '16px' }}
-              onClick={() => this.gotoPage('/tim-kiem')}
-            />,
-            <Icon key="1" type="ellipsis" />,
+            <Icon type="search" onClick={this.gotoPage('/tim-kiem')} />,
           ]}
         >
           <Logo />

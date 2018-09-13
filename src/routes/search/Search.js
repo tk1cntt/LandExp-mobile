@@ -12,7 +12,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Icon } from 'antd';
-import { Range } from 'antd-mobile';
 import TouchFeedback from 'rmc-feedback';
 import Tag from 'components/Tag';
 import getTop from 'actions/getTop';
@@ -24,7 +23,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: window.innerHeight, // eslint-disable-line
+      height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
       message: 'not at bottom',
     };
     this.handleScroll = this.handleScroll.bind(this);
@@ -73,8 +72,12 @@ class Search extends React.Component {
     }
   }
 
-  gotoPage = () => {
+  gotoPrevious = () => {
     history.go(-1);
+  };
+
+  gotoPage = link => () => {
+    history.push(link);
   };
 
   clearFilter = () => {
@@ -84,6 +87,24 @@ class Search extends React.Component {
   addFilter = () => {
     console.log('Add filter'); //eslint-disable-line
   };
+
+  searchButton() {
+    const contactButton = (
+      <div className="contact-footer">
+        <div
+          className="contact-footer-button"
+          onClick={this.gotoPage('/tim-mua-nha')}
+          onKeyPress={() => {}}
+          tabIndex={0}
+          role="button"
+        >
+          <div className="contact-title" />
+          Tìm kiếm
+        </div>
+      </div>
+    );
+    return contactButton;
+  }
 
   render() {
     console.log(this.state.message); // eslint-disable-line
@@ -96,7 +117,7 @@ class Search extends React.Component {
                 <Icon
                   type="arrow-left"
                   style={{ fontSize: 20 }}
-                  onClick={this.gotoPage}
+                  onClick={this.gotoPrevious}
                 />
               </div>
             </TouchFeedback>
@@ -127,17 +148,9 @@ class Search extends React.Component {
               <Tag title="Cầu Giấy" closable color="#5e23dc" />
               <Tag title="Thêm địa chỉ" addable onClick={this.addFilter} />
             </div>
-            <div className={s.filterTitle}>Giá nhà</div>
-            <div className={s.filterBody}>
-              <Range
-                style={{ marginLeft: 30, marginRight: 30 }}
-                min={0}
-                max={10000000000}
-                defaultValue={[1000000, 2000000000]}
-              />
-            </div>
           </div>
         </div>
+        {this.searchButton()}
       </div>
     );
   }
