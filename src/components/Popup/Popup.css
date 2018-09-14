@@ -1,0 +1,34 @@
+.popupContainer {
+  width: 100%;
+}
+
+.popupHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 50px;
+  width: 100%;
+  height: 50px;
+  background-color: #5e23dc;
+  color: #fff;
+}
+
+.popupHeader .popupHeaderLeft {
+  font-size: 16px;
+  color: #fff;
+  float: left;
+  text-align: center;
+  width: 40px;
+  line-height: 50px;
+  padding-left: 10px;
+  padding-top: 1px;
+  margin-right: 15px;
+}
+
+.popupBody {
+  margin-top: 50px;
+}
+
+.popupFooter {
+
+}

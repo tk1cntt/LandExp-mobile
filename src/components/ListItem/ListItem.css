@@ -1,0 +1,225 @@
+.container {
+  position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  padding-top: 5px;
+  background: #e6e6e6;
+  padding-bottom: 5px;
+}
+
+.postItem {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  padding: 7px;
+  position: relative;
+  background-color: #fff;
+}
+
+.postItem:hover {
+  border-top: 1px solid #3a65f9;
+  border-bottom: 1px solid #3a65f9;
+  background: #efefef;
+  box-sizing: border-box;
+}
+
+.itemDisplay a {
+  color: #454545;
+  text-decoration: none;
+}
+
+.itemDisplay a:hover {
+  color: #454545;
+}
+
+.property {
+  padding: 15px 0 0 10px;
+}
+
+.property span {
+  margin-right: 40px;
+}
+
+.itemDisplay {
+  display: flex;
+  padding: 5px 0 0 10px;
+}
+
+.itemDisplay img {
+  object-fit: cover; /* Do not scale the image */
+  object-position: center; /* Center the image within the element */
+  width: 110px;
+  height: 95px;
+}
+
+.itemDisplay .itemInfo {
+  line-height: 1;
+  margin: 0 10px;
+}
+
+.itemDisplay .itemInfo .likeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fe475e;
+  font-size: 24px;
+}
+
+.itemDisplay .itemInfo .title {
+  margin: 0;
+  font-size: 16px;
+  color: #222;
+}
+
+.itemDisplay .itemInfo .title h3 {
+  background: transparent;
+  padding-bottom: 0;
+  padding: 0;
+  max-height: 34px;
+  overflow: hidden;
+  margin: 0;
+  font-size: 16px;
+  color: #222;
+}
+
+.itemDisplay .itemInfo .subtitle {
+  margin: 5px 0 0 0;
+  color: #aaa;
+  font-size: 12px;
+  min-height: 18px;
+}
+
+.itemDisplay .itemInfo .typeSell {
+  width: 82px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 10px;
+  padding-right: 10px;
+  color: #fff;
+  text-align: center;
+  background: url(/images/sell_bg.png) no-repeat;
+}
+
+.itemDisplay .itemInfo .typeRent {
+  width: 82px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 10px;
+  padding-right: 10px;
+  color: #fff;
+  text-align: center;
+  background: url(/images/rent_bg.png) no-repeat;
+}
+
+.itemDisplay .itemInfo .price {
+  margin: 8px auto;
+}
+
+.itemDisplay .itemInfo .price span {
+  font-size: 30px;
+}
+
+.itemDisplay .itemInfo .postDate {
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  text-align: right;
+  font-size: 12px;
+  color: #aaa;
+  display: block;
+  width: 80px;
+  float: left;
+  margin-top: 20px;
+}
+
+.itemDisplay .itemInfo .postDate span {
+  font-size: 14px;
+  color: #3a65f9;
+}
+
+.ib {
+  display: inline-block;
+}
+
+.listContactBtn {
+  border: none;
+  height: auto;
+  padding: 0 20px 5px;
+  background: #fff;
+}
+
+.connectWrap {
+  padding: 7px 0 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+.listAgentInfo {
+  position: static;
+  max-width: calc(100% - 99px);
+  right: 30px;
+}
+
+.agentBody {
+  max-width: calc(100% - 40px);
+}
+
+.agentImg {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background-size: cover;
+  margin-right: 3px;
+  font-size: 11px;
+  text-align: center;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.agentName {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.agentType {
+  width: 100%;
+  font-size: 12px;
+  color: #7f7f7f;
+}
+
+.contactBtn {
+  float: right;
+  width: 96px;
+  height: 35px;
+  background-color: #32d38f;
+  color: #fff;
+  line-height: 35px;
+  text-align: center;
+}
+
+.compact {
+  background: url('/images/icon/ic_view_compact.png') no-repeat 0;
+}
+
+.bedroom {
+  background: url('/images/icon/ic_hotel.png') no-repeat 0;
+}
+
+.bathroom {
+  background: url('/images/icon/ic_bathtub.png') no-repeat 0;
+}
+
+.gara {
+  background: url('/images/icon/ic_directions_car.png') no-repeat 0;
+}
+
+.compact,
+.bedroom,
+.bathroom,
+.gara {
+  padding-left: 25px;
+  height: 20px;
+  line-height: 20px;
+}
