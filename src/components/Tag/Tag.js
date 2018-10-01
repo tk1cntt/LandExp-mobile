@@ -18,6 +18,7 @@ import s from './Tag.css';
 class Tag extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
+    value: PropTypes.string,
     color: PropTypes.string,
     closable: PropTypes.bool,
     addable: PropTypes.bool,
@@ -26,6 +27,7 @@ class Tag extends React.Component {
   };
 
   static defaultProps = {
+    value: undefined,
     closable: false,
     color: 'rgba(0,0,0,.2)',
     addable: false,
@@ -39,7 +41,7 @@ class Tag extends React.Component {
 
   onTagClose = () => {
     if (this.props.onClose) {
-      this.props.onClose();
+      this.props.onClose(this.props.value);
     }
     this.setState({
       closed: true,

@@ -78,7 +78,7 @@ class ListItem extends React.Component {
               className={s.agentImg}
               style={{
                 backgroundColor: 'pink',
-                backgroundImage: 'url("https://housing.com/mystery-man.png")',
+                backgroundImage: 'url("/images/icon/mystery-man.png")',
               }}
             />
           </div>

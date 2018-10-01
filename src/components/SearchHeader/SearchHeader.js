@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Icon } from 'antd';
 
@@ -6,6 +7,17 @@ import history from '../../history';
 import s from './SearchHeader.css';
 
 class SearchHeader extends React.Component {
+  static propTypes = {
+    cityLabel: PropTypes.string,
+    actionType: PropTypes.string,
+    handleOpenModal: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    cityLabel: undefined,
+    actionType: undefined,
+  };
+
   gotoPage = link => () => {
     history.push(link);
   };
@@ -20,10 +32,15 @@ class SearchHeader extends React.Component {
           <div className={s.searchBody}>
             <div className={s.searchBoxContainer}>
               <span className={s.title} />
-              <a className={s.citySelect} href="/?op=true">
-                Tìm mua tại Hà Nội{' '}
-                <Icon type="down" style={{ fontSize: '16px' }} />
-              </a>
+              <div className={s.citySelect}>
+                Tìm {this.props.actionType === 'FOR_RENT' ? 'cho thuê' : 'mua'}{' '}
+                tại {this.props.cityLabel}{' '}
+                <Icon
+                  type="down"
+                  style={{ fontSize: '16px' }}
+                  onClick={this.props.handleOpenModal}
+                />
+              </div>
               <div
                 className={s.dummyNearby}
                 onClick={this.gotoPage('/tim-kiem')}

@@ -1,0 +1,6 @@
+{
+  "name": "DistrictFilter",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./DistrictFilter.js"
+}

@@ -10,10 +10,6 @@ class ContactBody extends React.Component {
     houseEntity: PropTypes.shape(PropTypes.object).isRequired,
   };
 
-  onChange = e => {
-    console.log(`radio checked:${e.target.value}`); // eslint-disable-line
-  };
-
   render() {
     return (
       <div className={s.body}>
@@ -29,7 +25,7 @@ class ContactBody extends React.Component {
           </div>
         </div>
         <div className={s.inputGroup}>
-          <InputItem clear placeholder="Thông tin liên lạc">
+          <InputItem clear placeholder="Thông tin liên hệ">
             Liên hệ
           </InputItem>
           <InputItem type="phone" placeholder="09xxxxxxxxxx">

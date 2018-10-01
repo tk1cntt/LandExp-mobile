@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
+/* eslint-disable react/no-did-mount-set-state */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -26,26 +27,42 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
       showModal: false,
-      height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
-      message: 'not at bottom',
+      houseEntity: { actionType: 'FOR_SELL' },
     };
-    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     this.props.getTop(1, 8);
-    window.addEventListener('scroll', this.handleScroll);
+    // eslint-disable-next-line
+    const cityLabel =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('cityLabel')
+        : undefined;
+    this.setState({
+      cityLabel,
+    });
+    // eslint-disable-next-line
+    const cityValue =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('cityValue')
+        : undefined;
+    this.setState({
+      cityValue,
+    });
+    // eslint-disable-next-line
+    const actionType =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('actionType')
+        : undefined;
+    this.setState({
+      actionType,
+    });
+    // eslint-disable-next-line
+    this.setState({
+      showModal: cityValue === undefined || cityValue === null,
+    });
   }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  onOpenChange = () => {
-    this.setState({ open: !this.state.open });
-  };
 
   handleOpenModal = () => {
     this.setState({ showModal: true });
@@ -53,44 +70,33 @@ class Home extends React.Component {
 
   handleCloseModal = () => {
     this.setState({ showModal: false });
+    window.localStorage.setItem('cityLabel', this.state.cityLabel);
+    window.localStorage.setItem('cityValue', this.state.cityValue);
+    window.localStorage.setItem('actionType', this.state.actionType);
   };
-
-  handleScroll() {
-    const windowHeight =
-      'innerHeight' in window
-        ? window.innerHeight
-        : document.documentElement.offsetHeight;
-    const body = document.body; // eslint-disable-line
-    const html = document.documentElement;
-    const docHeight = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight,
-    );
-    const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= docHeight) {
-      this.setState({
-        message: 'bottom reached',
-      });
-    } else {
-      this.setState({
-        message: 'not at bottom',
-      });
-    }
-  }
 
   gotoPage = link => {
     history.push(link);
   };
 
+  updateHouse = houseEntity => {
+    const nextHouse = { ...this.state.houseEntity, ...houseEntity };
+    this.setState({
+      cityLabel: nextHouse.userCity ? nextHouse.userCity.label : undefined,
+      cityValue: nextHouse.userCity ? nextHouse.userCity.value : undefined,
+      actionType: nextHouse.actionType,
+      houseEntity: nextHouse,
+    });
+  };
+
   render() {
-    console.log(this.state.message); // eslint-disable-line
     return (
       <div style={{ height: '100%' }}>
-        <SearchHeader />
-
+        <SearchHeader
+          cityLabel={this.state.cityLabel}
+          actionType={this.state.actionType}
+          handleOpenModal={this.handleOpenModal}
+        />
         <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
           Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
           trong tháng 8/2018
@@ -110,7 +116,10 @@ class Home extends React.Component {
           ariaHideApp={false}
           className="popup"
         >
-          <CitySelection onClose={this.handleCloseModal} />
+          <CitySelection
+            updateHouse={this.updateHouse}
+            onClose={this.handleCloseModal}
+          />
         </ReactModal>
       </div>
     );

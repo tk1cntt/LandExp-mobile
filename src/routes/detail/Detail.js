@@ -24,9 +24,9 @@ import {
   SERVER_API_URL,
 } from 'constants/utils';
 import ContactSeller from 'components/ContactSeller';
+import Logo from 'components/Logo';
 
 import history from '../../history';
-import Logo from './Logo';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
@@ -327,8 +327,12 @@ class Detail extends React.Component {
           <Flex>
             <Flex.Item>
               <Breadcrumb className="breadcrumb">
-                <Breadcrumb.Item>Tin bất động sản</Breadcrumb.Item>
-                <Breadcrumb.Item href="">
+                <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
+                <Breadcrumb.Item
+                  href={`/tim-kiem?actionType=${
+                    this.props.houseEntity.actionType
+                  }`}
+                >
                   <strong>
                     {getActionType(this.props.houseEntity.actionType)}
                   </strong>
@@ -369,7 +373,6 @@ class Detail extends React.Component {
         {this.houseContactButtonFooter()}
         <ReactModal
           isOpen={this.state.showModal}
-          contentLabel="onRequestClose Example"
           onRequestClose={this.handleCloseModal}
           ariaHideApp={false}
           className="popup"

@@ -1,14 +1,59 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Radio } from 'antd';
+import { Radio, Row, Col } from 'antd';
+import Select from 'react-select';
+
+import CityItem from './CityItem';
 import s from './CityBody.css';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
+const options = require('./cities.json');
 
 class CityBody extends React.Component {
-  onChange = e => {
-    console.log(`radio checked:${e.target.value}`); // eslint-disable-line
+  static propTypes = {
+    updateHouse: PropTypes.func.isRequired,
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      parameters: {
+        actionType: 'FOR_SELL',
+      },
+    };
+  }
+
+  onChangeServiceType = e => {
+    const parameters = { actionType: e.target.value };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+    });
+    this.props.updateHouse(nextParameter);
+  };
+
+  onChangeItemLandType = e => {
+    const userCity = {
+      value: e.value,
+      label: e.label,
+    };
+    const parameters = { userCity };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+    });
+    this.props.updateHouse(nextParameter);
+  };
+
+  onChangeCity = e => {
+    const parameters = { userCity: e };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+    });
+    this.props.updateHouse(nextParameter);
   };
 
   render() {
@@ -17,28 +62,76 @@ class CityBody extends React.Component {
         <div className={s.selection}>
           <div className={s.title}>Nhu cầu của bạn là gì?</div>
           <div className={s.type}>
-            <RadioGroup onChange={this.onChange} defaultValue="BUY">
-              <RadioButton style={{ width: 150 }} value="BUY">
+            <RadioGroup
+              onChange={this.onChangeServiceType}
+              defaultValue="FOR_SELL"
+            >
+              <RadioButton style={{ width: 150 }} value="FOR_SELL">
                 Mua
               </RadioButton>
-              <RadioButton style={{ width: 150 }} value="RENT">
+              <RadioButton style={{ width: 150 }} value="FOR_RENT">
                 Thuê
               </RadioButton>
             </RadioGroup>
           </div>
-          <div className={s.title}>Thành phố nổi tiếng</div>
-          <div>
-            <RadioGroup onChange={this.onChange} defaultValue="Hà Nội">
-              <RadioButton value="Hà Nội">Hà Nội</RadioButton>
-              <RadioButton value="Hồ Chí Minh">Hồ Chí Minh</RadioButton>
-              <RadioButton value="Đà Nẵng">Đà Nẵng</RadioButton>
-            </RadioGroup>
-            <RadioGroup style={{ marginTop: 5 }} onChange={this.onChange}>
-              <RadioButton value="Hải Phòng">Hải Phòng</RadioButton>
-              <RadioButton value="Hải Dương">Hải Dương</RadioButton>
-              <RadioButton value="Bắc Ninh">Bắc Ninh</RadioButton>
-            </RadioGroup>
+          <div className={s.title}>Cách chọn một thành phố</div>
+          <div className={s.subtitle}>
+            <i>{'(hanoi -> Hà Nội, hochiminh -> Hồ Chí Minh)'}</i>
           </div>
+          <div className={s.citySelected}>
+            <Select
+              autoFocus
+              isClearable
+              value={this.state.userCity}
+              onChange={this.onChangeCity}
+              placeholder="Chọn một thành phố"
+              options={options}
+            />
+          </div>
+          <div className={s.title}>Các thành phố nổi tiếng</div>
+          <Row
+            className="cc-selector"
+            type="flex"
+            justify="space-around"
+            align="middle"
+          >
+            <Col span={6} style={{ alignItems: 'center' }}>
+              <CityItem
+                checked={
+                  this.state.userCity
+                    ? this.state.userCity.value === 'hanoi'
+                    : false
+                }
+                value="hanoi"
+                label="Hà Nội"
+                onChange={this.onChangeItemLandType}
+              />
+            </Col>
+            <Col span={6} style={{ alignItems: 'center' }}>
+              <CityItem
+                checked={
+                  this.state.userCity
+                    ? this.state.userCity.value === 'hochiminh'
+                    : false
+                }
+                value="hochiminh"
+                label="Hồ Chí Minh"
+                onChange={this.onChangeItemLandType}
+              />
+            </Col>
+            <Col span={6} style={{ alignItems: 'center' }}>
+              <CityItem
+                checked={
+                  this.state.userCity
+                    ? this.state.userCity.value === 'danang'
+                    : false
+                }
+                value="danang"
+                label="Đà Nẵng"
+                onChange={this.onChangeItemLandType}
+              />
+            </Col>
+          </Row>
         </div>
       </div>
     );

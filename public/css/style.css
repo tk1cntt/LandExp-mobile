@@ -29,6 +29,7 @@ a:hover {
 
 .popup .popup-container {
   width: 100%;
+  background-color: #fff;
 }
 
 .popup .popup-container .popup-header {
@@ -40,7 +41,6 @@ a:hover {
   height: 50px;
   background-color: #5e23dc;
   color: #fff;
-  z-index: 101;
 }
 
 .popup .popup-container .popup-header-left {
@@ -89,12 +89,228 @@ a:hover {
 }
 
 .popup .popup-container .popup-body {
-  margin-top: 50px;
+  padding-bottom: 100px;
 }
 
-.popup .popup-container .popup-body .am-list-item .am-input-control input,
-.popup .popup-container .popup-body .am-list-item .am-input-label {
+.am-list-item .am-input-control input,
+.am-list-item .am-input-label {
   font-size: 15px !important;
+}
+
+.ReactModal__Overlay {
+  z-index: 2;
+}
+
+/* City */
+
+.cc-selector input {
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.cc-selector .sale {
+  background-image: url('/images/icon/ic_sale.png');
+}
+
+.cc-selector .rent {
+  background-image: url('/images/icon/ic_rent.png');
+}
+
+.cc-selector .aparment {
+  background-image: url('/images/icon/aparment.png');
+}
+
+.cc-selector .home {
+  background-image: url('/images/icon/house.png');
+}
+
+.cc-selector .home-villa {
+  background-image: url('/images/icon/house.png');
+}
+
+.cc-selector .home-street-side {
+  background-image: url('/images/icon/house.png');
+}
+
+.cc-selector .land-scape {
+  background-image: url('/images/icon/house-plan-scale.png');
+}
+
+.cc-selector .land-of-project {
+  background-image: url('/images/icon/house-sketch.png');
+}
+
+.cc-selector .land-farm {
+  background-image: url('/images/icon/house-sketch.png');
+}
+
+.cc-selector .land-resort {
+  background-image: url('/images/icon/hotel.png');
+}
+
+.cc-selector .office {
+  background-image: url('/images/icon/hotel.png');
+}
+
+.cc-selector .warehouses {
+  background-image: url('/images/icon/warehouse.png');
+}
+
+.cc-selector .kiosks {
+  background-image: url('/images/icon/shop.png');
+}
+
+.cc-selector .motel-room {
+  background-image: url('/images/icon/hotel.png');
+}
+
+.cc-selector .hanoi {
+  background-image: url('/images/icon/hanoi.jpg');
+}
+
+.cc-selector .hochiminh {
+  background-image: url('/images/icon/hochiminh.png');
+}
+
+.cc-selector .danang {
+  background-image: url('/images/icon/danang.jpg');
+}
+
+.cc-selector input:active + .drinkcard-cc {
+  opacity: 0.9;
+}
+
+.cc-selector input:checked + .drinkcard-cc {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+}
+
+.cc-selector .image-block {
+  display: inline-block;
+}
+
+.cc-selector .image-block .image-item {
+  width: 100px;
+  height: 100px;
+  margin: 10px 5px;
+  padding: 25px 15px;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+}
+
+.cc-selector .image-block .image-item:hover {
+  border: 1px solid #4a8dff;
+}
+
+.cc-selector .image-block .image-item.active {
+  border: 1px solid #4a8dff;
+}
+
+.cc-selector .image-block .image-big-item {
+  width: 140px;
+  height: 140px;
+  margin: 10px 5px;
+  padding: 25px 15px;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+}
+
+.cc-selector .image-block .image-big-item:hover {
+  border: 1px solid #4a8dff;
+}
+
+.cc-selector .image-block .drinkcard-cc {
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 68px;
+  height: 68px;
+  -webkit-transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
+  -moz-filter: brightness(1.8) grayscale(1) opacity(0.7);
+  filter: brightness(1.8) grayscale(1) opacity(0.7);
+}
+
+.cc-selector .image-block .drinkcard-cc:hover {
+  -webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  -moz-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
+
+.cc-selector .image-block p {
+  text-align: center;
+}
+
+.cc-selector .image-block p:hover {
+  color: #4a8dff;
+}
+
+/* Checkbox */
+.ant-checkbox-wrapper {
+  background-color: #5e23dc;
+  border-radius: 18px;
+  color: #fff;
+  line-height: 30px;
+  padding: 0 15px;
+  border: none;
+  position: relative;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  display: block !important;
+}
+
+.ant-checkbox-inner {
+  display: none;
+  border: none !important;
+  background-color: #5e23dc !important;
+  top: 2px !important;
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
+  border: none !important;
+}
+/* District */
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  background: #5e23dc !important;
+  border-color: #5e23dc !important;
+  border-radius: 18px;
+  margin: 5px 5px 0 0;
+}
+
+.ant-radio-button-wrapper-checked,
+.ant-radio-button-wrapper-checked:active,
+.ant-radio-button-wrapper-checked:hover {
+  background: #5e23dc !important;
+  border-color: #5e23dc !important;
+  color: #fff;
+}
+
+.ant-radio-button-wrapper:first-child {
+  border-radius: 18px !important;
+  border-left: none !important;
+}
+
+.ant-radio-button-wrapper:last-child {
+  border-radius: 18px !important;
+  border-left: none !important;
+}
+
+.ant-radio-button-wrapper {
+  border-radius: 18px;
+  margin: 5px 5px 0 0;
+  border-left: none !important;
+  position: inherit !important;
 }
 
 /* Home page start */

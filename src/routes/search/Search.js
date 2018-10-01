@@ -6,86 +6,200 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
+/* eslint-disable react/no-did-mount-set-state */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Icon } from 'antd';
+import { Radio, Icon } from 'antd';
 import TouchFeedback from 'rmc-feedback';
+import ReactModal from 'react-modal';
+
+import { getLandType } from 'constants/utils';
 import Tag from 'components/Tag';
-import getTop from 'actions/getTop';
+import CitySelection from 'components/CitySelection';
+import DistrictFilter from 'components/DistrictFilter';
 
 import history from '../../history';
 import s from './Search.css';
+
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
-      message: 'not at bottom',
+      actionType: 'FOR_SELL',
+      popupDom: undefined,
+      districts: [],
+      parameters: {},
     };
-    this.handleScroll = this.handleScroll.bind(this);
   }
-
-  state = {
-    open: false,
-  };
 
   componentDidMount() {
-    this.props.getTop(1, 8);
-    window.addEventListener('scroll', this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  onOpenChange = () => {
-    this.setState({ open: !this.state.open });
-  };
-
-  handleScroll() {
-    const windowHeight =
-      'innerHeight' in window
-        ? window.innerHeight
-        : document.documentElement.offsetHeight;
-    const body = document.body; // eslint-disable-line
-    const html = document.documentElement;
-    const docHeight = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight,
-    );
-    const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= docHeight) {
-      this.setState({
-        message: 'bottom reached',
-      });
+    const cityLabel =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('cityLabel')
+        : undefined;
+    const cityValue =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('cityValue')
+        : undefined;
+    const actionType =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('actionType')
+        : undefined;
+    const parameters = { actionType };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    if (cityValue === undefined || cityValue === null) {
+      history.push('/');
     } else {
       this.setState({
-        message: 'not at bottom',
+        cityLabel,
+        cityValue,
+        actionType,
+        parameters: nextParameter,
       });
+      if (this.state.districts.length === 0) {
+        this.handleAddFilter();
+      }
     }
   }
+
+  onClose = value => {
+    const districts = this.state.districts || [];
+    const index = districts.map(x => x.id).indexOf(value);
+    districts.splice(index, 1);
+    this.setState({
+      districts,
+    });
+  };
+
+  onLandTypeChange = e => {
+    const parameters = { landType: e.target.value };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+    });
+  };
+
+  onPriceChange = e => {
+    const parameters = { money: e.target.value };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+    });
+  };
+
+  onAcreageChange = e => {
+    const parameters = { acreage: e.target.value };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+    });
+  };
+
+  onBathRoomChange = e => {
+    const parameters = { bathRoom: e.target.value };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+    });
+  };
+
+  onBedRoomChange = e => {
+    const parameters = { bedRoom: e.target.value };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+    });
+  };
+
+  onSearchClick = () => {
+    history.push('/tim-mua-nha');
+  };
+
+  handleChangeCity = () => {
+    const popupDom = (
+      <ReactModal
+        isOpen
+        onRequestClose={this.handleChangeCityClose}
+        ariaHideApp={false}
+        className="popup"
+      >
+        <CitySelection
+          updateHouse={this.updateCity}
+          onClose={this.handleChangeCityClose}
+        />
+      </ReactModal>
+    );
+    this.setState({
+      popupDom,
+    });
+  };
+
+  handleAddFilter = () => {
+    const popupDom = (
+      <ReactModal
+        isOpen
+        onRequestClose={this.handleAddFilterClose}
+        ariaHideApp={false}
+        className="popup"
+      >
+        <DistrictFilter
+          districts={this.state.districts}
+          updateHouse={this.updateDistrict}
+          updateCity={this.handleChangeCity}
+          onClose={this.handleAddFilterClose}
+        />
+      </ReactModal>
+    );
+    this.setState({
+      popupDom,
+    });
+  };
+
+  handleAddFilterClose = () => {
+    this.setState({
+      popupDom: undefined,
+    });
+  };
+
+  handleChangeCityClose = () => {
+    this.setState({
+      popupDom: undefined,
+      districts: [], // Clear district data
+    });
+    window.localStorage.setItem('cityLabel', this.state.cityLabel);
+    window.localStorage.setItem('cityValue', this.state.cityValue);
+    window.localStorage.setItem('actionType', this.state.actionType);
+  };
+
+  updateCity = cityEntity => {
+    const parameters = { actionType: cityEntity.actionType };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+      cityLabel: cityEntity.userCity ? cityEntity.userCity.label : undefined,
+      cityValue: cityEntity.userCity ? cityEntity.userCity.value : undefined,
+      actionType: cityEntity.actionType,
+    });
+  };
+
+  updateDistrict = districtEntity => {
+    this.setState({
+      districts: districtEntity.districts,
+    });
+  };
 
   gotoPrevious = () => {
     history.go(-1);
   };
 
-  gotoPage = link => () => {
-    history.push(link);
-  };
-
   clearFilter = () => {
     console.log('Clear filter'); //eslint-disable-line
-  };
-
-  addFilter = () => {
-    console.log('Add filter'); //eslint-disable-line
   };
 
   searchButton() {
@@ -93,7 +207,7 @@ class Search extends React.Component {
       <div className="contact-footer">
         <div
           className="contact-footer-button"
-          onClick={this.gotoPage('/tim-mua-nha')}
+          onClick={this.onSearchClick}
           onKeyPress={() => {}}
           tabIndex={0}
           role="button"
@@ -106,51 +220,159 @@ class Search extends React.Component {
     return contactButton;
   }
 
+  header() {
+    return (
+      <div className="popup-header">
+        <TouchFeedback>
+          <div className="popup-header-left">
+            <Icon
+              type="arrow-left"
+              style={{ fontSize: 20 }}
+              onClick={this.gotoPrevious}
+            />
+          </div>
+        </TouchFeedback>
+        <div className="popup-header-middle">Tìm kiếm</div>
+        <TouchFeedback>
+          <div className="popup-header-right">
+            <Icon
+              type="reload"
+              style={{ fontSize: 20 }}
+              onClick={this.clearFilter}
+            />
+          </div>
+        </TouchFeedback>
+      </div>
+    );
+  }
+
+  body() {
+    const districtDom = [];
+    this.state.districts.map(district =>
+      districtDom.push(
+        <Tag
+          key={`district-id-${district.id}`}
+          title={district.label}
+          value={district.id}
+          onClose={this.onClose}
+          closable
+          color="#5e23dc"
+        />,
+      ),
+    );
+    const actionTypeText =
+      this.state.actionType === 'FOR_SELL' ? 'mua' : 'cho thuê';
+    return (
+      <div className="popup-body">
+        <div className={s.title}>
+          <span>Tìm {actionTypeText} bất động sản tại </span>
+          <strong>{this.state.cityLabel}</strong>
+          <div
+            className={s.changeButton}
+            onClick={this.handleChangeCity}
+            onKeyPress={() => {}}
+            tabIndex={0}
+            role="button"
+          >
+            <span>Đổi tỉnh thành</span>
+          </div>
+        </div>
+        <div className={s.body}>
+          {districtDom}
+          <Tag title="Thêm địa chỉ" addable onClick={this.handleAddFilter} />
+        </div>
+        <div className={s.subTitle}>Loại bất động sản</div>
+        <div className={s.body}>
+          <RadioGroup onChange={this.onLandTypeChange}>
+            <RadioButton value="APARTMENT">
+              {getLandType('APARTMENT')}
+            </RadioButton>
+            <RadioButton value="HOME">{getLandType('HOME')}</RadioButton>
+            <RadioButton value="HOME_VILLA">
+              {getLandType('HOME_VILLA')}
+            </RadioButton>
+            <RadioButton value="HOME_STREET_SIDE">
+              {getLandType('HOME_STREET_SIDE')}
+            </RadioButton>
+            <RadioButton value="LAND_SCAPE">
+              {getLandType('LAND_SCAPE')}
+            </RadioButton>
+            <RadioButton value="LAND_OF_PROJECT">
+              {getLandType('LAND_OF_PROJECT')}
+            </RadioButton>
+            <RadioButton value="LAND_FARM">
+              {getLandType('LAND_FARM')}
+            </RadioButton>
+            <RadioButton value="LAND_RESORT">
+              {getLandType('LAND_RESORT')}
+            </RadioButton>
+            <RadioButton value="MOTEL_ROOM">
+              {getLandType('MOTEL_ROOM')}
+            </RadioButton>
+            <RadioButton value="OFFICE">{getLandType('OFFICE')}</RadioButton>
+            <RadioButton value="WAREHOUSES">
+              {getLandType('WAREHOUSES')}
+            </RadioButton>
+            <RadioButton value="KIOSKS">{getLandType('KIOSKS')}</RadioButton>
+          </RadioGroup>
+        </div>
+        <div className={s.subTitle}>Khoảng giá</div>
+        <div className={s.body}>
+          <RadioGroup onChange={this.onPriceChange} defaultValue="0">
+            <RadioButton value="0">Bất kỳ</RadioButton>
+            <RadioButton value="1">&lt; 500 triệu</RadioButton>
+            <RadioButton value="2">500 triệu - 1 tỷ</RadioButton>
+            <RadioButton value="3">1 - 1.5 tỷ</RadioButton>
+            <RadioButton value="4">1.5 - 2 tỷ</RadioButton>
+            <RadioButton value="5">&gt; 2 tỷ</RadioButton>
+          </RadioGroup>
+        </div>
+        <div className={s.subTitle}>Diện tích</div>
+        <div className={s.body}>
+          <RadioGroup onChange={this.onAcreageChange} defaultValue="0">
+            <RadioButton value="0">Bất kỳ</RadioButton>
+            <RadioButton value="1">&lt; 50 m2</RadioButton>
+            <RadioButton value="2">50 - 80 m2</RadioButton>
+            <RadioButton value="3">80 - 100 m2</RadioButton>
+            <RadioButton value="4">100 - 200 m2</RadioButton>
+            <RadioButton value="5">&gt; 200 m2</RadioButton>
+          </RadioGroup>
+        </div>
+        <div className={s.subTitle}>Số phòng tắm</div>
+        <div className={s.body}>
+          <RadioGroup onChange={this.onBathRoomChange} defaultValue="0">
+            <RadioButton value="0">Bất kỳ</RadioButton>
+            <RadioButton value="1">+1</RadioButton>
+            <RadioButton value="2">+2</RadioButton>
+            <RadioButton value="3">+3</RadioButton>
+            <RadioButton value="4">+4</RadioButton>
+            <RadioButton value="5">+5</RadioButton>
+          </RadioGroup>
+        </div>
+        <div className={s.subTitle}>Số phòng ngủ</div>
+        <div className={s.body}>
+          <RadioGroup onChange={this.onBedRoomChange} defaultValue="0">
+            <RadioButton value="0">Bất kỳ</RadioButton>
+            <RadioButton value="1">+1</RadioButton>
+            <RadioButton value="2">+2</RadioButton>
+            <RadioButton value="3">+3</RadioButton>
+            <RadioButton value="4">+4</RadioButton>
+            <RadioButton value="5">+5</RadioButton>
+          </RadioGroup>
+        </div>
+      </div>
+    );
+  }
+
   render() {
-    console.log(this.state.message); // eslint-disable-line
     return (
       <div className="popup">
         <div className="popup-container">
-          <div className="popup-header">
-            <TouchFeedback>
-              <div className="popup-header-left">
-                <Icon
-                  type="arrow-left"
-                  style={{ fontSize: 20 }}
-                  onClick={this.gotoPrevious}
-                />
-              </div>
-            </TouchFeedback>
-            <div className="popup-header-middle">Tìm kiếm</div>
-            <TouchFeedback>
-              <div className="popup-header-right">
-                <Icon
-                  type="reload"
-                  style={{ fontSize: 20 }}
-                  onClick={this.clearFilter}
-                />
-              </div>
-            </TouchFeedback>
-          </div>
-          <div className="popup-body">
-            <div className={s.title}>
-              <span>Bạn đang tìm kiếm bất động sản tại </span>
-              <strong>Hà Nội</strong>
-              <a className={s.changeButton} href="/doi-tinh-thanh">
-                <span>Đổi tỉnh thành</span>
-              </a>
-            </div>
-            <div className={s.body}>
-              <Tag title="Cầu Giấy" closable color="#5e23dc" />
-              <Tag title="Nam Từ Liêm" closable color="#5e23dc" />
-              <Tag title="Bắc Từ Liêm" closable color="#5e23dc" />
-              <Tag title="Hà Đông" closable color="#5e23dc" />
-              <Tag title="Cầu Giấy" closable color="#5e23dc" />
-              <Tag title="Thêm địa chỉ" addable onClick={this.addFilter} />
-            </div>
-          </div>
+          {this.header()}
+          {this.body()}
         </div>
         {this.searchButton()}
+        {this.state.popupDom}
       </div>
     );
   }
@@ -163,7 +385,7 @@ Search.defaultProps = {
 };
 
 Search.propTypes = {
-  getTop: PropTypes.func.isRequired,
+  // getTop: PropTypes.func.isRequired,
   // isAuthenticated: PropTypes.bool,
   // heightScreen: PropTypes.number,
   // houseList: PropTypes.arrayOf(PropTypes.shape),
@@ -175,9 +397,7 @@ const mapState = () => ({
   // houseList: state.top.top,
 });
 
-const mapDispatch = {
-  getTop,
-};
+const mapDispatch = {};
 
 export default withStyles(s)(
   connect(

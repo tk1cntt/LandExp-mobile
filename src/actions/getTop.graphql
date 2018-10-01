@@ -16,6 +16,7 @@ query TopQuery($page: Int, $size: Int) {
     districtType
     wardType
     projectName
+    customer
     mobile
     createByLogin
     error {
