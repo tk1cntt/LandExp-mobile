@@ -44,5 +44,5 @@
 }
 
 .filterHeaderDefaultText {
-  overflow: scroll;
+  overflow-x: scroll;
 }

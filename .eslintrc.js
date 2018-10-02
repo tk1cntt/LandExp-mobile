@@ -46,15 +46,6 @@ module.exports = {
       },
     ],
 
-    // Allow only special identifiers
-    // https://eslint.org/docs/rules/no-underscore-dangle
-    'no-underscore-dangle': [
-      'error',
-      {
-        allow: ['__typename'],
-      },
-    ],
-
     // Prefer destructuring from arrays and objects
     // http://eslint.org/docs/rules/prefer-destructuring
     'prefer-destructuring': [
@@ -85,20 +76,6 @@ module.exports = {
       },
     ],
 
-    'jsx-a11y/no-noninteractive-element-interactions': [
-      'error',
-      {
-        handlers: [
-          'onClick',
-          'onMouseDown',
-          'onMouseUp',
-          'onKeyPress',
-          'onKeyDown',
-          'onKeyUp',
-        ],
-      },
-    ],
-
     // Allow .js files to use JSX syntax
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
@@ -110,6 +87,9 @@ module.exports = {
     // ESLint plugin for prettier formatting
     // https://github.com/prettier/eslint-plugin-prettier
     'prettier/prettier': 'error',
+
+    'react/forbid-prop-types': 'off',
+    'react/destructuring-assignment': 'off',
   },
 
   settings: {

@@ -7,6 +7,7 @@ body {
   font-size: 14px;
   color: #454545;
   background-color: #fff;
+  min-width: 320px;
 }
 
 a {
@@ -82,7 +83,7 @@ a:hover {
   font-size: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
@@ -99,9 +100,18 @@ a:hover {
 
 .ReactModal__Overlay {
   z-index: 2;
+  overflow-y: auto;
+}
+
+.ReactModalPortal .ant-row-flex {
+  padding-bottom: 56px;
 }
 
 /* City */
+
+.cc-selector .ant-col-6 {
+  width: auto !important;
+}
 
 .cc-selector input {
   margin: 0;
@@ -279,6 +289,7 @@ a:hover {
 .ant-checkbox-input:focus + .ant-checkbox-inner {
   border: none !important;
 }
+
 /* District */
 
 .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
@@ -651,7 +662,7 @@ a:hover {
 
 .app-container .am-flexbox-item .contact i.fa-square {
   font-size: 10px;
-  color: #aaaaaa;
+  color: #aaa;
 }
 
 .app-container .am-flexbox-item .contact:hover {
@@ -665,12 +676,12 @@ a:hover {
 }
 
 .app-container .am-flexbox-item .contact a:hover {
-  color: #ffffff;
+  color: #fff;
   background: #3a65f9;
 }
 
 .app-container .am-flexbox-item .contact:hover a {
-  color: #ffffff;
+  color: #fff;
   background: #3a65f9;
 }
 
@@ -689,7 +700,7 @@ a:hover {
 }
 
 .app-container .am-flexbox-item .call-chat a:hover {
-  color: #ffffff;
+  color: #fff;
 }
 
 .app-container .am-flexbox-item .call-chat a.call {
@@ -726,7 +737,7 @@ a:hover {
 .app-container .am-flexbox-item .location-search .nearby div p span {
   float: right;
   font-weight: 300 !important;
-  color: #aaaaaa;
+  color: #aaa;
 }
 
 .app-container .am-flexbox-item .location-search .nearby {
@@ -757,8 +768,8 @@ a:hover {
   border: 1px solid #1dd38f;
   background: #1dd38f;
   color: #fff;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   overflow: hidden;
@@ -819,12 +830,12 @@ a:hover {
 .footer .copyright {
   border-top: 1px solid #ffff54;
   margin-top: 40px;
-  padding: 23px 0px;
+  padding: 23px 0;
   text-align: center;
   font-size: 12px;
   color: #9bb2ff;
 }
 
 .footer .copyright p {
-  margin: 0px;
+  margin: 0;
 }

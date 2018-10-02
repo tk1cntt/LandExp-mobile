@@ -82,7 +82,7 @@ class CityBody extends React.Component {
             <Select
               autoFocus
               isClearable
-              value={this.state.userCity}
+              value={this.state.parameters.userCity}
               onChange={this.onChangeCity}
               placeholder="Chọn một thành phố"
               options={options}
@@ -98,8 +98,8 @@ class CityBody extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <CityItem
                 checked={
-                  this.state.userCity
-                    ? this.state.userCity.value === 'hanoi'
+                  this.state.parameters.userCity
+                    ? this.state.parameters.userCity.value === 'hanoi'
                     : false
                 }
                 value="hanoi"
@@ -110,8 +110,8 @@ class CityBody extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <CityItem
                 checked={
-                  this.state.userCity
-                    ? this.state.userCity.value === 'hochiminh'
+                  this.state.parameters.userCity
+                    ? this.state.parameters.userCity.value === 'hochiminh'
                     : false
                 }
                 value="hochiminh"
@@ -122,8 +122,8 @@ class CityBody extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <CityItem
                 checked={
-                  this.state.userCity
-                    ? this.state.userCity.value === 'danang'
+                  this.state.parameters.userCity
+                    ? this.state.parameters.userCity.value === 'danang'
                     : false
                 }
                 value="danang"

@@ -36,7 +36,7 @@ class CityItem extends React.Component {
             type="radio"
             name="land-type"
             label={this.props.label}
-            onClick={this.onClick}
+            onChange={this.onClick}
           />
           <label
             className={`drinkcard-cc ${this.props.value}`}

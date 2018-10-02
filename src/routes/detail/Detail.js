@@ -37,7 +37,6 @@ class Detail extends React.Component {
       open: false,
       showModal: false,
       showContactFooter: true,
-      height: typeof window !== "undefined" ? window.innerHeight : 0, // eslint-disable-line
     };
     this.contactRef = React.createRef();
     this.scrollRef = React.createRef();
@@ -53,7 +52,16 @@ class Detail extends React.Component {
   }
 
   onOpenChange = () => {
-    this.setState({ open: !this.state.open });
+    const isOpen = this.state.open;
+    this.setState({ open: !isOpen });
+  };
+
+  gotoPrevious = () => {
+    history.go(-1);
+  };
+
+  gotoPage = link => () => {
+    history.push(link);
   };
 
   handleOpenModal = () => {
@@ -160,11 +168,13 @@ class Detail extends React.Component {
         <div className="button-group">
           {/* eslint-disable-next-line */}
           <a href="#" className="like">
-            <img src="/images/icon/like.png" alt="" />Yêu thích
+            <img src="/images/icon/like.png" alt="" />
+            Yêu thích
           </a>
           {/* eslint-disable-next-line */}
           <a href="#" className="report">
-            <img src="/images/icon/warning.png" alt="" />Báo xấu
+            <img src="/images/icon/warning.png" alt="" />
+            Báo xấu
           </a>
         </div>
       </div>
@@ -296,16 +306,7 @@ class Detail extends React.Component {
     return <div>{houseNearByForm}</div>;
   }
 
-  gotoPrevious = () => {
-    history.go(-1);
-  };
-
-  gotoPage = link => () => {
-    history.push(link);
-  };
-
   render() {
-    console.log(this.state.message); // eslint-disable-line
     return (
       <div style={{ height: '100%' }}>
         <NavBar
@@ -317,9 +318,9 @@ class Detail extends React.Component {
             />
           }
           onLeftClick={this.onOpenChange}
-          rightContent={[
-            <Icon type="search" onClick={this.gotoPage('/tim-kiem')} />,
-          ]}
+          rightContent={
+            <Icon type="search" onClick={this.gotoPage('/tim-kiem')} />
+          }
         >
           <Logo />
         </NavBar>
@@ -388,14 +389,16 @@ class Detail extends React.Component {
 }
 
 Detail.defaultProps = {
+  houseEntity: undefined,
+  housePhotoList: [],
   // heightScreen: 1000,
   // isAuthenticated: false,
 };
 
 Detail.propTypes = {
   // isAuthenticated: PropTypes.bool,
-  houseEntity: PropTypes.shape(PropTypes.object).isRequired,
-  housePhotoList: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  houseEntity: PropTypes.shape(PropTypes.object),
+  housePhotoList: PropTypes.arrayOf(PropTypes.shape),
   // heightScreen: PropTypes.number,
 };
 

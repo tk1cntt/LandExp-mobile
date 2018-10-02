@@ -7,7 +7,11 @@ import s from './ContactBody.css';
 
 class ContactBody extends React.Component {
   static propTypes = {
-    houseEntity: PropTypes.shape(PropTypes.object).isRequired,
+    houseEntity: PropTypes.shape(PropTypes.object),
+  };
+
+  static defaultProps = {
+    houseEntity: {},
   };
 
   render() {

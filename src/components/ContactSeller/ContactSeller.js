@@ -7,7 +7,11 @@ import ContactBody from './ContactBody';
 class ContactSeller extends React.Component {
   static propTypes = {
     onClose: PropTypes.func.isRequired,
-    houseEntity: PropTypes.shape(PropTypes.object).isRequired,
+    houseEntity: PropTypes.shape(PropTypes.object),
+  };
+
+  static defaultProps = {
+    houseEntity: {},
   };
 
   render() {

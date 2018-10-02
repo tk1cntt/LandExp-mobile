@@ -16,7 +16,7 @@ import { Radio, Icon } from 'antd';
 import TouchFeedback from 'rmc-feedback';
 import ReactModal from 'react-modal';
 
-import { getLandType } from 'constants/utils';
+import { getLandType, queryString } from 'constants/utils';
 import Tag from 'components/Tag';
 import CitySelection from 'components/CitySelection';
 import DistrictFilter from 'components/DistrictFilter';
@@ -118,7 +118,17 @@ class Search extends React.Component {
   };
 
   onSearchClick = () => {
-    history.push('/tim-mua-nha');
+    // history.push('/tim-mua-nha');
+    const ids = [];
+    this.state.districts.map(d => ids.push(d.id));
+    const parameters = { districtId: ids };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    console.log(queryString(nextParameter)); // eslint-disable-line
+    const actionTypeText =
+      this.state.actionType === 'FOR_SELL'
+        ? '/tim-mua-nha'
+        : '/tim-cho-thue-nha';
+    history.push(`${actionTypeText}?${queryString(nextParameter)}`);
   };
 
   handleChangeCity = () => {

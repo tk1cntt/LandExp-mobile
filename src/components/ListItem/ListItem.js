@@ -11,7 +11,11 @@ import s from './ListItem.css';
 class ListItem extends React.Component {
   static propTypes = {
     onHandleContact: PropTypes.func.isRequired,
-    houseEntity: PropTypes.shape(PropTypes.object).isRequired,
+    houseEntity: PropTypes.shape(PropTypes.object),
+  };
+
+  static defaultProps = {
+    houseEntity: {},
   };
 
   render() {
