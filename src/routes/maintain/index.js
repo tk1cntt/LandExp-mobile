@@ -8,22 +8,21 @@
  */
 
 import React from 'react';
-import Sell from './Sell';
 import Layout from '../../components/Layout';
+import Maintain from './Maintain';
 
-async function action({ fetch, query }) {
-  console.log(fetch); // eslint-disable-line
-  const response = await fetch('/api/v1/search');
-  const json = await response.json();
-  console.log(json); // eslint-disable-line
+const title = 'Server undermaintain';
+
+function action() {
   return {
-    title: 'Tìm mua nhà',
-    chunks: ['sell'],
+    chunks: ['main-tain'],
+    title,
     component: (
       <Layout>
-        <Sell />
+        <Maintain title={title} />
       </Layout>
     ),
+    status: 500,
   };
 }
 

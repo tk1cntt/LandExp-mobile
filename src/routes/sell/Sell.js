@@ -38,7 +38,7 @@ class Sell extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getTop(1, 8);
+    // this.props.getTop(1, 8);
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -95,14 +95,6 @@ class Sell extends React.Component {
               />
             </div>
           ))}
-          {this.props.houseList.map(house => (
-            <div key={`entity-${house.id}`}>
-              <ListItem
-                houseEntity={house}
-                onHandleContact={this.onHandleContact}
-              />
-            </div>
-          ))}
         </div>
         <ReactModal
           isOpen={this.state.showModal}
@@ -136,7 +128,7 @@ Sell.propTypes = {
 const mapState = state => ({
   // isAuthenticated: state.session.isAuthenticated,
   // heightScreen: state.setting.heightScreen,
-  houseList: state.top.top,
+  // houseList: state.top.top,
 });
 
 const mapDispatch = {

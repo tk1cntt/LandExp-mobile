@@ -123,7 +123,6 @@ class Search extends React.Component {
     this.state.districts.map(d => ids.push(d.id));
     const parameters = { districtId: ids };
     const nextParameter = { ...this.state.parameters, ...parameters };
-    console.log(queryString(nextParameter)); // eslint-disable-line
     const actionTypeText =
       this.state.actionType === 'FOR_SELL'
         ? '/tim-mua-nha'

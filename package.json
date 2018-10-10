@@ -51,7 +51,7 @@
     "passport-facebook": "^2.1.1",
     "pretty-error": "^2.1.1",
     "prop-types": "^15.6.2",
-    "query-string": "^6.1.0",
+    "query-string": "^6.2.0",
     "react": "^16.5.2",
     "react-apollo": "^2.0.4",
     "react-dom": "^16.5.2",

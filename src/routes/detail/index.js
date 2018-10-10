@@ -9,23 +9,30 @@
 
 import React from 'react';
 import Detail from './Detail';
+import Maintain from '../maintain/Maintain';
 import Layout from '../../components/Layout';
-import mutateGetDetail from './getDetail.graphql';
+// import mutateGetDetail from './getDetail.graphql';
 
-async function action({ params, client }) {
+async function action({ fetch, params }) {
+  /*
   const queryResponse = await client.query({
     query: mutateGetDetail,
     variables: { id: params.id },
   });
   const house = queryResponse.data.getDetail;
+  */
+  const response = await fetch(`/api/v1/detail/${params.id}`, {
+    method: 'GET', // handy with GraphQL backends
+  });
+  const json = await response.json();
+  // console.log('json', json); // eslint-disable-line
+  const component = json.status ? (<Layout><Maintain /></Layout>) : (<Layout>
+    <Detail houseEntity={json.house} housePhotoList={json.images} />
+  </Layout>);
   return {
-    title: house.house.title,
+    title: json.house ? json.house.title : 'Server undermaintain',
     chunks: ['detail'],
-    component: (
-      <Layout>
-        <Detail houseEntity={house.house} housePhotoList={house.images} />
-      </Layout>
-    ),
+    component: component,
   };
 }
 

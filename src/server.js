@@ -28,6 +28,7 @@ import errorPageStyle from './routes/error/ErrorPage.css';
 import createFetch from './createFetch';
 import router from './router';
 import schema from './data/schema';
+import api from './data/rest/api';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
@@ -97,6 +98,30 @@ const graphqlMiddleware = expressGraphQL(req => ({
 }));
 
 app.use('/graphql', graphqlMiddleware);
+
+app.get('/api/v1/search', async (req, res, next) => {
+  console.log('req.query', req.query); // eslint-disable-line
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await api.search();
+    res.send(JSON.stringify(response));
+  } catch (e) {
+     console.log(e); // eslint-disable-line
+  }
+});
+
+app.get('/api/v1/detail/:id', async (req, res, next) => {
+  console.log('req.params', req.params); // eslint-disable-line
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await api.detail(req.params.id);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+     console.log(e); // eslint-disable-line
+  }
+  // console.log("/api/v1/houses", req.params); // eslint-disable-line
+  // res.json({});
+});
 
 //
 // Register server-side rendering middleware

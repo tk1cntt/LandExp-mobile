@@ -8,16 +8,25 @@
  */
 
 import React from 'react';
-import Rent from './Rent';
+import queryString from 'query-string';
+import Rent from '../sell/Sell';
 import Layout from '../../components/Layout';
 
-async function action() {
+async function action({ fetch, query }) {
+  const response = await fetch(
+    `/api/v1/search?${queryString.stringify(query)}`,
+    {
+      method: 'GET', // handy with GraphQL backends
+    },
+  );
+  const json = await response.json();
+  // console.log(json); // eslint-disable-line
   return {
     title: 'Tìm cho thuê nhà',
     chunks: ['rent'],
     component: (
       <Layout>
-        <Rent />
+        <Rent houseList={json} />
       </Layout>
     ),
   };
