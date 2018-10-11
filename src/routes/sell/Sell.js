@@ -17,8 +17,8 @@ import ReactModal from 'react-modal';
 import SearchFilter from 'components/SearchFilter';
 import ContactSeller from 'components/ContactSeller';
 import ListItem from 'components/ListItem';
-import getTop from 'actions/getTop';
 
+import history from '../../history';
 import s from './Sell.css';
 
 class Sell extends React.Component {
@@ -38,8 +38,22 @@ class Sell extends React.Component {
   };
 
   componentDidMount() {
-    // this.props.getTop(1, 8);
     window.addEventListener('scroll', this.handleScroll);
+    const cityLabel =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('cityLabel')
+        : undefined;
+    const cityValue =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('cityValue')
+        : undefined;
+    if (cityValue === undefined || cityValue === null) {
+      history.push('/');
+    } else {
+      this.setState({
+        cityLabel,
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -81,11 +95,16 @@ class Sell extends React.Component {
       : false;
     return (
       <div className={s.container}>
-        <SearchFilter visiable={showSearchFilter} />
+        <SearchFilter
+          queryString={this.props.queryString}
+          visiable={showSearchFilter}
+        />
         <div className={s.body}>
           <Breadcrumb className={s.breadcrumb}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>An Application</Breadcrumb.Item>
+            <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              Bất động sản tại {this.state.cityLabel}
+            </Breadcrumb.Item>
           </Breadcrumb>
           {this.props.houseList.map(house => (
             <div key={`entity-${house.id}`}>
@@ -114,26 +133,21 @@ class Sell extends React.Component {
 
 Sell.defaultProps = {
   houseList: [],
-  // heightScreen: 1000,
-  // isAuthenticated: false,
+  queryString: {},
 };
 
 Sell.propTypes = {
-  getTop: PropTypes.func.isRequired,
-  // isAuthenticated: PropTypes.bool,
-  // heightScreen: PropTypes.number,
+  queryString: PropTypes.object,
   houseList: PropTypes.arrayOf(PropTypes.shape),
 };
 
-const mapState = state => ({
+const mapState = () => ({
   // isAuthenticated: state.session.isAuthenticated,
   // heightScreen: state.setting.heightScreen,
   // houseList: state.top.top,
 });
 
-const mapDispatch = {
-  getTop,
-};
+const mapDispatch = {};
 
 export default withStyles(s)(
   connect(

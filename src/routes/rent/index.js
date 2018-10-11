@@ -26,7 +26,7 @@ async function action({ fetch, query }) {
     chunks: ['rent'],
     component: (
       <Layout>
-        <Rent houseList={json} />
+        <Rent queryString={query} houseList={json} />
       </Layout>
     ),
   };

@@ -9,7 +9,7 @@
 /* eslint-disable react/no-did-mount-set-state */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Radio, Icon } from 'antd';
@@ -51,7 +51,7 @@ class Search extends React.Component {
       typeof window !== 'undefined'
         ? window.localStorage.getItem('actionType')
         : undefined;
-    const parameters = { actionType };
+    const parameters = { actionType, ...this.props.parameters };
     const nextParameter = { ...this.state.parameters, ...parameters };
     if (cityValue === undefined || cityValue === null) {
       history.push('/');
@@ -62,8 +62,16 @@ class Search extends React.Component {
         actionType,
         parameters: nextParameter,
       });
-      if (this.state.districts.length === 0) {
+      const district = this.props.parameters.districtId
+        ? {
+            id: this.props.parameters.districtId,
+            label: this.props.parameters.districtLabel,
+          }
+        : undefined;
+      if (district === undefined) {
         this.handleAddFilter();
+      } else {
+        this.state.districts.push(district);
       }
     }
   }
@@ -120,8 +128,10 @@ class Search extends React.Component {
   onSearchClick = () => {
     // history.push('/tim-mua-nha');
     const ids = [];
+    const labels = [];
     this.state.districts.map(d => ids.push(d.id));
-    const parameters = { districtId: ids };
+    this.state.districts.map(d => labels.push(d.label));
+    const parameters = { districtId: ids, districtLabel: labels };
     const nextParameter = { ...this.state.parameters, ...parameters };
     const actionTypeText =
       this.state.actionType === 'FOR_SELL'
@@ -292,7 +302,12 @@ class Search extends React.Component {
         </div>
         <div className={s.subTitle}>Loại bất động sản</div>
         <div className={s.body}>
-          <RadioGroup onChange={this.onLandTypeChange}>
+          <RadioGroup
+            onChange={this.onLandTypeChange}
+            value={
+              this.state.parameters.landType || this.props.parameters.landType
+            }
+          >
             <RadioButton value="APARTMENT">
               {getLandType('APARTMENT')}
             </RadioButton>
@@ -327,7 +342,10 @@ class Search extends React.Component {
         </div>
         <div className={s.subTitle}>Khoảng giá</div>
         <div className={s.body}>
-          <RadioGroup onChange={this.onPriceChange} defaultValue="0">
+          <RadioGroup
+            onChange={this.onPriceChange}
+            value={this.state.parameters.money || this.props.parameters.money}
+          >
             <RadioButton value="0">Bất kỳ</RadioButton>
             <RadioButton value="1">&lt; 500 triệu</RadioButton>
             <RadioButton value="2">500 triệu - 1 tỷ</RadioButton>
@@ -338,7 +356,12 @@ class Search extends React.Component {
         </div>
         <div className={s.subTitle}>Diện tích</div>
         <div className={s.body}>
-          <RadioGroup onChange={this.onAcreageChange} defaultValue="0">
+          <RadioGroup
+            onChange={this.onAcreageChange}
+            value={
+              this.state.parameters.acreage || this.props.parameters.acreage
+            }
+          >
             <RadioButton value="0">Bất kỳ</RadioButton>
             <RadioButton value="1">&lt; 50 m2</RadioButton>
             <RadioButton value="2">50 - 80 m2</RadioButton>
@@ -349,7 +372,12 @@ class Search extends React.Component {
         </div>
         <div className={s.subTitle}>Số phòng tắm</div>
         <div className={s.body}>
-          <RadioGroup onChange={this.onBathRoomChange} defaultValue="0">
+          <RadioGroup
+            onChange={this.onBathRoomChange}
+            value={
+              this.state.parameters.bathRoom || this.props.parameters.bathRoom
+            }
+          >
             <RadioButton value="0">Bất kỳ</RadioButton>
             <RadioButton value="1">+1</RadioButton>
             <RadioButton value="2">+2</RadioButton>
@@ -360,7 +388,12 @@ class Search extends React.Component {
         </div>
         <div className={s.subTitle}>Số phòng ngủ</div>
         <div className={s.body}>
-          <RadioGroup onChange={this.onBedRoomChange} defaultValue="0">
+          <RadioGroup
+            onChange={this.onBedRoomChange}
+            value={
+              this.state.parameters.bedRoom || this.props.parameters.bedRoom
+            }
+          >
             <RadioButton value="0">Bất kỳ</RadioButton>
             <RadioButton value="1">+1</RadioButton>
             <RadioButton value="2">+2</RadioButton>
@@ -388,6 +421,7 @@ class Search extends React.Component {
 }
 
 Search.defaultProps = {
+  parameters: {},
   // houseList: [],
   // heightScreen: 1000,
   // isAuthenticated: false,
@@ -398,6 +432,7 @@ Search.propTypes = {
   // isAuthenticated: PropTypes.bool,
   // heightScreen: PropTypes.number,
   // houseList: PropTypes.arrayOf(PropTypes.shape),
+  parameters: PropTypes.object,
 };
 
 const mapState = () => ({

@@ -40,7 +40,6 @@ class DistrictFilterBody extends React.Component {
       typeof window !== 'undefined'
         ? window.localStorage.getItem('cityLabel')
         : undefined;
-
     this.setState({
       cityLabel,
       actionType,
@@ -53,7 +52,8 @@ class DistrictFilterBody extends React.Component {
       userDistrict: e,
     });
     if (e === null) return;
-    let districts = this.state.districts || this.props.districts || [];
+    // let districts = this.state.districts || this.props.districts || [];
+    let districts = []; // this.state.districts || this.props.districts || [];
     districts.push(e);
     districts = Array.from(
       districts.reduce((m, t) => m.set(t.id, t), new Map()).values(),

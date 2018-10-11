@@ -301,7 +301,9 @@ a:hover {
 
 .ant-radio-button-wrapper-checked,
 .ant-radio-button-wrapper-checked:active,
-.ant-radio-button-wrapper-checked:hover {
+.ant-radio-button-wrapper-checked:hover,
+.ant-radio-button-wrapper:hover,
+.ant-radio-button-wrapper-focused {
   background: #5e23dc !important;
   border-color: #5e23dc !important;
   color: #fff;

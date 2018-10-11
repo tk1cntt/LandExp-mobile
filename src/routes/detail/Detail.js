@@ -389,7 +389,7 @@ class Detail extends React.Component {
 }
 
 Detail.defaultProps = {
-  houseEntity: undefined,
+  houseEntity: {},
   housePhotoList: [],
   // heightScreen: 1000,
   // isAuthenticated: false,

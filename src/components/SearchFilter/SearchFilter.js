@@ -5,6 +5,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
 import TouchFeedback from 'rmc-feedback';
 import { Icon } from 'antd';
+import { queryString } from 'constants/utils';
 
 import Tag from '../Tag';
 import history from '../../history';
@@ -23,7 +24,29 @@ class SearchFilter extends React.Component {
     history.go(-1);
   };
 
+  onClose = () => {
+    console.log('District closed'); // eslint-disable-line
+  };
+
+  addFilter = () => {
+    console.log('Add filter'); // eslint-disable-line
+    const link = '/tim-kiem';
+    history.push(`${link}?${queryString(this.props.queryString)}`);
+  };
+
   render() {
+    const district = {
+      id: this.props.queryString.districtId,
+      label: this.props.queryString.districtLabel,
+    };
+    const tagDom = district.label ? (
+      <Tag
+        title={district.label}
+        value={district.id}
+        onClose={this.onClose}
+        closable
+      />
+    ) : null;
     const clss = this.props.visiable
       ? cx(s.filter)
       : cx(s.filter, s.hideFilter);
@@ -41,13 +64,9 @@ class SearchFilter extends React.Component {
           </TouchFeedback>
           <div className={s.filterHeaderMiddle}>
             <div className={s.filterHeaderDefaultText}>
-              <Tag title="Cầu Giấy" closable />
-              <Tag title="Nam Từ Liêm" closable />
-              <Tag title="Bắc Từ Liêm" closable />
-              <Tag title="Hà Đông" closable />
-              <Tag title="Cầu Giấy" closable />
+              {tagDom}
               <Tag
-                title="Thêm địa chỉ"
+                title="Lọc lại"
                 addable
                 color="#b7a9cc"
                 onClick={this.addFilter}
@@ -59,5 +78,13 @@ class SearchFilter extends React.Component {
     );
   }
 }
+
+SearchFilter.defaultProps = {
+  queryString: {},
+};
+
+SearchFilter.propTypes = {
+  queryString: PropTypes.object,
+};
 
 export default withStyles(s)(SearchFilter);

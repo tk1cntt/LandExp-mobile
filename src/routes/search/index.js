@@ -11,13 +11,13 @@ import React from 'react';
 import Search from './Search';
 import Layout from '../../components/Layout';
 
-async function action() {
+async function action({ query }) {
   return {
     title: 'Tìm kiếm bất động sản',
     chunks: ['search'],
     component: (
       <Layout>
-        <Search />
+        <Search parameters={query} />
       </Layout>
     ),
   };

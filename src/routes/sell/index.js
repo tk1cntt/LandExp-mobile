@@ -8,20 +8,25 @@
  */
 
 import React from 'react';
+import queryString from 'query-string';
 import Sell from './Sell';
 import Layout from '../../components/Layout';
 
 async function action({ fetch, query }) {
-  console.log(fetch); // eslint-disable-line
-  const response = await fetch('/api/v1/search');
+  const response = await fetch(
+    `/api/v1/search?${queryString.stringify(query)}`,
+    {
+      method: 'GET', // handy with GraphQL backends
+    },
+  );
   const json = await response.json();
-  console.log(json); // eslint-disable-line
+  // console.log(json); // eslint-disable-line
   return {
     title: 'Tìm mua nhà',
     chunks: ['sell'],
     component: (
       <Layout>
-        <Sell />
+        <Sell queryString={query} houseList={json} />
       </Layout>
     ),
   };
