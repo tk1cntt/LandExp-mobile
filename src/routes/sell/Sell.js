@@ -11,12 +11,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Icon } from 'antd';
 import ReactModal from 'react-modal';
 
 import SearchFilter from 'components/SearchFilter';
 import ContactSeller from 'components/ContactSeller';
 import ListItem from 'components/ListItem';
+import Link from 'components/Link';
 
 import history from '../../history';
 import s from './Sell.css';
@@ -101,7 +102,11 @@ class Sell extends React.Component {
         />
         <div className={s.body}>
           <Breadcrumb className={s.breadcrumb}>
-            <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <Link className={s.logo} to="/">
+                <Icon type="home" /> Trang chủ
+              </Link>
+            </Breadcrumb.Item>
             <Breadcrumb.Item>
               Bất động sản tại {this.state.cityLabel}
             </Breadcrumb.Item>

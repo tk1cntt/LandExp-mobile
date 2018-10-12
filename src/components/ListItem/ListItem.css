@@ -6,6 +6,10 @@
   padding-bottom: 5px;
 }
 
+.container a:hover {
+  color: #454545;
+}
+
 .postItem {
   display: block;
   overflow: hidden;
@@ -16,8 +20,6 @@
 }
 
 .postItem:hover {
-  border-top: 1px solid #3a65f9;
-  border-bottom: 1px solid #3a65f9;
   background: #efefef;
   box-sizing: border-box;
 }
@@ -145,6 +147,11 @@
   height: auto;
   padding: 0 20px 5px;
   background: #fff;
+}
+
+.listContactBtn:hover {
+  background: #efefef;
+  box-sizing: border-box;
 }
 
 .connectWrap {

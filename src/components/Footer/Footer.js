@@ -50,7 +50,7 @@ class Footer extends React.Component {
                 style={{ fontSize: 23 }}
                 type="heart"
                 // eslint-disable-next-line
-                onClick={this.gotoPage.bind(this, '/tai-khoang/tin-yeu-thich')}
+                onClick={this.gotoPage.bind(this, '/tai-khoan/tin-yeu-thich')}
               />
               <div className={s.text}>Yêu thích</div>
             </Col>

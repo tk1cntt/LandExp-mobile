@@ -17,6 +17,7 @@ a {
 
 a:hover {
   color: #4a8dff;
+  text-decoration: none;
 }
 
 .popup {
