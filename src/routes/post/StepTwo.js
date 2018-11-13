@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Row, Col, Input, Radio, Checkbox } from 'antd';
-import { List, Stepper, InputItem } from 'antd-mobile';
+import { Row, Col } from 'antd';
+import { Checkbox, ImagePicker, TextareaItem, Picker, List, Stepper, InputItem } from 'antd-mobile';
 
 import {
   showAcreageStreetSide,
@@ -11,8 +11,7 @@ import {
 } from 'constants/utils';
 import s from './StepThree.css';
 
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
+const CheckboxItem = Checkbox.CheckboxItem;
 
 const moneyKeyboardWrapProps = {};
 /*
@@ -25,6 +24,25 @@ if (!window) {
   }
 }
 */
+const data = [{
+  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+  id: '2121',
+}, {
+  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+  id: '2122',
+},{
+  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+  id: '2121',
+}, {
+  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+  id: '2122',
+},{
+  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+  id: '2121',
+}, {
+  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+  id: '2122',
+}];
 
 class StepTwo extends React.Component {
   constructor(props) {
@@ -41,6 +59,8 @@ class StepTwo extends React.Component {
       parking: null,
       furniture: null,
       summary: '',
+      files: data,
+      multiple: false,
     };
   }
 
@@ -98,21 +118,21 @@ class StepTwo extends React.Component {
     });
   };
 
-  onChangeDirection = e => {
+  onChangeDirection = value => {
     this.setState({
-      direction: e.target.value,
+      direction: value,
     });
     this.props.updateHouse({
-      direction: e.target.value,
+      direction: value,
     });
   };
 
-  onChangeDirectionBalcony = e => {
+  onChangeDirectionBalcony = value => {
     this.setState({
-      directionBalcony: e.target.value,
+      directionBalcony: value,
     });
     this.props.updateHouse({
-      directionBalcony: e.target.value,
+      directionBalcony: value,
     });
   };
 
@@ -143,9 +163,51 @@ class StepTwo extends React.Component {
     });
   };
 
+  onChangeImagePicker = (files, type, index) => {
+    console.log(files, type, index);
+    this.setState({
+      files,
+    });
+  }
+
   render() {
+    const directions = [
+      {
+        label: 'Đông',
+        value: 'EAST',
+      },
+      {
+        label: 'Tây',
+        value: 'WEST',
+      },
+      {
+        label: 'Nam',
+        value: 'SOUTH',
+      },
+      {
+        label: 'Bắc',
+        value: 'NORTH',
+      },
+      {
+        label: 'Đông Bắc',
+        value: 'EAST_NORTH',
+      },
+      {
+        label: 'Đông Nam',
+        value: 'EAST_SOUTH',
+      },
+      {
+        label: 'Tây Bắc',
+        value: 'WEST_NORTH',
+      },
+      {
+        label: 'Tây Nam',
+        value: 'WEST_SOUTH',
+      },
+    ];
     return (
-      <List>
+      <div>
+      <List renderHeader={() => 'Thông tin ngôi nhà'}>
         <List.Item
           wrap
           extra={
@@ -172,7 +234,7 @@ class StepTwo extends React.Component {
                 placeholder="0"
                 clear
                 extra="m2"
-                value={this.state.acreage || this.props.house.acreage}
+                value={this.state.acreageStreetSide || this.props.house.acreageStreetSide}
                 onChange={this.onChangeAcreageStreetSide}
                 moneyKeyboardAlign="left"
                 moneyKeyboardWrapProps={moneyKeyboardWrapProps}
@@ -191,7 +253,6 @@ class StepTwo extends React.Component {
               <Stepper
                 style={{ width: '100%', minWidth: '100px' }}
                 showNumber
-                max={10}
                 min={1}
                 value={this.state.bedRoom || this.props.house.bedRoom}
                 onChange={this.onChangeBedRoom}
@@ -210,7 +271,6 @@ class StepTwo extends React.Component {
               <Stepper
                 style={{ width: '100%', minWidth: '100px' }}
                 showNumber
-                max={10}
                 min={1}
                 value={this.state.bathRoom || this.props.house.bathRoom}
                 onChange={this.onChangeBathRoom}
@@ -265,60 +325,56 @@ class StepTwo extends React.Component {
         ) : (
           ''
         )}
-        <Col span={24}>
-          <div style={{ marginTop: 16 }}>
-            <b>Hướng nhà</b>
-          </div>
-        </Col>
-        <Col span={24}>
-          <div style={{ marginTop: 16 }}>
-            <RadioGroup
-              onChange={this.onChangeDirection}
-              value={this.state.direction || this.props.house.direction}
-            >
-              <RadioButton value="EAST">Đông</RadioButton>
-              <RadioButton value="WEST">Tây</RadioButton>
-              <RadioButton value="SOUTH">Nam</RadioButton>
-              <RadioButton value="NORTH">Bắc</RadioButton>
-              <RadioButton value="EAST_NORTH">Đông Bắc</RadioButton>
-              <RadioButton value="EAST_SOUTH">Đông Nam</RadioButton>
-              <RadioButton value="WEST_NORTH">Tây Bắc</RadioButton>
-              <RadioButton value="WEST_SOUTH">Tây Nam</RadioButton>
-            </RadioGroup>
-          </div>
-        </Col>
+        <Picker
+          data={directions}
+          cols={1}
+          extra="Chọn hướng"
+          dismissText="Huỷ"
+          okText="Chọn"
+          value={this.state.direction || this.props.house.direction}
+          onChange={this.onChangeDirection}
+          onOk={this.onChangeDirection}
+        >
+          <List.Item arrow="horizontal">Hướng nhà</List.Item>
+        </Picker>
         {this.props.house.landType === 'APARTMENT' ? (
-          <>
-            <Col span={24}>
-              <div style={{ marginTop: 16 }}>
-                <b>Hướng ban công</b>
-              </div>
-            </Col>
-            <Col span={24}>
-              <div style={{ marginTop: 16 }}>
-                <RadioGroup
-                  onChange={this.onChangeDirectionBalcony}
-                  value={
-                    this.state.directionBalcony ||
-                    this.props.house.directionBalcony
-                  }
-                >
-                  <RadioButton value="EAST">Đông</RadioButton>
-                  <RadioButton value="WEST">Tây</RadioButton>
-                  <RadioButton value="SOUTH">Nam</RadioButton>
-                  <RadioButton value="NORTH">Bắc</RadioButton>
-                  <RadioButton value="EAST_NORTH">Đông Bắc</RadioButton>
-                  <RadioButton value="EAST_SOUTH">Đông Nam</RadioButton>
-                  <RadioButton value="WEST_NORTH">Tây Bắc</RadioButton>
-                  <RadioButton value="WEST_SOUTH">Tây Nam</RadioButton>
-                </RadioGroup>
-              </div>
-            </Col>
-          </>
+          <Picker
+            data={directions}
+            cols={1}
+            extra="Chọn hướng"
+            dismissText="Huỷ"
+            okText="Chọn"
+            value={this.state.directionBalcony || this.props.house.directionBalcony}
+            onChange={this.onChangeDirectionBalcony}
+            onOk={this.onChangeDirectionBalcony}
+          >
+            <List.Item arrow="horizontal">Hướng ban công</List.Item>
+          </Picker>
         ) : (
           ''
         )}
       </List>
+      <List renderHeader={() => 'Tiện nghi'}>
+        <CheckboxItem key="1" onChange={e => console.log(e.target.checked)}>
+          Có chỗ để xe ô tô
+        </CheckboxItem>
+      </List>
+      <List renderHeader={() => 'Mô tả'}>
+          <TextareaItem
+            rows={3}
+            placeholder="Thông tin mô tả ngôi nhà của ban"
+          />
+      </List>
+      <List renderHeader={() => 'Hình ảnh'}>
+          <ImagePicker
+          files={this.state.files}
+          onChange={this.onChangeImagePicker}
+          onImageClick={(index, fs) => console.log(index, fs)}
+          selectable={this.state.files.length < 7}
+          multiple={this.state.multiple}
+        />
+      </List>
+      </div>
     );
   }
 }
