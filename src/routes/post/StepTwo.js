@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Row, Col, Input, Radio, Checkbox } from 'antd';
+import { InputItem } from 'antd-mobile';
 
 import {
   showAcreageStreetSide,
@@ -12,6 +13,18 @@ import s from './StepThree.css';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
+
+const moneyKeyboardWrapProps = {};
+/*
+if (!window) {
+  const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+  if (isIPhone) {
+    moneyKeyboardWrapProps = {
+      onTouchStart: e => e.preventDefault(),
+    };
+  }
+}
+*/
 
 class StepTwo extends React.Component {
   constructor(props) {
@@ -31,78 +44,58 @@ class StepTwo extends React.Component {
     };
   }
 
-  onChangeAcreage = e => {
-    const { value } = e.target;
-    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
-    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
-      this.setState({
-        acreage: e.target.value,
-      });
-      this.props.updateHouse({
-        acreage: e.target.value,
-      });
-    }
-  };
-
-  onChangeAcreageStreetSide = e => {
-    const { value } = e.target;
-    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
-    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
-      this.setState({
-        acreageStreetSide: e.target.value,
-      });
-      this.props.updateHouse({
-        acreageStreetSide: e.target.value,
-      });
-    }
-  };
-
-  onChangeBedRoom = e => {
-    const { value } = e.target;
-    const reg = /^-?([1-9]*)?$/;
-    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
-      this.setState({
-        bedRoom: e.target.value,
-      });
-      this.props.updateHouse({
-        bedRoom: e.target.value,
-      });
-    }
-  };
-
-  onChangeBathRoom = e => {
-    const { value } = e.target;
-    const reg = /^-?([1-9]*)?$/;
-    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
-      this.setState({
-        bathRoom: e.target.value,
-      });
-      this.props.updateHouse({
-        bathRoom: e.target.value,
-      });
-    }
-  };
-
-  onChangeFloor = e => {
+  onChangeAcreage = value => {
     this.setState({
-      floor: e.target.value,
+      acreage: value,
     });
     this.props.updateHouse({
-      floor: e.target.value,
+      acreage: value,
     });
   };
 
-  onChangeNumberOfFloor = e => {
-    const { value } = e.target;
-    const reg = /^-?([1-9]*)?$/;
-    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
-      this.setState({
-        numberOfFloor: e.target.value,
-      });
-      this.props.updateHouse({
-        numberOfFloor: e.target.value,
-      });
-    }
+  onChangeAcreageStreetSide = value => {
+    this.setState({
+      acreageStreetSide: value,
+    });
+    this.props.updateHouse({
+      acreageStreetSide: value,
+    });
+  };
+
+  onChangeBedRoom = value => {
+    this.setState({
+      bedRoom: value,
+    });
+    this.props.updateHouse({
+      bedRoom: value,
+    });
+  };
+
+  onChangeBathRoom = value => {
+    this.setState({
+      bathRoom: value,
+    });
+    this.props.updateHouse({
+      bathRoom: value,
+    });
+  };
+
+  onChangeFloor = value => {
+    this.setState({
+      floor: value,
+    });
+    this.props.updateHouse({
+      floor: value,
+    });
+  };
+
+  onChangeNumberOfFloor = value => {
+    this.setState({
+      numberOfFloor: value,
+    });
+    this.props.updateHouse({
+      numberOfFloor: value,
+    });
   };
 
   onChangeDirection = e => {
@@ -158,97 +151,106 @@ class StepTwo extends React.Component {
             <i className="fa fa-lightbulb-o" />
             <em>
               {' '}
-              Cung cấp đầy đủ thông tin đặc điểm bất động sản của bạn để người
-              mua có được nhiều thông tin và cơ hội bán sẽ nhanh hơn!
+              Hãy cung cấp đầy đủ thông tin đặc điểm bất động sản của bạn!
             </em>
           </p>
         </Col>
         <Col span={24}>
-          <div style={{ marginTop: 16 }}>
-            <Input
-              addonBefore="Diện tích sàn"
-              type="number"
-              value={this.state.acreage || this.props.house.acreage}
-              onChange={this.onChangeAcreage}
-              placeholder="Diện tích theo mét vuông?"
-            />
-          </div>
+          <InputItem
+            type="number"
+            placeholder="0"
+            clear
+            extra="m2"
+            value={this.state.acreage || this.props.house.acreage}
+            onChange={this.onChangeAcreage}
+            moneyKeyboardAlign="left"
+            moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+          >
+            Diện tích
+          </InputItem>
         </Col>
         {showAcreageStreetSide(this.props.house.landType) ? (
           <Col span={24}>
-            <div style={{ marginTop: 16 }}>
-              <Input
-                addonBefore="Mặt tiền"
-                type="number"
-                value={
-                  this.state.acreageStreetSide ||
-                  this.props.house.acreageStreetSide
-                }
-                onChange={this.onChangeAcreageStreetSide}
-                placeholder="Diện tích theo mét?"
-              />
-            </div>
+            <InputItem
+              type="number"
+              placeholder="0"
+              clear
+              extra="m2"
+              value={this.state.acreage || this.props.house.acreage}
+              onChange={this.onChangeAcreageStreetSide}
+              moneyKeyboardAlign="left"
+              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+            >
+              Mặt tiền
+            </InputItem>
           </Col>
         ) : (
           ''
         )}
         {showBedRoom(this.props.house.landType) ? (
           <Col span={24}>
-            <div style={{ marginTop: 16 }}>
-              <Input
-                addonBefore="Số phòng ngủ"
-                type="number"
-                value={this.state.bedRoom || this.props.house.bedRoom}
-                onChange={this.onChangeBedRoom}
-                placeholder="Có bao nhiêu phòng ngủ?"
-              />
-            </div>
+            <InputItem
+              type="number"
+              placeholder="0"
+              clear
+              value={this.state.bedRoom || this.props.house.bedRoom}
+              onChange={this.onChangeBedRoom}
+              moneyKeyboardAlign="left"
+              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+            >
+              Phòng ngủ
+            </InputItem>
           </Col>
         ) : (
           ''
         )}
         {showBedRoom(this.props.house.landType) ? (
           <Col span={24}>
-            <div style={{ marginTop: 16 }}>
-              <Input
-                addonBefore="Số phòng tắm"
-                type="number"
-                value={this.state.bathRoom || this.props.house.bathRoom}
-                onChange={this.onChangeBathRoom}
-                placeholder="Có bao nhiêu phòng tắm?"
-              />
-            </div>
+            <InputItem
+              type="number"
+              placeholder="0"
+              clear
+              value={this.state.bathRoom || this.props.house.bathRoom}
+              onChange={this.onChangeBathRoom}
+              moneyKeyboardAlign="left"
+              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+            >
+              Phòng tắm
+            </InputItem>
           </Col>
         ) : (
           ''
         )}
         {this.props.house.landType === 'APARTMENT' ? (
           <Col span={24}>
-            <div style={{ marginTop: 16 }}>
-              <Input
-                addonBefore="Tầng số"
-                value={this.state.floor || this.props.house.floor}
-                onChange={this.onChangeFloor}
-                placeholder="Nhà bạn ở tầng bao nhiêu?"
-              />
-            </div>
+            <InputItem
+              type="number"
+              placeholder="0"
+              clear
+              value={this.state.floor || this.props.house.floor}
+              onChange={this.onChangeFloor}
+              moneyKeyboardAlign="left"
+              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+            >
+              Tầng số
+            </InputItem>
           </Col>
         ) : (
           ''
         )}
         {showNumberOfFloor(this.props.house.landType) ? (
           <Col span={24}>
-            <div style={{ marginTop: 16 }}>
-              <Input
-                addonBefore="Số tầng"
-                type="number"
-                value={
-                  this.state.numberOfFloor || this.props.house.numberOfFloor
-                }
-                onChange={this.onChangeNumberOfFloor}
-                placeholder="Nhà bạn có bao nhiêu tầng?"
-              />
-            </div>
+            <InputItem
+              type="number"
+              placeholder="0"
+              clear
+              value={this.state.numberOfFloor || this.props.house.numberOfFloor}
+              onChange={this.onChangeNumberOfFloor}
+              moneyKeyboardAlign="left"
+              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+            >
+              Số tầng
+            </InputItem>
           </Col>
         ) : (
           ''

@@ -1,11 +1,3 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
 /* eslint-disable react/no-access-state-in-setstate */
 
 import React from 'react';
@@ -77,6 +69,8 @@ class Post extends React.Component {
   prev = () => {
     const current = this.state.current - 1;
     this.setState({ current });
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   };
 
   validateStep = id => {
@@ -121,6 +115,8 @@ class Post extends React.Component {
     if (actionTypeValue && landTypeValue) {
       const current = this.state.current + 1;
       this.setState({ current });
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
   };
 
@@ -140,6 +136,8 @@ class Post extends React.Component {
     if (acreageValue) {
       const current = this.state.current + 1;
       this.setState({ current });
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
   };
 
@@ -186,7 +184,6 @@ class Post extends React.Component {
       ...house,
       ...this.state.house,
     };
-    console.log('stepForm', entity);
     const steps = [
       {
         title: 'Hình thức',
@@ -290,13 +287,14 @@ class Post extends React.Component {
 }
 
 Post.defaultProps = {
+  house: {},
   // heightScreen: 1000,
   // isAuthenticated: false,
 };
 
 Post.propTypes = {
   // isAuthenticated: PropTypes.bool,
-  house: PropTypes.shape(PropTypes.object).isRequired,
+  house: PropTypes.shape(PropTypes.object),
   // heightScreen: PropTypes.number,
 };
 

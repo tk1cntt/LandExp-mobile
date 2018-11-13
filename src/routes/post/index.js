@@ -10,9 +10,8 @@
 import React from 'react';
 import Post from './Post';
 import Layout from '../../components/Layout';
-import mutateGetHouse from './getHouse.graphql';
 
-async function action({ store, route, pathname, fetch }) {
+async function action({ store, pathname, fetch }) {
   const state = store.getState();
   if (!state.auth.auth) {
     return { redirect: '/dang-nhap', from: pathname }; // <== where the redirect come from?
