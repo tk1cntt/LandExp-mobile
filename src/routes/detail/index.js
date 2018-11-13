@@ -21,18 +21,24 @@ async function action({ fetch, params }) {
   });
   const house = queryResponse.data.getDetail;
   */
-  const response = await fetch(`/api/v1/detail/${params.id}`, {
+  const response = await fetch(`/api/v1/houses/${params.id}`, {
     method: 'GET', // handy with GraphQL backends
   });
   const json = await response.json();
   // console.log('json', json); // eslint-disable-line
-  const component = json.status ? (<Layout><Maintain /></Layout>) : (<Layout>
-    <Detail houseEntity={json.house} housePhotoList={json.images} />
-  </Layout>);
+  const component = json.status ? (
+    <Layout>
+      <Maintain />
+    </Layout>
+  ) : (
+    <Layout>
+      <Detail houseEntity={json.house} housePhotoList={json.images} />
+    </Layout>
+  );
   return {
     title: json.house ? json.house.title : 'Server undermaintain',
     chunks: ['detail'],
-    component: component,
+    component,
   };
 }
 

@@ -40,7 +40,27 @@ export const detail = async id => {
     }
     return json;
   } catch (error) {
-    console.log(error);
+    return JSON.stringify('{ code: 100, message: "Server undermaintain"}');
+  }
+};
+
+export const init = async authorization => {
+  try {
+    const data = await client
+      .get('/api/houses/init', {
+        headers: { Authorization: `${authorization}` },
+      })
+      .then(
+        response =>
+          // console.log('top-response', response.data) // eslint-disable-line
+          response.data,
+      )
+      .catch(error => ({
+        error: error.response && error.response.data,
+      }));
+    // console.log('top-response', data) // eslint-disable-line
+    return data;
+  } catch (error) {
     return JSON.stringify('{ code: 100, message: "Server undermaintain"}');
   }
 };
@@ -60,7 +80,6 @@ export const search = async query => {
     // console.log('top-response', data) // eslint-disable-line
     return data;
   } catch (error) {
-    console.log(error);
     return "{ code: 100, message: 'Server undermaintain'}";
   }
 };
@@ -68,4 +87,5 @@ export const search = async query => {
 export default {
   search,
   detail,
+  init,
 };

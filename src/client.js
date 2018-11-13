@@ -87,6 +87,14 @@ let appInstance;
 
 const scrollPositionsHistory = {};
 
+const token = window.localStorage.getItem('token');
+if (token) {
+  store.dispatch({
+    type: LOGIN_SUCCESS,
+    payload: { id_token: token },
+  });
+}
+store.dispatch(getSession());
 store.dispatch({
   type: SETTING_SUCCESS,
   payload: { widthScreen: window.innerWidth, heightScreen: window.innerHeight },
@@ -124,16 +132,6 @@ async function onLocationChange(location, action) {
       history.replace(route.redirect);
       return;
     }
-
-    const token = window.localStorage.getItem('token');
-    if (token) {
-      store.dispatch({
-        type: LOGIN_SUCCESS,
-        payload: { id_token: token },
-      });
-    }
-
-    store.dispatch(getSession());
 
     // Save path name to store
     store.dispatch({

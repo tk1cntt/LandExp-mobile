@@ -14,7 +14,7 @@ import Layout from '../../components/Layout';
 
 async function action({ fetch, query }) {
   const response = await fetch(
-    `/api/v1/search?${queryString.stringify(query)}`,
+    `/api/v1/houses?${queryString.stringify(query)}`,
     {
       method: 'GET', // handy with GraphQL backends
     },

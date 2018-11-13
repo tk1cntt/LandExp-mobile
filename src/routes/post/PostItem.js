@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable react/require-default-props */
 
 import React from 'react';
 import PropTypes from 'prop-types';

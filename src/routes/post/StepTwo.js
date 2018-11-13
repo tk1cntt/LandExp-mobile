@@ -1,42 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Row, Col, Cascader, Input, Select, Radio, Checkbox } from 'antd';
+import { Row, Col, Input, Radio, Checkbox } from 'antd';
 
 import {
   showAcreageStreetSide,
   showNumberOfFloor,
   showBedRoom,
 } from 'constants/utils';
-import PostItem from './PostItem';
 import s from './StepThree.css';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
-/*
-class StepTwo extends React.Component {
-  static propTypes = {
-    updateHouse: PropTypes.func.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={s.body}>
-        <div className={s.selection}>
-          Step three
-        </div>
-      </div>
-    );
-  }
-}
-*/
-
-//*
 class StepTwo extends React.Component {
   constructor(props) {
     super(props);
@@ -175,10 +151,9 @@ class StepTwo extends React.Component {
   };
 
   render() {
-    // const { account } = this.props;
     return (
       <Row>
-        <Col md="12">
+        <Col span={24}>
           <p className="text-center subtitle">
             <i className="fa fa-lightbulb-o" />
             <em>
@@ -188,7 +163,7 @@ class StepTwo extends React.Component {
             </em>
           </p>
         </Col>
-        <Col md="6">
+        <Col span={24}>
           <div style={{ marginTop: 16 }}>
             <Input
               addonBefore="Diện tích sàn"
@@ -200,7 +175,7 @@ class StepTwo extends React.Component {
           </div>
         </Col>
         {showAcreageStreetSide(this.props.house.landType) ? (
-          <Col md="6">
+          <Col span={24}>
             <div style={{ marginTop: 16 }}>
               <Input
                 addonBefore="Mặt tiền"
@@ -218,7 +193,7 @@ class StepTwo extends React.Component {
           ''
         )}
         {showBedRoom(this.props.house.landType) ? (
-          <Col md="6">
+          <Col span={24}>
             <div style={{ marginTop: 16 }}>
               <Input
                 addonBefore="Số phòng ngủ"
@@ -233,7 +208,7 @@ class StepTwo extends React.Component {
           ''
         )}
         {showBedRoom(this.props.house.landType) ? (
-          <Col md="6">
+          <Col span={24}>
             <div style={{ marginTop: 16 }}>
               <Input
                 addonBefore="Số phòng tắm"
@@ -248,7 +223,7 @@ class StepTwo extends React.Component {
           ''
         )}
         {this.props.house.landType === 'APARTMENT' ? (
-          <Col md="6">
+          <Col span={24}>
             <div style={{ marginTop: 16 }}>
               <Input
                 addonBefore="Tầng số"
@@ -262,7 +237,7 @@ class StepTwo extends React.Component {
           ''
         )}
         {showNumberOfFloor(this.props.house.landType) ? (
-          <Col md="6">
+          <Col span={24}>
             <div style={{ marginTop: 16 }}>
               <Input
                 addonBefore="Số tầng"
@@ -278,12 +253,12 @@ class StepTwo extends React.Component {
         ) : (
           ''
         )}
-        <Col md="12">
+        <Col span={24}>
           <div style={{ marginTop: 16 }}>
             <b>Hướng nhà</b>
           </div>
         </Col>
-        <Col md="12">
+        <Col span={24}>
           <div style={{ marginTop: 16 }}>
             <RadioGroup
               onChange={this.onChangeDirection}
@@ -302,12 +277,12 @@ class StepTwo extends React.Component {
         </Col>
         {this.props.house.landType === 'APARTMENT' ? (
           <>
-            <Col md="12">
+            <Col span={24}>
               <div style={{ marginTop: 16 }}>
                 <b>Hướng ban công</b>
               </div>
             </Col>
-            <Col md="12">
+            <Col span={24}>
               <div style={{ marginTop: 16 }}>
                 <RadioGroup
                   onChange={this.onChangeDirectionBalcony}
@@ -333,12 +308,12 @@ class StepTwo extends React.Component {
         )}
         {showBedRoom(this.props.house.landType) ? (
           <>
-            <Col md="12">
+            <Col span={24}>
               <div style={{ marginTop: 16 }}>
                 <b>Tiện nghi</b>
               </div>
             </Col>
-            <Col md="12">
+            <Col span={24}>
               <div style={{ marginTop: 16 }}>
                 <Checkbox
                   onChange={this.onChangeParking}
@@ -356,6 +331,14 @@ class StepTwo extends React.Component {
     );
   }
 }
-//* /
+
+StepTwo.defaultProps = {
+  house: {},
+};
+
+StepTwo.propTypes = {
+  updateHouse: PropTypes.func.isRequired,
+  house: PropTypes.shape(PropTypes.object),
+};
 
 export default withStyles(s)(StepTwo);

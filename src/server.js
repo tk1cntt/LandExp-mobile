@@ -28,7 +28,11 @@ import errorPageStyle from './routes/error/ErrorPage.css';
 import createFetch from './createFetch';
 import router from './router';
 import schema from './data/schema';
-import { search, detail } from './data/rest/api';
+import {
+  search as searchHouse,
+  detail as detailHouse,
+  init as initHouse,
+} from './data/rest/houses';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
@@ -99,10 +103,10 @@ const graphqlMiddleware = expressGraphQL(req => ({
 
 app.use('/graphql', graphqlMiddleware);
 
-app.get('/api/v1/search', async (req, res) => {
+app.get('/api/v1/houses', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
-    const response = await search();
+    const response = await searchHouse(req.query);
     res.send(JSON.stringify(response));
   } catch (e) {
     if (__DEV__) {
@@ -113,10 +117,25 @@ app.get('/api/v1/search', async (req, res) => {
   }
 });
 
-app.get('/api/v1/detail/:id', async (req, res) => {
+app.get('/api/v1/houses/init', async (req, res) => {
+  // console.log('header',  req);
   res.setHeader('Content-Type', 'application/json');
   try {
-    const response = await detail(req.params.id);
+    const response = await initHouse(req.headers.authorization);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
+  }
+});
+
+app.get('/api/v1/houses/:id', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await detailHouse(req.params.id);
     res.send(JSON.stringify(response));
   } catch (e) {
     if (__DEV__) {

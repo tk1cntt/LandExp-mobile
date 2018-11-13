@@ -8,7 +8,8 @@ class CityHeader extends React.Component {
   render() {
     return (
       <div className={s.logo}>
-        <Icon type="home" /> Land<font color="red">Exp</font>
+        <Icon type="home" /> Land
+        <font color="red">Exp</font>
       </div>
     );
   }

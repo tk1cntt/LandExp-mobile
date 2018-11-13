@@ -16,7 +16,8 @@ class Logo extends React.Component {
         tabIndex={0}
         role="button"
       >
-        <Icon type="home" /> Land<font color="red">Exp</font>
+        <Icon type="home" /> Land
+        <font color="red">Exp</font>
       </div>
     );
   }

@@ -26,7 +26,8 @@ class SearchHeader extends React.Component {
     return (
       <div>
         <div className={s.logo}>
-          <Icon type="home" /> Land<font color="red">Exp</font>
+          <Icon type="home" /> Land
+          <font color="red">Exp</font>
         </div>
         <div className={s.searchHeader}>
           <div className={s.searchBody}>

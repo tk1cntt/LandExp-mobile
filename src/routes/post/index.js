@@ -12,22 +12,26 @@ import Post from './Post';
 import Layout from '../../components/Layout';
 import mutateGetHouse from './getHouse.graphql';
 
-async function action(context) {
-  console.log('post-context', context); // eslint-disable-line
-  const state = context.store.getState();
-  if (context.route.protected && state.session.isAuthenticated !== true) {
-    return { redirect: '/dang-nhap', from: context.pathname }; // <== where the redirect come from?
+async function action({ store, route, pathname, fetch }) {
+  const state = store.getState();
+  if (!state.auth.auth) {
+    return { redirect: '/dang-nhap', from: pathname }; // <== where the redirect come from?
   }
-  const queryResponse = await context.client.query({
-    query: mutateGetHouse,
+  const response = await fetch('/api/v1/houses/init', {
+    method: 'GET', // handy with GraphQL backends
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: `Bearer ${state.auth.auth.id_token}`,
+    },
   });
-  const house = queryResponse.data.getInit;
+  const house = await response.json();
+  // console.log(house); // eslint-disable-line
   return {
     title: 'Đăng tin',
     chunks: ['detail'],
     component: (
       <Layout>
-        <Post houseEntity={house.house} />
+        <Post house={house} />
       </Layout>
     ),
   };

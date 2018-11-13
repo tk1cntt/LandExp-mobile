@@ -1,62 +1,40 @@
+/* eslint-disable react/style-prop-object */
+/* eslint-disable react/no-access-state-in-setstate */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Radio, Row, Col } from 'antd';
-import Select from 'react-select';
+import { Row, Col } from 'antd';
 
 import PostItem from './PostItem';
 import s from './StepOne.css';
 
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
-
 class StepOne extends React.Component {
-  static propTypes = {
-    updateHouse: PropTypes.func.isRequired,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
-      parameters: {
-        actionType: 'FOR_SELL',
-      },
+      parameters: {},
     };
   }
 
-  onChangeServiceType = e => {
-    const parameters = { actionType: e.target.value };
-    const nextParameter = { ...this.state.parameters, ...parameters };
-    this.setState({
-      parameters: nextParameter,
-    });
-    // this.props.updateHouse(nextParameter);
-  };
-
   onChangeItemActionType = e => {
-    const actionType = {
-      value: e.value,
-      label: e.label,
-    };
+    const actionType = e.value;
     const parameters = { actionType };
     const nextParameter = { ...this.state.parameters, ...parameters };
     this.setState({
       parameters: nextParameter,
     });
-    // this.props.updateHouse(nextParameter);
+    this.props.updateHouse(nextParameter);
   };
 
   onChangeItemLandType = e => {
-    const landType = {
-      value: e.value,
-      label: e.label,
-    };
+    const landType = e.value;
     const parameters = { landType };
     const nextParameter = { ...this.state.parameters, ...parameters };
     this.setState({
       parameters: nextParameter,
     });
-    // this.props.updateHouse(nextParameter);
+    this.props.updateHouse(nextParameter);
   };
 
   render() {
@@ -70,12 +48,11 @@ class StepOne extends React.Component {
             justify="space-around"
             align="middle"
           >
-            <Col span={12} style={{ alignItems: 'center' }}>
+            <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.actionType
-                    ? this.state.parameters.actionType.value === 'FOR_SELL'
-                    : false
+                  (this.state.parameters.actionType ||
+                    this.props.house.actionType) === 'FOR_SELL'
                 }
                 value="FOR_SELL"
                 style="sale"
@@ -83,12 +60,11 @@ class StepOne extends React.Component {
                 onChange={this.onChangeItemActionType}
               />
             </Col>
-            <Col span={12} style={{ alignItems: 'center' }}>
+            <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.actionType
-                    ? this.state.parameters.actionType.value === 'FOR_RENT'
-                    : false
+                  (this.state.parameters.actionType ||
+                    this.props.house.actionType) === 'FOR_RENT'
                 }
                 value="FOR_RENT"
                 style="rent"
@@ -107,9 +83,9 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'APARTMENT'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType ||
+                    this.props.house.landType) === 'APARTMENT'
                 }
                 value="APARTMENT"
                 style="aparment"
@@ -120,9 +96,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'HOME'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'HOME'
                 }
                 value="HOME"
                 style="home"
@@ -133,9 +108,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'HOME_VILLA'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'HOME_VILLA'
                 }
                 value="HOME_VILLA"
                 style="home-villa"
@@ -146,10 +120,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value ===
-                      'HOME_STREET_SIDE'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'HOME_STREET_SIDE'
                 }
                 value="HOME_STREET_SIDE"
                 style="home-street-side"
@@ -160,9 +132,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'LAND_SCAPE'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'LAND_SCAPE'
                 }
                 value="LAND_SCAPE"
                 style="land-scape"
@@ -173,9 +144,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'LAND_OF_PROJECT'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'LAND_OF_PROJECT'
                 }
                 value="LAND_OF_PROJECT"
                 style="land-of-project"
@@ -186,9 +156,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'LAND_FARM'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'LAND_FARM'
                 }
                 value="LAND_FARM"
                 style="land-farm"
@@ -199,9 +168,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'LAND_RESORT'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'LAND_RESORT'
                 }
                 value="LAND_RESORT"
                 style="land-resort"
@@ -212,9 +180,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'OFFICE'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'OFFICE'
                 }
                 value="OFFICE"
                 style="office"
@@ -225,9 +192,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'WAREHOUSES'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'WAREHOUSES'
                 }
                 value="WAREHOUSES"
                 style="warehouses"
@@ -238,9 +204,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'KIOSKS'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'KIOSKS'
                 }
                 value="KIOSKS"
                 style="kiosks"
@@ -251,9 +216,8 @@ class StepOne extends React.Component {
             <Col span={6} style={{ alignItems: 'center' }}>
               <PostItem
                 checked={
-                  this.state.parameters.landType
-                    ? this.state.parameters.landType.value === 'MOTEL_ROOM'
-                    : false
+                  (this.state.parameters.landType ||
+                    this.props.house.landType) === 'MOTEL_ROOM'
                 }
                 value="MOTEL_ROOM"
                 style="motel-room"
@@ -268,4 +232,12 @@ class StepOne extends React.Component {
   }
 }
 
+StepOne.defaultProps = {
+  house: {},
+};
+
+StepOne.propTypes = {
+  updateHouse: PropTypes.func.isRequired,
+  house: PropTypes.shape(PropTypes.object),
+};
 export default withStyles(s)(StepOne);

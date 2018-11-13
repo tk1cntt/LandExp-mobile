@@ -1,3 +1,5 @@
+/* eslint-disable react/no-access-state-in-setstate */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';

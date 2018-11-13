@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable no-underscore-dangle */
 
 import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
 
