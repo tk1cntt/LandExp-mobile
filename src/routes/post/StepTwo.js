@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Row, Col, Input, Radio, Checkbox } from 'antd';
-import { InputItem } from 'antd-mobile';
+import { List, Stepper, InputItem } from 'antd-mobile';
 
 import {
   showAcreageStreetSide,
@@ -145,113 +145,123 @@ class StepTwo extends React.Component {
 
   render() {
     return (
-      <Row>
-        <Col span={24}>
-          <p className="text-center subtitle">
-            <i className="fa fa-lightbulb-o" />
-            <em>
-              {' '}
-              Hãy cung cấp đầy đủ thông tin đặc điểm bất động sản của bạn!
-            </em>
-          </p>
-        </Col>
-        <Col span={24}>
-          <InputItem
-            type="number"
-            placeholder="0"
-            clear
-            extra="m2"
-            value={this.state.acreage || this.props.house.acreage}
-            onChange={this.onChangeAcreage}
-            moneyKeyboardAlign="left"
-            moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-          >
-            Diện tích
-          </InputItem>
-        </Col>
-        {showAcreageStreetSide(this.props.house.landType) ? (
-          <Col span={24}>
+      <List>
+        <List.Item
+          wrap
+          extra={
             <InputItem
               type="number"
               placeholder="0"
               clear
               extra="m2"
               value={this.state.acreage || this.props.house.acreage}
-              onChange={this.onChangeAcreageStreetSide}
+              onChange={this.onChangeAcreage}
               moneyKeyboardAlign="left"
               moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-            >
-              Mặt tiền
-            </InputItem>
-          </Col>
+            />
+          }
+        >
+          Diện tích
+        </List.Item>
+        {showAcreageStreetSide(this.props.house.landType) ? (
+          <List.Item
+            wrap
+            extra={
+              <InputItem
+                type="number"
+                placeholder="0"
+                clear
+                extra="m2"
+                value={this.state.acreage || this.props.house.acreage}
+                onChange={this.onChangeAcreageStreetSide}
+                moneyKeyboardAlign="left"
+                moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+              />
+            }
+          >
+            Mặt tiền
+          </List.Item>
         ) : (
           ''
         )}
         {showBedRoom(this.props.house.landType) ? (
-          <Col span={24}>
-            <InputItem
-              type="number"
-              placeholder="0"
-              clear
-              value={this.state.bedRoom || this.props.house.bedRoom}
-              onChange={this.onChangeBedRoom}
-              moneyKeyboardAlign="left"
-              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-            >
-              Phòng ngủ
-            </InputItem>
-          </Col>
+          <List.Item
+            wrap
+            extra={
+              <Stepper
+                style={{ width: '100%', minWidth: '100px' }}
+                showNumber
+                max={10}
+                min={1}
+                value={this.state.bedRoom || this.props.house.bedRoom}
+                onChange={this.onChangeBedRoom}
+              />
+            }
+          >
+            Phòng ngủ
+          </List.Item>
         ) : (
           ''
         )}
         {showBedRoom(this.props.house.landType) ? (
-          <Col span={24}>
-            <InputItem
-              type="number"
-              placeholder="0"
-              clear
-              value={this.state.bathRoom || this.props.house.bathRoom}
-              onChange={this.onChangeBathRoom}
-              moneyKeyboardAlign="left"
-              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-            >
-              Phòng tắm
-            </InputItem>
-          </Col>
+          <List.Item
+            wrap
+            extra={
+              <Stepper
+                style={{ width: '100%', minWidth: '100px' }}
+                showNumber
+                max={10}
+                min={1}
+                value={this.state.bathRoom || this.props.house.bathRoom}
+                onChange={this.onChangeBathRoom}
+              />
+            }
+          >
+            Phòng tắm
+          </List.Item>
         ) : (
           ''
         )}
         {this.props.house.landType === 'APARTMENT' ? (
-          <Col span={24}>
-            <InputItem
-              type="number"
-              placeholder="0"
-              clear
-              value={this.state.floor || this.props.house.floor}
-              onChange={this.onChangeFloor}
-              moneyKeyboardAlign="left"
-              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-            >
-              Tầng số
-            </InputItem>
-          </Col>
+          <List.Item
+            wrap
+            extra={
+              <InputItem
+                type="number"
+                placeholder="0"
+                clear
+                value={this.state.floor || this.props.house.floor}
+                onChange={this.onChangeFloor}
+                moneyKeyboardAlign="left"
+                moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+              />
+            }
+          >
+            Tầng số
+          </List.Item>
         ) : (
           ''
         )}
         {showNumberOfFloor(this.props.house.landType) ? (
-          <Col span={24}>
-            <InputItem
-              type="number"
-              placeholder="0"
-              clear
-              value={this.state.numberOfFloor || this.props.house.numberOfFloor}
-              onChange={this.onChangeNumberOfFloor}
-              moneyKeyboardAlign="left"
-              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-            >
-              Số tầng
-            </InputItem>
-          </Col>
+          <List.Item
+            wrap
+            extra={
+              <InputItem
+                type="number"
+                placeholder="0"
+                clear
+                value={
+                  this.state.numberOfFloor || this.props.house.numberOfFloor
+                }
+                onChange={this.onChangeNumberOfFloor}
+                moneyKeyboardAlign="left"
+                moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+              />
+            }
+          >
+            {' '}
+            Số tầng
+          </List.Item>
         ) : (
           ''
         )}
@@ -308,28 +318,7 @@ class StepTwo extends React.Component {
         ) : (
           ''
         )}
-        {showBedRoom(this.props.house.landType) ? (
-          <>
-            <Col span={24}>
-              <div style={{ marginTop: 16 }}>
-                <b>Tiện nghi</b>
-              </div>
-            </Col>
-            <Col span={24}>
-              <div style={{ marginTop: 16 }}>
-                <Checkbox
-                  onChange={this.onChangeParking}
-                  checked={this.state.parking || this.props.house.parking}
-                >
-                  Có chỗ để ôtô{' '}
-                </Checkbox>
-              </div>
-            </Col>
-          </>
-        ) : (
-          ''
-        )}
-      </Row>
+      </List>
     );
   }
 }
