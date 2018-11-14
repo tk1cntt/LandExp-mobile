@@ -327,6 +327,14 @@ a:hover {
   position: inherit !important;
 }
 
+.am-picker-col-item {
+  font-size: 11px !important;
+}
+
+.am-picker-col-item-selected {
+  font-size: 12px !important;
+}
+
 /* Home page start */
 
 .app-container .am-navbar {

@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Row, Col } from 'antd';
-import { Checkbox, ImagePicker, TextareaItem, Picker, List, Stepper, InputItem } from 'antd-mobile';
+import {
+  Checkbox,
+  ImagePicker,
+  TextareaItem,
+  Picker,
+  List,
+  Stepper,
+  InputItem,
+} from 'antd-mobile';
 
 import {
   showAcreageStreetSide,
@@ -24,25 +32,32 @@ if (!window) {
   }
 }
 */
-const data = [{
-  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-  id: '2121',
-}, {
-  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-  id: '2122',
-},{
-  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-  id: '2121',
-}, {
-  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-  id: '2122',
-},{
-  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-  id: '2121',
-}, {
-  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-  id: '2122',
-}];
+const data = [
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+    id: '2121',
+  },
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+    id: '2122',
+  },
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+    id: '2121',
+  },
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+    id: '2122',
+  },
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+    id: '2121',
+  },
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+    id: '2122',
+  },
+];
 
 class StepTwo extends React.Component {
   constructor(props) {
@@ -168,7 +183,7 @@ class StepTwo extends React.Component {
     this.setState({
       files,
     });
-  }
+  };
 
   render() {
     const directions = [
@@ -207,25 +222,7 @@ class StepTwo extends React.Component {
     ];
     return (
       <div>
-      <List renderHeader={() => 'Thông tin ngôi nhà'}>
-        <List.Item
-          wrap
-          extra={
-            <InputItem
-              type="number"
-              placeholder="0"
-              clear
-              extra="m2"
-              value={this.state.acreage || this.props.house.acreage}
-              onChange={this.onChangeAcreage}
-              moneyKeyboardAlign="left"
-              moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-            />
-          }
-        >
-          Diện tích
-        </List.Item>
-        {showAcreageStreetSide(this.props.house.landType) ? (
+        <List renderHeader={() => 'Thông tin ngôi nhà'}>
           <List.Item
             wrap
             extra={
@@ -234,146 +231,169 @@ class StepTwo extends React.Component {
                 placeholder="0"
                 clear
                 extra="m2"
-                value={this.state.acreageStreetSide || this.props.house.acreageStreetSide}
-                onChange={this.onChangeAcreageStreetSide}
+                value={this.state.acreage || this.props.house.acreage}
+                onChange={this.onChangeAcreage}
                 moneyKeyboardAlign="left"
                 moneyKeyboardWrapProps={moneyKeyboardWrapProps}
               />
             }
           >
-            Mặt tiền
+            Diện tích
           </List.Item>
-        ) : (
-          ''
-        )}
-        {showBedRoom(this.props.house.landType) ? (
-          <List.Item
-            wrap
-            extra={
-              <Stepper
-                style={{ width: '100%', minWidth: '100px' }}
-                showNumber
-                min={1}
-                value={this.state.bedRoom || this.props.house.bedRoom}
-                onChange={this.onChangeBedRoom}
-              />
-            }
-          >
-            Phòng ngủ
-          </List.Item>
-        ) : (
-          ''
-        )}
-        {showBedRoom(this.props.house.landType) ? (
-          <List.Item
-            wrap
-            extra={
-              <Stepper
-                style={{ width: '100%', minWidth: '100px' }}
-                showNumber
-                min={1}
-                value={this.state.bathRoom || this.props.house.bathRoom}
-                onChange={this.onChangeBathRoom}
-              />
-            }
-          >
-            Phòng tắm
-          </List.Item>
-        ) : (
-          ''
-        )}
-        {this.props.house.landType === 'APARTMENT' ? (
-          <List.Item
-            wrap
-            extra={
-              <InputItem
-                type="number"
-                placeholder="0"
-                clear
-                value={this.state.floor || this.props.house.floor}
-                onChange={this.onChangeFloor}
-                moneyKeyboardAlign="left"
-                moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-              />
-            }
-          >
-            Tầng số
-          </List.Item>
-        ) : (
-          ''
-        )}
-        {showNumberOfFloor(this.props.house.landType) ? (
-          <List.Item
-            wrap
-            extra={
-              <InputItem
-                type="number"
-                placeholder="0"
-                clear
-                value={
-                  this.state.numberOfFloor || this.props.house.numberOfFloor
-                }
-                onChange={this.onChangeNumberOfFloor}
-                moneyKeyboardAlign="left"
-                moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-              />
-            }
-          >
-            {' '}
-            Số tầng
-          </List.Item>
-        ) : (
-          ''
-        )}
-        <Picker
-          data={directions}
-          cols={1}
-          extra="Chọn hướng"
-          dismissText="Huỷ"
-          okText="Chọn"
-          value={this.state.direction || this.props.house.direction}
-          onChange={this.onChangeDirection}
-          onOk={this.onChangeDirection}
-        >
-          <List.Item arrow="horizontal">Hướng nhà</List.Item>
-        </Picker>
-        {this.props.house.landType === 'APARTMENT' ? (
+          {showAcreageStreetSide(this.props.house.landType) ? (
+            <List.Item
+              wrap
+              extra={
+                <InputItem
+                  type="number"
+                  placeholder="0"
+                  clear
+                  extra="m2"
+                  value={
+                    this.state.acreageStreetSide ||
+                    this.props.house.acreageStreetSide
+                  }
+                  onChange={this.onChangeAcreageStreetSide}
+                  moneyKeyboardAlign="left"
+                  moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                />
+              }
+            >
+              Mặt tiền
+            </List.Item>
+          ) : (
+            ''
+          )}
+          {showBedRoom(this.props.house.landType) ? (
+            <List.Item
+              wrap
+              extra={
+                <Stepper
+                  style={{ width: '100%', minWidth: '100px' }}
+                  showNumber
+                  min={1}
+                  value={this.state.bedRoom || this.props.house.bedRoom}
+                  onChange={this.onChangeBedRoom}
+                />
+              }
+            >
+              Phòng ngủ
+            </List.Item>
+          ) : (
+            ''
+          )}
+          {showBedRoom(this.props.house.landType) ? (
+            <List.Item
+              wrap
+              extra={
+                <Stepper
+                  style={{ width: '100%', minWidth: '100px' }}
+                  showNumber
+                  min={1}
+                  value={this.state.bathRoom || this.props.house.bathRoom}
+                  onChange={this.onChangeBathRoom}
+                />
+              }
+            >
+              Phòng tắm
+            </List.Item>
+          ) : (
+            ''
+          )}
+          {this.props.house.landType === 'APARTMENT' ? (
+            <List.Item
+              wrap
+              extra={
+                <InputItem
+                  type="number"
+                  placeholder="0"
+                  clear
+                  value={this.state.floor || this.props.house.floor}
+                  onChange={this.onChangeFloor}
+                  moneyKeyboardAlign="left"
+                  moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                />
+              }
+            >
+              Tầng số
+            </List.Item>
+          ) : (
+            ''
+          )}
+          {showNumberOfFloor(this.props.house.landType) ? (
+            <List.Item
+              wrap
+              extra={
+                <InputItem
+                  type="number"
+                  placeholder="0"
+                  clear
+                  value={
+                    this.state.numberOfFloor || this.props.house.numberOfFloor
+                  }
+                  onChange={this.onChangeNumberOfFloor}
+                  moneyKeyboardAlign="left"
+                  moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                />
+              }
+            >
+              {' '}
+              Số tầng
+            </List.Item>
+          ) : (
+            ''
+          )}
           <Picker
             data={directions}
             cols={1}
             extra="Chọn hướng"
             dismissText="Huỷ"
             okText="Chọn"
-            value={this.state.directionBalcony || this.props.house.directionBalcony}
-            onChange={this.onChangeDirectionBalcony}
-            onOk={this.onChangeDirectionBalcony}
+            value={this.state.direction || this.props.house.direction}
+            onChange={this.onChangeDirection}
+            onOk={this.onChangeDirection}
           >
-            <List.Item arrow="horizontal">Hướng ban công</List.Item>
+            <List.Item arrow="horizontal">Hướng nhà</List.Item>
           </Picker>
-        ) : (
-          ''
-        )}
-      </List>
-      <List renderHeader={() => 'Tiện nghi'}>
-        <CheckboxItem key="1" onChange={e => console.log(e.target.checked)}>
-          Có chỗ để xe ô tô
-        </CheckboxItem>
-      </List>
-      <List renderHeader={() => 'Mô tả'}>
+          {this.props.house.landType === 'APARTMENT' ? (
+            <Picker
+              data={directions}
+              cols={1}
+              extra="Chọn hướng"
+              dismissText="Huỷ"
+              okText="Chọn"
+              value={
+                this.state.directionBalcony || this.props.house.directionBalcony
+              }
+              onChange={this.onChangeDirectionBalcony}
+              onOk={this.onChangeDirectionBalcony}
+            >
+              <List.Item arrow="horizontal">Hướng ban công</List.Item>
+            </Picker>
+          ) : (
+            ''
+          )}
+        </List>
+        <List renderHeader={() => 'Tiện nghi'}>
+          <CheckboxItem key="1" onChange={e => console.log(e.target.checked)}>
+            Có chỗ để xe ô tô
+          </CheckboxItem>
+        </List>
+        <List renderHeader={() => 'Mô tả'}>
           <TextareaItem
             rows={3}
             placeholder="Thông tin mô tả ngôi nhà của ban"
           />
-      </List>
-      <List renderHeader={() => 'Hình ảnh'}>
+        </List>
+        <List renderHeader={() => 'Hình ảnh'}>
           <ImagePicker
-          files={this.state.files}
-          onChange={this.onChangeImagePicker}
-          onImageClick={(index, fs) => console.log(index, fs)}
-          selectable={this.state.files.length < 7}
-          multiple={this.state.multiple}
-        />
-      </List>
+            files={this.state.files}
+            onChange={this.onChangeImagePicker}
+            onImageClick={(index, fs) => console.log(index, fs)}
+            selectable={this.state.files.length < 7}
+            multiple={this.state.multiple}
+          />
+        </List>
       </div>
     );
   }

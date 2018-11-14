@@ -9379,6 +9379,12 @@ react-native-swipeout@^2.2.2:
     prop-types "^15.5.10"
     react-tween-state "^0.1.5"
 
+react-number-format@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.0.4.tgz#0a9fffdcc0f43031eb8587aa22d616dca0852239"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-piwik@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/react-piwik/-/react-piwik-1.5.0.tgz#365eb3297c3839602eab637d8557920cb2f566a8"
