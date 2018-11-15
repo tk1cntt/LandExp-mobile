@@ -335,6 +335,26 @@ a:hover {
   font-size: 12px !important;
 }
 
+.am-list-content {
+  font-size: 14px !important;
+}
+
+.am-list-extra {
+  font-size: 14px !important;
+}
+
+.am-textarea-control textarea {
+  font-size: 14px !important;
+}
+
+.am-picker-popup-item {
+  font-size: 14px !important;
+}
+
+.am-list-item .am-input-control {
+  font-size: 14px !important;
+}
+
 /* Home page start */
 
 .app-container .am-navbar {

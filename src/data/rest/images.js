@@ -44,11 +44,11 @@ export const detail = async id => {
   }
 };
 
-export const init = async authorization => {
+export const create = async (authorization, body) => {
   try {
     client.defaults.headers['Authorization'] = `${authorization}`;
     const data = await client
-      .get('/api/houses/init')
+      .post('/api/house-photos', body)
       .then(
         response =>
           // console.log('top-response', response.data) // eslint-disable-line
@@ -64,10 +64,11 @@ export const init = async authorization => {
   }
 };
 
-export const search = async query => {
+export const remove = async (authorization, id) => {
   try {
+    client.defaults.headers['Authorization'] = `${authorization}`;
     const data = await client
-      .get('/api/houses/top')
+      .delete(`/api/house-images/${id}`)
       .then(
         response =>
           // console.log('top-response', response.data) // eslint-disable-line
@@ -84,7 +85,7 @@ export const search = async query => {
 };
 
 export default {
-  search,
+  remove,
   detail,
-  init,
+  create,
 };

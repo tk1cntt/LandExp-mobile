@@ -32,32 +32,7 @@ if (!window) {
   }
 }
 */
-const data = [
-  {
-    url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-    id: '2121',
-  },
-  {
-    url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-    id: '2122',
-  },
-  {
-    url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-    id: '2121',
-  },
-  {
-    url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-    id: '2122',
-  },
-  {
-    url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-    id: '2121',
-  },
-  {
-    url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-    id: '2122',
-  },
-];
+const data = [];
 
 class StepTwo extends React.Component {
   constructor(props) {
@@ -74,7 +49,7 @@ class StepTwo extends React.Component {
       parking: null,
       furniture: null,
       summary: '',
-      files: data,
+      files: [],
       multiple: false,
     };
   }
@@ -179,8 +154,19 @@ class StepTwo extends React.Component {
   };
 
   onChangeImagePicker = (files, type, index) => {
-    console.log(files, type, index);
+    // const file = files.slice(-1).pop();
+    switch (type) {
+      case 'add':
+        console.log("Add image", files);
+        break;
+      case 'remove':
+        console.log("Remove image", this.state.files[index]);
+        break;
+    }
     this.setState({
+      files,
+    });
+    this.props.updateHouse({
       files,
     });
   };
@@ -385,11 +371,11 @@ class StepTwo extends React.Component {
             placeholder="Thông tin mô tả ngôi nhà của ban"
           />
         </List>
-        <List renderHeader={() => 'Hình ảnh'}>
+        <List renderHeader={() => 'Hình ảnh mô tả ngôi nhà'}>
           <ImagePicker
             files={this.state.files}
             onChange={this.onChangeImagePicker}
-            onImageClick={(index, fs) => console.log(index, fs)}
+            // onImageClick={(index, fs) => console.log('onImageClick', index, fs)}
             selectable={this.state.files.length < 7}
             multiple={this.state.multiple}
           />

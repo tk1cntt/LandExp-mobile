@@ -117,6 +117,7 @@ class StepThree extends React.Component {
       districts,
     });
   };
+  // */
 
   onPickerOk = value => {
     console.log('onPickerOk', value)
@@ -124,7 +125,6 @@ class StepThree extends React.Component {
       columnNumber: 1,
     });
   }
-  // */
 
   onChangeMoney = values => {
     const { formattedValue, value } = values;
@@ -152,7 +152,7 @@ class StepThree extends React.Component {
             // onPickerChange={this.onPickerChange}
             dismissText="Huỷ"
             okText="Chọn"
-            // onOk={this.onPickerOk}
+            onOk={this.onPickerOk}
             // onDismiss={this.onPickerBack}
           >
             <List.Item arrow="horizontal">Thành phố</List.Item>
@@ -168,7 +168,7 @@ class StepThree extends React.Component {
             moneyKeyboardAlign="left"
           />
         </List>
-        <List renderHeader={() => 'Giá tiền'}>
+        <List renderHeader={() => 'Giá tiền (VND)'}>
           <NumberFormat
             value={this.state.money || this.props.house.money}
             displayType="input"

@@ -33,6 +33,12 @@ import {
   detail as detailHouse,
   init as initHouse,
 } from './data/rest/houses';
+
+import {
+  create as createPhoto,
+  detail as detailPhoto,
+  remove as deletePhoto,
+} from './data/rest/images';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
@@ -144,6 +150,21 @@ app.get('/api/v1/houses/:id', async (req, res) => {
     }
     res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
   }
+});
+
+app.post('/api/v1/images', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await createPhoto(req.headers.authorization, req.body);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
+  }
+  createPhoto
 });
 
 //

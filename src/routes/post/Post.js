@@ -16,6 +16,8 @@ import StepFour from './StepFour';
 import StepFive from './StepFive';
 
 import history from '../../history';
+import updateHouse from '../../actions/updateHouse';
+import createPhoto from '../../actions/createPhoto';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
@@ -23,9 +25,12 @@ class Post extends React.Component {
   constructor() {
     super();
     this.state = {
-      current: 0,
+      current: 1,
       open: false,
-      house: {},
+      house: {
+        actionType: 'FOR_SELL',
+        landType: 'APARTMENT',
+      },
       alerts: [],
     };
   }
@@ -153,26 +158,27 @@ class Post extends React.Component {
       ...this.state.house,
     };
     /*
-    this.props.updateHouse(entity);
-    if (entity.fileList) {
-      entity.fileList.map(file => {
+    // this.props.updateHouse(entity);
+    if (entity.files) {
+      entity.files.map(file => {
         if (file.photoId) {
           // this.props.updatePhoto({ id: file.photoId, image: realData, imageContentType: file.type, houseId: this.props.house.id });
         } else {
-          const imageURL = file.thumbUrl;
+          const imageURL = file.url;
           const block = imageURL.split(';');
           const realData = block[1].split(',')[1];
-          this.props.createPhoto({ image: realData, imageContentType: file.type, houseId: this.props.house.id });
+          const imageData = { image: realData, imageContentType: file.file.type, houseId: this.props.house.id };
+          this.props.createPhoto(imageData);
         }
       });
     }
-    */
+    //*/
     this.next();
   };
 
   updateHouse = house => {
     const nextHouse = { ...this.state.house, ...house };
-    console.log('updateHouse', nextHouse);
+    console.log('updateHouse', nextHouse); // eslint-disable-line
     this.setState({
       house: nextHouse,
     });
@@ -187,7 +193,7 @@ class Post extends React.Component {
     const steps = [
       {
         title: 'Hình thức',
-        content: <StepOne house={entity} updateHouse={this.updateHouse} />,
+        content: <StepTwo house={entity} updateHouse={this.updateHouse} />,
       },
       {
         title: 'Đặc điểm',
@@ -294,6 +300,8 @@ Post.defaultProps = {
 
 Post.propTypes = {
   // isAuthenticated: PropTypes.bool,
+  updateHouse: PropTypes.func.isRequired,
+  createPhoto: PropTypes.func.isRequired,
   house: PropTypes.shape(PropTypes.object),
   // heightScreen: PropTypes.number,
 };
@@ -303,7 +311,10 @@ const mapState = () => ({
   // heightScreen: state.setting.heightScreen,
 });
 
-const mapDispatch = {};
+const mapDispatch = {
+  updateHouse,
+  createPhoto,
+};
 
 export default connect(
   mapState,
