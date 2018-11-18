@@ -159,7 +159,7 @@ class Post extends React.Component {
     };
     // console.log("saveEntity", entity);
     //*
-    // this.props.updateHouse(entity);
+    this.props.updateHouse(entity);
     if (entity.files) {
       entity.files.map(file => {
         if (file.photoId) {

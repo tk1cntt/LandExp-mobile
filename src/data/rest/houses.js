@@ -64,6 +64,27 @@ export const init = async authorization => {
   }
 };
 
+export const update = async (authorization, body) => {
+  try {
+    client.defaults.headers['Authorization'] = `${authorization}`;
+    console.log(body);
+    const data = await client
+      .put('/api/houses', body)
+      .then(
+        response =>
+          // console.log('top-response', response.data) // eslint-disable-line
+          response.data,
+      )
+      .catch(error =>
+        error.response.data,
+      );
+    // console.log('top-response', data) // eslint-disable-line
+    return data;
+  } catch (error) {
+    return JSON.stringify('{ code: 100, message: "Server undermaintain"}');
+  }
+};
+
 export const search = async query => {
   try {
     const data = await client

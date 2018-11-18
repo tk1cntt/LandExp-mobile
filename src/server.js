@@ -31,6 +31,7 @@ import schema from './data/schema';
 import {
   search as searchHouse,
   detail as detailHouse,
+  update as updateHouse,
   init as initHouse,
 } from './data/rest/houses';
 
@@ -72,9 +73,8 @@ app.set('trust proxy', config.trustProxy);
 // -----------------------------------------------------------------------------
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
+app.use(bodyParser.json({limit: '50mb', extended: true}))
 //
 // Authentication
 // -----------------------------------------------------------------------------
@@ -156,6 +156,21 @@ app.post('/api/v1/images', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
     const response = await createPhoto(req.headers.authorization, req.body);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
+  }
+  createPhoto
+});
+
+app.put('/api/v1/houses', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await updateHouse(req.headers.authorization, req.body);
     res.send(JSON.stringify(response));
   } catch (e) {
     if (__DEV__) {
