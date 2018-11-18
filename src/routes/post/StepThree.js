@@ -119,12 +119,25 @@ class StepThree extends React.Component {
   };
   // */
 
-  onPickerOk = value => {
-    console.log('onPickerOk', value)
+  onChangeCascader = value => {
     this.setState({
-      columnNumber: 1,
+      city: value
+    });
+    this.props.updateHouse({
+      cityId: value[0],
+      districtId: value[1],
+      wardId: value[2]
     });
   }
+
+  onChangeAddress = value => {
+    this.setState({
+      address: value
+    });
+    this.props.updateHouse({
+      address: value
+    });
+  };
 
   onChangeMoney = values => {
     const { formattedValue, value } = values;
@@ -136,15 +149,63 @@ class StepThree extends React.Component {
     });
   };
 
+  onChangeCustomer = value => {
+    this.setState({
+      customer: value
+    });
+    this.props.updateHouse({
+      customer: value
+    });
+  };
+
+  onChangeMobile = value => {
+    const reg = /^\d{1,11}$/;
+    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+      this.setState({
+        mobile: value
+      });
+      this.props.updateHouse({
+        mobile: value
+      });
+    }
+  };
+
+  onChangeEmail = value => {
+    this.setState({
+      email: value
+    });
+    this.props.updateHouse({
+      email: value
+    });
+  };
+
+  onChangeZalo = e => {
+    this.setState({
+      zalo: e.target.value
+    });
+    this.props.updateHouse({
+      zalo: e.target.value
+    });
+  };
+
+  onChangeFacebook = e => {
+    this.setState({
+      facebook: e.target.value
+    });
+    this.props.updateHouse({
+      facebook: e.target.value
+    });
+  };
+
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div>
         <List renderHeader={() => 'Địa chỉ'}>
           <Picker
             extra="Chọn thành phố"
-            value={this.state.sValue}
-            onChange={v => this.setState({ sValue: v })}
+            value={this.state.city}
+            // onChange={v => this.setState({ sValue: v })}
             data={this.state.locations}
             cols={3}
             // data={this.state.columnNumber === 1 ? this.state.cities : this.state.districts}
@@ -152,7 +213,7 @@ class StepThree extends React.Component {
             // onPickerChange={this.onPickerChange}
             dismissText="Huỷ"
             okText="Chọn"
-            onOk={this.onPickerOk}
+            onOk={this.onChangeCascader}
             // onDismiss={this.onPickerBack}
           >
             <List.Item arrow="horizontal">Thành phố</List.Item>
@@ -162,9 +223,9 @@ class StepThree extends React.Component {
             placeholder="Số nhà, ngõ, ngách, phố"
             clear
             value={
-              this.state.acreageStreetSide || this.props.house.acreageStreetSide
+              this.state.address || this.props.house.address
             }
-            onChange={this.onChangeAcreageStreetSide}
+            onChange={this.onChangeAddress}
             moneyKeyboardAlign="left"
           />
         </List>
@@ -183,9 +244,9 @@ class StepThree extends React.Component {
             placeholder="Họ tên"
             clear
             value={
-              this.state.acreageStreetSide || this.props.house.acreageStreetSide
+              this.state.customer || this.props.house.customer
             }
-            onChange={this.onChangeAcreageStreetSide}
+            onChange={this.onChangeCustomer}
             moneyKeyboardAlign="left"
           />
           <InputItem
@@ -193,9 +254,9 @@ class StepThree extends React.Component {
             placeholder="Số điện thoại"
             clear
             value={
-              this.state.acreageStreetSide || this.props.house.acreageStreetSide
+              this.state.mobile || this.props.house.mobile
             }
-            onChange={this.onChangeAcreageStreetSide}
+            onChange={this.onChangeMobile}
             moneyKeyboardAlign="left"
           />
           <InputItem
@@ -203,9 +264,29 @@ class StepThree extends React.Component {
             placeholder="Email"
             clear
             value={
-              this.state.acreageStreetSide || this.props.house.acreageStreetSide
+              this.state.email || this.props.house.email
             }
-            onChange={this.onChangeAcreageStreetSide}
+            onChange={this.onChangeEmail}
+            moneyKeyboardAlign="left"
+          />
+          <InputItem
+            type="text"
+            placeholder="Facebook"
+            clear
+            value={
+              this.state.facebook || this.props.house.facebook
+            }
+            onChange={this.onChangeFaebook}
+            moneyKeyboardAlign="left"
+          />
+          <InputItem
+            type="text"
+            placeholder="Zalo"
+            clear
+            value={
+              this.state.zalo || this.props.house.zalo
+            }
+            onChange={this.onChangeZalo}
             moneyKeyboardAlign="left"
           />
         </List>

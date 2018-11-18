@@ -25,11 +25,11 @@ class Post extends React.Component {
   constructor() {
     super();
     this.state = {
-      current: 1,
+      current: 0,
       open: false,
       house: {
-        actionType: 'FOR_SELL',
-        landType: 'APARTMENT',
+        // actionType: 'FOR_SELL',
+        // landType: 'APARTMENT',
       },
       alerts: [],
     };
@@ -157,7 +157,8 @@ class Post extends React.Component {
       ...house,
       ...this.state.house,
     };
-    /*
+    // console.log("saveEntity", entity);
+    //*
     // this.props.updateHouse(entity);
     if (entity.files) {
       entity.files.map(file => {
@@ -193,7 +194,7 @@ class Post extends React.Component {
     const steps = [
       {
         title: 'Hình thức',
-        content: <StepTwo house={entity} updateHouse={this.updateHouse} />,
+        content: <StepOne house={entity} updateHouse={this.updateHouse} />,
       },
       {
         title: 'Đặc điểm',

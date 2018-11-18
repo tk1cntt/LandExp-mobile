@@ -110,19 +110,19 @@ class StepTwo extends React.Component {
 
   onChangeDirection = value => {
     this.setState({
-      direction: value,
+      direction: value[0],
     });
     this.props.updateHouse({
-      direction: value,
+      direction: value[0],
     });
   };
 
   onChangeDirectionBalcony = value => {
     this.setState({
-      directionBalcony: value,
+      directionBalcony: value[0],
     });
     this.props.updateHouse({
-      directionBalcony: value,
+      directionBalcony: value[0],
     });
   };
 
@@ -361,7 +361,7 @@ class StepTwo extends React.Component {
           )}
         </List>
         <List renderHeader={() => 'Tiện nghi'}>
-          <CheckboxItem key="1" onChange={e => console.log(e.target.checked)}>
+          <CheckboxItem key="1" onChange={this.onChangeParking}>
             Có chỗ để xe ô tô
           </CheckboxItem>
         </List>
@@ -369,6 +369,7 @@ class StepTwo extends React.Component {
           <TextareaItem
             rows={3}
             placeholder="Thông tin mô tả ngôi nhà của ban"
+            onChange={this.onChangeSummary}
           />
         </List>
         <List renderHeader={() => 'Hình ảnh mô tả ngôi nhà'}>
