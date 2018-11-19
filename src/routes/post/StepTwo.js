@@ -54,6 +54,10 @@ class StepTwo extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({ files: this.props.house.files ? this.props.house.files : [] });
+  }
+
   onChangeAcreage = value => {
     this.setState({
       acreage: value,
@@ -110,19 +114,19 @@ class StepTwo extends React.Component {
 
   onChangeDirection = value => {
     this.setState({
-      direction: value[0],
+      direction: value,
     });
     this.props.updateHouse({
-      direction: value[0],
+      direction: value,
     });
   };
 
   onChangeDirectionBalcony = value => {
     this.setState({
-      directionBalcony: value[0],
+      directionBalcony: value,
     });
     this.props.updateHouse({
-      directionBalcony: value[0],
+      directionBalcony: value,
     });
   };
 
@@ -337,7 +341,7 @@ class StepTwo extends React.Component {
             dismissText="Huỷ"
             okText="Chọn"
             value={this.state.direction || this.props.house.direction}
-            onChange={this.onChangeDirection}
+            // onChange={this.onChangeDirection}
             onOk={this.onChangeDirection}
           >
             <List.Item arrow="horizontal">Hướng nhà</List.Item>
@@ -352,7 +356,7 @@ class StepTwo extends React.Component {
               value={
                 this.state.directionBalcony || this.props.house.directionBalcony
               }
-              onChange={this.onChangeDirectionBalcony}
+              // onChange={this.onChangeDirectionBalcony}
               onOk={this.onChangeDirectionBalcony}
             >
               <List.Item arrow="horizontal">Hướng ban công</List.Item>

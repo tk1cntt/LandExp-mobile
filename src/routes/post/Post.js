@@ -157,6 +157,8 @@ class Post extends React.Component {
       ...house,
       ...this.state.house,
     };
+    entity.direction = this.state.house.direction ? this.state.house.direction[0] : null;
+    entity.directionBalcony = this.state.house.directionBalcony ? this.state.house.directionBalcony[0] : null;
     // console.log("saveEntity", entity);
     //*
     this.props.updateHouse(entity);
