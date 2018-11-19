@@ -172,6 +172,7 @@ class StepTwo extends React.Component {
   };
 
   render() {
+    console.log(this.props.house);
     const directions = [
       {
         label: 'Đông',
@@ -361,7 +362,10 @@ class StepTwo extends React.Component {
           )}
         </List>
         <List renderHeader={() => 'Tiện nghi'}>
-          <CheckboxItem key="1" onChange={this.onChangeParking}>
+          <CheckboxItem key="1"
+            onChange={this.onChangeParking}
+            defaultChecked={this.state.parking || this.props.house.parking}
+          >
             Có chỗ để xe ô tô
           </CheckboxItem>
         </List>
@@ -370,11 +374,14 @@ class StepTwo extends React.Component {
             rows={3}
             placeholder="Thông tin mô tả ngôi nhà của ban"
             onChange={this.onChangeSummary}
+            value={
+              this.state.summary || this.props.house.summary
+            }
           />
         </List>
         <List renderHeader={() => 'Hình ảnh mô tả ngôi nhà'}>
           <ImagePicker
-            files={this.state.files}
+            files={this.state.files || this.props.house.files}
             onChange={this.onChangeImagePicker}
             // onImageClick={(index, fs) => console.log('onImageClick', index, fs)}
             selectable={this.state.files.length < 7}
