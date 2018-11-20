@@ -90,6 +90,8 @@ class Post extends React.Component {
         this.validateStepThree();
         break;
       default:
+        const current = this.state.current + 1;
+        this.setState({ current });
         break;
     }
   };
@@ -207,12 +209,8 @@ class Post extends React.Component {
         content: <StepThree house={entity} updateHouse={this.updateHouse} />,
       },
       {
-        title: 'Xác nhận',
-        content: <StepFour house={entity} updateHouse={this.updateHouse} />,
-      },
-      {
         title: 'Hoàn tất',
-        content: <StepFive house={entity} updateHouse={this.updateHouse} />,
+        content: <StepFour house={entity} updateHouse={this.updateHouse} />,
       },
     ];
     return (
