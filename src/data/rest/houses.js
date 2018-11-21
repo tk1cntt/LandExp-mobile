@@ -40,7 +40,7 @@ export const detail = async id => {
     }
     return json;
   } catch (error) {
-    return JSON.stringify('{ code: 100, message: "Server undermaintain"}');
+    return { code: 100, message: "Server undermaintain"};
   }
 };
 
@@ -60,7 +60,7 @@ export const init = async authorization => {
     // console.log('top-response', data) // eslint-disable-line
     return data;
   } catch (error) {
-    return JSON.stringify('{ code: 100, message: "Server undermaintain"}');
+    return { code: 100, message: "Server undermaintain"};
   }
 };
 
@@ -81,7 +81,7 @@ export const update = async (authorization, body) => {
     // console.log('top-response', data) // eslint-disable-line
     return data;
   } catch (error) {
-    return JSON.stringify('{ code: 100, message: "Server undermaintain"}');
+    return { code: 100, message: "Server undermaintain"};
   }
 };
 
@@ -100,7 +100,7 @@ export const search = async query => {
     // console.log('top-response', data) // eslint-disable-line
     return data;
   } catch (error) {
-    return "{ code: 100, message: 'Server undermaintain'}";
+    return { code: 100, message: 'Server undermaintain'};
   }
 };
 

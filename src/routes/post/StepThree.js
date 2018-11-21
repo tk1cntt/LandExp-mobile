@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import NumberFormat from 'react-number-format';
-import { Input } from 'antd';
-import { Picker, List, InputItem } from 'antd-mobile';
+import { Input, Radio } from 'antd';
+import { Picker, List, InputItem, CheckboxItem } from 'antd-mobile';
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
+import { getPresent, getSaleType } from 'constants/utils';
 import s from './StepThree.css';
 import jsonData from './cities.json';
 
@@ -149,6 +152,24 @@ class StepThree extends React.Component {
     });
   };
 
+  onChangePresent = e => {
+    this.setState({
+      present: e.target.value
+    });
+    this.props.updateHouse({
+      present: e.target.value
+    });
+  };
+
+  onChangeSaleType = e => {
+    this.setState({
+      saleType: e.target.value
+    });
+    this.props.updateHouse({
+      saleType: e.target.value
+    });
+  };
+
   onChangeCustomer = value => {
     this.setState({
       customer: value
@@ -198,6 +219,11 @@ class StepThree extends React.Component {
   };
 
   render() {
+    const radioStyle = {
+      display: 'block',
+      height: '30px',
+      lineHeight: '30px'
+    };
     // console.log(this.state);
     return (
       <div>
@@ -238,10 +264,68 @@ class StepThree extends React.Component {
             onValueChange={this.onChangeMoney}
           />
         </List>
+        <List renderHeader={() => 'Hỗ trợ sau mua bán'}>
+          <RadioGroup
+            style={{ paddingLeft: 20, paddingRight: 20 }}
+            onChange={this.onChangePresent}
+            value={this.state.present || this.props.house.present}
+          >
+            <Radio style={radioStyle} value={'NONE'}>
+              {getPresent('NONE')}
+            </Radio>
+            <Radio style={radioStyle} value={'BASIC_FURNITURE'}>
+              {getPresent('BASIC_FURNITURE')}
+            </Radio>
+            <Radio style={radioStyle} value={'FULL_FURNITURE'}>
+              {getPresent('FULL_FURNITURE')}
+            </Radio>
+            <Radio style={radioStyle} value={'DISCOUNT_PRICE'}>
+              {getPresent('DISCOUNT_PRICE')}
+            </Radio>
+            <Radio style={radioStyle} value={'SUPPORT_EXHIBIT'}>
+              {getPresent('SUPPORT_EXHIBIT')}
+            </Radio>
+            <Radio style={radioStyle} value={'SUPPORT_FEE'}>
+              {getPresent('SUPPORT_FEE')}
+            </Radio>
+            <Radio style={radioStyle} value={'HAVE_PRESENT'}>
+              {getPresent('HAVE_PRESENT')}
+            </Radio>
+          </RadioGroup>
+        </List>
+        <List renderHeader={() => 'Gói tin đăng'}>
+          <RadioGroup
+            style={{ paddingLeft: 20, paddingRight: 20 }}
+            onChange={this.onChangeSaleType}
+            value={this.state.saleType || this.props.house.saleType}
+          >
+            1. Thông thường (Người mua quan tâm sẽ liên hệ trực tiếp với bạn)
+            <Radio style={radioStyle} value={'SALE_BY_MYSELF'}>
+              {getSaleType('SALE_BY_MYSELF')}
+            </Radio>
+            Được đăng tin vô thời giạn trên trang web
+            <Radio style={radioStyle} value={'SALE_BY_MYSELF_VIP'}>
+              {getSaleType('SALE_BY_MYSELF_VIP')}
+            </Radio>
+            Sẽ xuất hiện ưu tiên trên trang chủ và các trang tìm kiếm
+            <br />
+            2. Ký gửi (Chúng tôi hỗ trợ bán tận răng)
+            <Radio style={radioStyle} value={'SALE_SUPPORT'}>
+              {getSaleType('SALE_SUPPORT')}
+            </Radio>
+            Chúng tôi sẽ tìm kiếm khách hàng giúp bạn
+            <Radio style={radioStyle} value={'SALE_SUPPORT_VIP'}>
+              {getSaleType('SALE_SUPPORT_VIP')}
+            </Radio>
+            Sử dụng các nghiệp vụ marketing để bán được nhà của bạn hiệu quả nhất
+            <br />
+            Hoa hồng ký gửi: 0.5%/giá bán (Không quá 10 triệu VNĐ)
+          </RadioGroup>
+        </List>
         <List renderHeader={() => 'Thông tin liên hệ'}>
           <InputItem
             type="text"
-            placeholder="Họ tên"
+            placeholder="Tên người bán"
             clear
             value={
               this.state.customer || this.props.house.customer

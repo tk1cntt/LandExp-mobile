@@ -154,8 +154,67 @@ class Post extends React.Component {
   };
 
   validateStepThree = () => {
-    const current = this.state.current + 1;
-    this.setState({ current });
+    const alerts = [];
+    const cityValue = this.state.house.cityId || this.props.house.cityId;
+    const cityForm = cityValue ? null : (
+      <Row key={'city-type-value-alert'}>
+        <Col md="12">
+          <Alert type="error" message="Bạn phải chọn một tỉnh thành" />
+        </Col>
+      </Row>
+    );
+    alerts.push(cityForm);
+    const addressValue = this.state.house.address || this.props.house.address;
+    const addressForm = addressValue ? null : (
+      <Row key={'address-type-value-alert'}>
+        <Col md="12">
+          <Alert type="error" message="Bạn phải nhập địa chỉ" />
+        </Col>
+      </Row>
+    );
+    alerts.push(addressForm);
+    const moneyValue = this.state.house.money || this.props.house.money;
+    const moneyForm = moneyValue ? null : (
+      <Row key={'money-type-value-alert'}>
+        <Col md="12">
+          <Alert type="error" message="Bạn phải nhập giá bán ngôi nhà" />
+        </Col>
+      </Row>
+    );
+    alerts.push(moneyForm);
+    const saleTypeValue = this.state.house.saleType || this.props.house.saleType;
+    const saleTypeForm = saleTypeValue ? null : (
+      <Row key={'sale-type-value-alert'}>
+        <Col md="12">
+          <Alert type="error" message="Bạn phải chọn một gói tin đăng" />
+        </Col>
+      </Row>
+    );
+    alerts.push(saleTypeForm);
+    const customerValue = this.state.house.customer || this.props.house.customer;
+    const customerForm = customerValue ? null : (
+      <Row key={'customer-type-value-alert'}>
+        <Col md="12">
+          <Alert type="error" message="Bạn phải nhập tên người bán" />
+        </Col>
+      </Row>
+    );
+    alerts.push(customerForm);
+    const mobileValue = this.state.house.mobile || this.props.house.mobile;
+    const mobileForm = mobileValue ? null : (
+      <Row key={'mobile-type-value-alert'}>
+        <Col md="12">
+          <Alert type="error" message="Bạn phải nhập số điện thoại liên lạc" />
+        </Col>
+      </Row>
+    );
+    alerts.push(mobileForm);
+    ////////////////////////////////////////////////////////////////////////////
+    this.setState({ alerts });
+    if (moneyValue && saleTypeValue) {
+      const current = this.state.current + 1;
+      this.setState({ current });
+    }
   };
 
   saveEntity = () => {
