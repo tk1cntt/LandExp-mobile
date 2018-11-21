@@ -31,12 +31,12 @@ const routes = {
     {
       path: '/tai-khoan/thong-tin-ca-nhan',
       protected: true,
-      load: () => import(/* webpackChunkName: 'post' */ './home'),
+      load: () => import(/* webpackChunkName: 'profile' */ './home'),
     },
     {
       path: '/tai-khoan/tin-yeu-thich',
       protected: true,
-      load: () => import(/* webpackChunkName: 'post' */ './home'),
+      load: () => import(/* webpackChunkName: 'like' */ './home'),
     },
     {
       path: '/dang-nhap',
@@ -57,6 +57,10 @@ const routes = {
     {
       path: '/admin',
       load: () => import(/* webpackChunkName: 'admin' */ './admin'),
+    },
+    {
+      path: '/bat-dong-san/:id/xem-truoc-tin-dang',
+      load: () => import(/* webpackChunkName: 'preview' */ './detail'),
     },
     {
       path: '/bat-dong-san/:id/:link',
@@ -86,7 +90,7 @@ const routes = {
     const route = await next();
 
     // Provide default values for title, description etc.
-    route.title = `${route.title || 'Lamo - Tư vấn bất động sản thời 4.0'}`;
+    route.title = `${route.title || 'Tinvang - Tư vấn bất động sản thời 4.0'}`;
     route.description =
       route.description ||
       'Lạ và mới. Kênh tư vấn, đầu tư bất động sản thời 4.0. Mang lại hiệu quả cho việc mua bán của bạn.';

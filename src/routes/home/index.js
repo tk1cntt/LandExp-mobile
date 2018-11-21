@@ -13,7 +13,7 @@ import Layout from '../../components/Layout';
 
 async function action() {
   return {
-    title: 'Lamo - Tư vấn bất động sản thời 4.0',
+    title: 'Tinvang - Tư vấn bất động sản thời 4.0',
     chunks: ['home'],
     component: (
       <Layout>

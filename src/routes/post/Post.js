@@ -9,6 +9,11 @@ import { Row, Col, Alert, Button, Breadcrumb, Tabs, Icon } from 'antd';
 
 import Logo from 'components/Logo';
 
+import {
+  encodePayment,
+  encodeId,
+} from 'constants/utils';
+
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';
@@ -54,21 +59,21 @@ class Post extends React.Component {
   };
 
   gotoPayment = () => {
-    /*
-    this.props.history.push(
-      `/tai-khoan/thanh-toan/${encodePayment(this.props.payment.id)}`,
+    //*
+    history.push(
+      `/tai-khoan/thanh-toan/${encodePayment(this.props.house.id)}`,
     );
-    */
+    //*/
   };
 
   gotoPreview = () => {
-    /*
+    //*
     // Go to preview page
     // this.props.history.push(`/tai-khoan/xem-truoc-tin-dang/${encodeId(this.props.house.id)}`);
-    this.props.history.push(
+    history.push(
       `/bat-dong-san/${encodeId(this.props.house.id)}/xem-truoc-tin-dang`,
     );
-    */
+    //*/
   };
 
   prev = () => {
