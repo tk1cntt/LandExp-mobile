@@ -9,6 +9,7 @@ import { Icon } from 'antd';
 
 import history from '../../history';
 import Link from '../../components/Link';
+import SearchHeader from 'components/SearchHeader';
 import Footer from '../../components/Footer';
 import login from '../../actions/login';
 
@@ -43,18 +44,7 @@ class Login extends React.Component {
     }
     return (
       <div style={{ height: '100%' }}>
-        <NavBar
-          icon={<Icon type="bars" />}
-          onLeftClick={this.onOpenChange}
-          rightContent={[
-            <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-            <Icon key="1" type="ellipsis" />,
-          ]}
-        >
-          <Link to="/">
-            <img src="/images/logo.png" alt="" />
-          </Link>
-        </NavBar>
+        <SearchHeader />
         <div className="flex-container">
           <WingBlank className={s.root} size="sm">
             <h1>{this.props.title}</h1>

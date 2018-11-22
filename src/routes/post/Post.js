@@ -2,11 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { connect } from 'react-redux';
 
 import { Flex, NavBar, WhiteSpace } from 'antd-mobile';
 import { Row, Col, Alert, Button, Breadcrumb, Tabs, Icon } from 'antd';
+import ReactModal from 'react-modal';
 
+import CitySelection from 'components/CitySelection';
 import Logo from 'components/Logo';
 
 import {
@@ -24,6 +27,8 @@ import history from '../../history';
 import updateHouse from '../../actions/updateHouse';
 import createPhoto from '../../actions/createPhoto';
 
+import s from './Post.css';
+
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
 class Post extends React.Component {
@@ -39,6 +44,88 @@ class Post extends React.Component {
       alerts: [],
     };
   }
+
+  componentDidMount() {
+    const cityLabel =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('cityLabel')
+        : undefined;
+    const cityValue =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('cityValue')
+        : undefined;
+    const actionType =
+      typeof window !== 'undefined'
+        ? window.localStorage.getItem('actionType')
+        : undefined;
+    const parameters = { actionType, ...this.props.parameters };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    //*
+    if (cityValue === undefined || cityValue === null) {
+      history.push('/');
+    } else {
+      this.setState({
+        cityLabel,
+        cityValue,
+        actionType,
+        parameters: nextParameter,
+      });
+      /*
+      const district = this.props.parameters.districtId
+        ? {
+            id: this.props.parameters.districtId,
+            label: this.props.parameters.districtLabel,
+          }
+        : undefined;
+      if (district === undefined) {
+        this.handleAddFilter();
+      } else {
+        this.state.districts.push(district);
+      }
+      //*/
+    }
+    //*/
+  }
+
+  handleChangeCity = () => {
+    const popupDom = (
+      <ReactModal
+        isOpen
+        onRequestClose={this.handleChangeCityClose}
+        ariaHideApp={false}
+        className="popup"
+      >
+        <CitySelection
+          updateHouse={this.updateCity}
+          onClose={this.handleChangeCityClose}
+        />
+      </ReactModal>
+    );
+    this.setState({
+      popupDom,
+    });
+  };
+
+  handleChangeCityClose = () => {
+    this.setState({
+      popupDom: undefined,
+      districts: [], // Clear district data
+    });
+    window.localStorage.setItem('cityLabel', this.state.cityLabel);
+    window.localStorage.setItem('cityValue', this.state.cityValue);
+    window.localStorage.setItem('actionType', this.state.actionType);
+  };
+
+  updateCity = cityEntity => {
+    const parameters = { actionType: cityEntity.actionType };
+    const nextParameter = { ...this.state.parameters, ...parameters };
+    this.setState({
+      parameters: nextParameter,
+      cityLabel: cityEntity.userCity ? cityEntity.userCity.label : undefined,
+      cityValue: cityEntity.userCity ? cityEntity.userCity.value : undefined,
+      actionType: cityEntity.actionType,
+    });
+  };
 
   onOpenChange = () => {
     const isOpen = this.state.open;
@@ -297,14 +384,22 @@ class Post extends React.Component {
         <div className="flex-container">
           <Flex>
             <Flex.Item>
-              <Breadcrumb className="breadcrumb">
-                <Breadcrumb.Item>Tin bất động sản</Breadcrumb.Item>
-                <Breadcrumb.Item href="">
-                  <strong>Đăng tin</strong>
-                </Breadcrumb.Item>
-              </Breadcrumb>
+              <div className="breadcrumb">Đăng tin</div>
             </Flex.Item>
           </Flex>
+          <div className={s.title}>
+            <span>Đang chọn đăng tin tại </span>
+            <strong>{this.state.cityLabel}</strong>
+            <div
+              className={s.changeButton}
+              onClick={this.handleChangeCity}
+              onKeyPress={() => {}}
+              tabIndex={0}
+              role="button"
+            >
+              <span>Đổi tỉnh thành</span>
+            </div>
+          </div>
           <WhiteSpace size="md" />
           <div>
             <div className="steps-content">
@@ -352,6 +447,7 @@ class Post extends React.Component {
             </div>
           </div>
         </div>
+        {this.state.popupDom}
       </div>
     );
   }
@@ -381,7 +477,9 @@ const mapDispatch = {
   createPhoto,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(Post);
+export default withStyles(s)(
+  connect(
+    mapState,
+    mapDispatch,
+  )(Post),
+);
