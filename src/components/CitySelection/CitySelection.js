@@ -8,6 +8,7 @@ import CityFooter from './CityFooter';
 
 class CitySelection extends React.Component {
   static propTypes = {
+    showActionButton: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     updateHouse: PropTypes.func.isRequired,
   };
@@ -18,7 +19,7 @@ class CitySelection extends React.Component {
         showBackButton={false}
         onClose={this.props.onClose}
         header={<CityHeader />}
-        body={<CityBody updateHouse={this.props.updateHouse} />}
+        body={<CityBody showActionButton={this.props.showActionButton} updateHouse={this.props.updateHouse} />}
         footer={<CityFooter onClose={this.props.onClose} />}
       />
     );

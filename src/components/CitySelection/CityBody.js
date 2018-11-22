@@ -15,6 +15,7 @@ const options = require('./cities.json');
 
 class CityBody extends React.Component {
   static propTypes = {
+    showActionButton: PropTypes.bool.isRequired,
     updateHouse: PropTypes.func.isRequired,
   };
 
@@ -58,24 +59,33 @@ class CityBody extends React.Component {
     this.props.updateHouse(nextParameter);
   };
 
+  actionTypeForm() {
+    if (!this.props.showActionButton) return null;
+    return (
+      <div>
+        <div className={s.title}>Nhu cầu của bạn là gì?</div>
+        <div className={s.type}>
+          <RadioGroup
+            onChange={this.onChangeServiceType}
+            defaultValue="FOR_SELL"
+          >
+            <RadioButton style={{ width: 150 }} value="FOR_SELL">
+              Mua
+            </RadioButton>
+            <RadioButton style={{ width: 150 }} value="FOR_RENT">
+              Thuê
+            </RadioButton>
+          </RadioGroup>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={s.body}>
         <div className={s.selection}>
-          <div className={s.title}>Nhu cầu của bạn là gì?</div>
-          <div className={s.type}>
-            <RadioGroup
-              onChange={this.onChangeServiceType}
-              defaultValue="FOR_SELL"
-            >
-              <RadioButton style={{ width: 150 }} value="FOR_SELL">
-                Mua
-              </RadioButton>
-              <RadioButton style={{ width: 150 }} value="FOR_RENT">
-                Thuê
-              </RadioButton>
-            </RadioGroup>
-          </div>
+          {this.actionTypeForm()}
           <div className={s.title}>Cách chọn một thành phố</div>
           <div className={s.subtitle}>
             <i>{'(hanoi -> Hà Nội, hochiminh -> Hồ Chí Minh)'}</i>

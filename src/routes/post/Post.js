@@ -96,6 +96,7 @@ class Post extends React.Component {
         className="popup"
       >
         <CitySelection
+          showActionButton={false}
           updateHouse={this.updateCity}
           onClose={this.handleChangeCityClose}
         />
