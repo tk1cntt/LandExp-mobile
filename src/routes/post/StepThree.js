@@ -31,6 +31,14 @@ class StepThree extends React.Component {
     this.mappingCity();
   }
 
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.city !== prevProps.city) {
+      this.mappingCity();
+    }
+  }
+
+  /*
   mappingCity() {
     const locations = [];
     jsonData.map(city => {
@@ -58,6 +66,33 @@ class StepThree extends React.Component {
     });
     this.setState({
       locations,
+    });
+  }
+  //*/
+
+  mappingCity() {
+    const districts = [];
+    jsonData.map(city => {
+      if (city.name === this.props.city) {
+        city.districts.map(district => {
+          const districtData = {
+            value: district.id,
+            label: district.type + ' ' + district.name,
+            children: []
+          };
+          district.wards.map(ward => {
+            const wardData = {
+              value: ward.id,
+              label: ward.type + ' ' + ward.name
+            };
+            districtData.children.push(wardData);
+          });
+          districts.push(districtData);
+        });
+      }
+    });
+    this.setState({
+      districts,
     });
   }
 
@@ -120,7 +155,7 @@ class StepThree extends React.Component {
       districts,
     });
   };
-  // */
+  //*/
 
   onChangeCascader = value => {
     this.setState({
@@ -232,8 +267,9 @@ class StepThree extends React.Component {
             extra="Chọn thành phố"
             value={this.state.city}
             // onChange={v => this.setState({ sValue: v })}
-            data={this.state.locations}
-            cols={3}
+            // data={this.state.locations}
+            data={this.state.districts}
+            cols={2}
             // data={this.state.columnNumber === 1 ? this.state.cities : this.state.districts}
             // cols={this.state.columnNumber}
             // onPickerChange={this.onPickerChange}

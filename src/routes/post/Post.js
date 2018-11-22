@@ -358,7 +358,7 @@ class Post extends React.Component {
       },
       {
         title: 'Thông tin',
-        content: <StepThree house={entity} updateHouse={this.updateHouse} />,
+        content: <StepThree city={this.state.cityLabel} house={entity} updateHouse={this.updateHouse} />,
       },
       {
         title: 'Hoàn tất',

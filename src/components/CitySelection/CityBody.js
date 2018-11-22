@@ -60,7 +60,7 @@ class CityBody extends React.Component {
   };
 
   actionTypeForm() {
-    if (!this.props.showActionButton) return null;
+    if (this.props.showActionButton === false) return null;
     return (
       <div>
         <div className={s.title}>Nhu cầu của bạn là gì?</div>
