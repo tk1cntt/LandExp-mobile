@@ -5,6 +5,7 @@ import session from './session';
 import top from './top';
 import setting from './setting';
 import locationPath from './locationPath';
+import house from './house';
 
 export default combineReducers({
   auth,
@@ -13,4 +14,5 @@ export default combineReducers({
   setting,
   runtime,
   locationPath,
+  house,
 });

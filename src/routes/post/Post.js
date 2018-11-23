@@ -35,7 +35,7 @@ class Post extends React.Component {
   constructor() {
     super();
     this.state = {
-      current: 0,
+      current: 3,
       open: false,
       house: {
         // actionType: 'FOR_SELL',
@@ -299,7 +299,7 @@ class Post extends React.Component {
     alerts.push(mobileForm);
     ////////////////////////////////////////////////////////////////////////////
     this.setState({ alerts });
-    if (moneyValue && saleTypeValue) {
+    if (cityValue && addressValue && moneyValue && saleTypeValue && customerValue && mobileValue) {
       const current = this.state.current + 1;
       this.setState({ current });
     }
@@ -362,7 +362,7 @@ class Post extends React.Component {
       },
       {
         title: 'Hoàn tất',
-        content: <StepFour house={entity} updateHouse={this.updateHouse} />,
+        content: <StepFour />,
       },
     ];
     return (
