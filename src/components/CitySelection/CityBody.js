@@ -14,11 +14,6 @@ const RadioGroup = Radio.Group;
 const options = require('./cities.json');
 
 class CityBody extends React.Component {
-  static propTypes = {
-    showActionButton: PropTypes.bool.isRequired,
-    updateHouse: PropTypes.func.isRequired,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -149,5 +144,14 @@ class CityBody extends React.Component {
     );
   }
 }
+
+CityBody.defaultProps = {
+  showActionButton: true,
+};
+
+CityBody.propTypes = {
+  updateHouse: PropTypes.func.isRequired,
+  showActionButton: PropTypes.bool,
+};
 
 export default withStyles(s)(CityBody);
