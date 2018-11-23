@@ -35,7 +35,7 @@ class Post extends React.Component {
   constructor() {
     super();
     this.state = {
-      current: 3,
+      current: 0,
       open: false,
       house: {
         // actionType: 'FOR_SELL',

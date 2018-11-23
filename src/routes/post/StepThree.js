@@ -19,6 +19,7 @@ class StepThree extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cityId: null,
       money: null,
       locations: [],
       cities: [],
@@ -72,8 +73,10 @@ class StepThree extends React.Component {
 
   mappingCity() {
     const districts = [];
+    let cityId = null;
     jsonData.map(city => {
       if (city.name === this.props.city) {
+        cityId = city.id;
         city.districts.map(district => {
           const districtData = {
             value: district.id,
@@ -92,6 +95,7 @@ class StepThree extends React.Component {
       }
     });
     this.setState({
+      cityId,
       districts,
     });
   }
@@ -158,13 +162,14 @@ class StepThree extends React.Component {
   //*/
 
   onChangeCascader = value => {
+    const { cityId } = this.state;
     this.setState({
       city: value
     });
     this.props.updateHouse({
-      cityId: value[0],
-      districtId: value[1],
-      wardId: value[2]
+      cityId,
+      districtId: value[0],
+      wardId: value[1]
     });
   }
 

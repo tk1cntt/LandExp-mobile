@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Radio, Row, Col } from 'antd';
+import { Radio, Row, Col, Spin } from 'antd';
 import Select from 'react-select';
 
-import Loading from 'components/Loading';
+// import Loading from 'components/Loading';
 
 import PostItem from './PostItem';
 import s from './StepFour.css';
@@ -13,20 +14,30 @@ const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
 class StepFour extends React.Component {
-  static propTypes = {
-    updateHouse: PropTypes.func.isRequired,
-  };
-
   constructor(props) {
     super(props);
   }
 
-  render() {
+  loading() {
     return (
-      <div className={s.body}>
-        {this.props.loading ? (
-          <Loading />
-        ) : this.props.house.status ? this.props.house.detail : (
+      <div className="justify-content-center" style={{ minHeight: 300 }}>
+        <Spin tip="Đang cập nhật dữ liệu..." />
+      </div>
+    );
+  }
+
+  notice() {
+    if (this.props.error) {
+      return (
+        <div>
+          <div>Đăng tin không thành công</div>
+          <div>Xin hãy thử lại</div>
+          <div>Chọn [Quay lại] sau đó chọn [Hoàn tất]</div>
+        </div>
+      )
+    }
+    else {
+      return (
         <div className={s.selection}>
           <h3 className="text-center">
             <strong>Hoàn tất đăng tin</strong>
@@ -40,10 +51,34 @@ class StepFour extends React.Component {
             Hãy chờ tin của chúng tôi!<br />Cảm ơn bạn đã tin tưởng.
           </p>
         </div>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <div className={s.body}>
+        {this.props.loading ? (
+          this.loading()
+        ) : (
+          this.notice()
         )}
       </div>
     );
   }
 }
 
-export default withStyles(s)(StepFour);
+const mapState = state => ({
+  house: state.house.house,
+  error: state.house.error,
+  loading: state.house.loading,
+});
+
+const mapDispatch = {};
+
+export default withStyles(s)(
+  connect(
+    mapState,
+    mapDispatch,
+  )(StepFour),
+);
