@@ -4,6 +4,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Radio, Row, Col } from 'antd';
 import Select from 'react-select';
 
+import Loading from 'components/Loading';
+
 import PostItem from './PostItem';
 import s from './StepFour.css';
 
@@ -22,6 +24,9 @@ class StepFour extends React.Component {
   render() {
     return (
       <div className={s.body}>
+        {this.props.loading ? (
+          <Loading />
+        ) : this.props.house.status ? this.props.house.detail : (
         <div className={s.selection}>
           <h3 className="text-center">
             <strong>Hoàn tất đăng tin</strong>
@@ -35,6 +40,7 @@ class StepFour extends React.Component {
             Hãy chờ tin của chúng tôi!<br />Cảm ơn bạn đã tin tưởng.
           </p>
         </div>
+        )}
       </div>
     );
   }
