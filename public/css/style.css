@@ -136,51 +136,51 @@ a:hover {
 }
 
 .cc-selector .aparment {
-  background-image: url('/images/icon/aparment.png');
+  background-image: url('/images/icon/icon_chungcu.svg');
 }
 
 .cc-selector .home {
-  background-image: url('/images/icon/house.png');
+  background-image: url('/images/icon/icon_nharieng.svg');
 }
 
 .cc-selector .home-villa {
-  background-image: url('/images/icon/house.png');
+  background-image: url('/images/icon/icon_bietthu.svg');
 }
 
 .cc-selector .home-street-side {
-  background-image: url('/images/icon/house.png');
+  background-image: url('/images/icon/icon_nhamatpho.svg');
 }
 
 .cc-selector .land-scape {
-  background-image: url('/images/icon/house-plan-scale.png');
+  background-image: url('/images/icon/icon_datthocu.svg');
 }
 
 .cc-selector .land-of-project {
-  background-image: url('/images/icon/house-sketch.png');
+  background-image: url('/images/icon/icon_datduan.svg');
 }
 
 .cc-selector .land-farm {
-  background-image: url('/images/icon/house-sketch.png');
+  background-image: url('/images/icon/icon_datnongnghiep.svg');
 }
 
 .cc-selector .land-resort {
-  background-image: url('/images/icon/hotel.png');
+  background-image: url('/images/icon/icon_resort.svg');
 }
 
 .cc-selector .office {
-  background-image: url('/images/icon/hotel.png');
+  background-image: url('/images/icon/icon_vanphong.svg');
 }
 
 .cc-selector .warehouses {
-  background-image: url('/images/icon/warehouse.png');
+  background-image: url('/images/icon/icon_nhaxuong.svg');
 }
 
 .cc-selector .kiosks {
-  background-image: url('/images/icon/shop.png');
+  background-image: url('/images/icon/icon_cuahang.svg');
 }
 
 .cc-selector .motel-room {
-  background-image: url('/images/icon/hotel.png');
+  background-image: url('/images/icon/icon_phongtro.svg');
 }
 
 .cc-selector .hanoi {
@@ -230,7 +230,7 @@ a:hover {
   width: 140px;
   height: 140px;
   margin: 10px 5px;
-  padding: 25px 15px;
+  padding: 15px 15px;
   border: 1px solid #dfdfdf;
   border-radius: 3px;
 }
@@ -246,6 +246,8 @@ a:hover {
   display: inline-block;
   width: 68px;
   height: 68px;
+  background-size: 68px 68px !important;
+  background-position: center center;
   -webkit-transition: all 100ms ease-in;
   -moz-transition: all 100ms ease-in;
   transition: all 100ms ease-in;
