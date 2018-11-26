@@ -12,15 +12,8 @@ export const create = async (authorization, body) => {
     client.defaults.headers['Authorization'] = `${authorization}`;
     const data = await client
       .post('/api/house-photos', body)
-      .then(
-        response =>
-          // console.log('top-response', response.data) // eslint-disable-line
-          response.data,
-      )
-      .catch(error =>
-        error.response.data,
-      );
-    // console.log('top-response', data) // eslint-disable-line
+      .then(response => response.data)
+      .catch(error => error.response.data);
     return data;
   } catch (error) {
     return { error: { status: 100, detail: "Server undermaintain"} };
@@ -32,15 +25,8 @@ export const remove = async (authorization, id) => {
     client.defaults.headers['Authorization'] = `${authorization}`;
     const data = await client
       .delete(`/api/house-images/${id}`)
-      .then(
-        response =>
-          // console.log('top-response', response.data) // eslint-disable-line
-          response.data,
-      )
-      .catch(error =>
-        error.response.data,
-      );
-    // console.log('top-response', data) // eslint-disable-line
+      .then(response => response.data)
+      .catch(error => error.response.data);
     return data;
   } catch (error) {
     return { error: { status: 100, detail: "Server undermaintain"} };

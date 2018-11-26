@@ -1,7 +1,5 @@
 import { CREATE_PHOTO_START, CREATE_PHOTO_SUCCESS, CREATE_PHOTO_ERROR } from '../constants';
 
-import mutateLogin from './login.graphql';
-
 export default function createPhoto(photo) {
   return async (dispatch, getState, { fetch }) => {
     dispatch({

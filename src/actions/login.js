@@ -1,13 +1,10 @@
 import { LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR } from '../constants';
 
-import mutateLogin from './login.graphql';
-
 export default function login(loginEntity) {
   return async (dispatch, getState, { client, history }) => {
     dispatch({
       type: LOGIN_START,
     });
-    console.log('login-history', loginEntity); // eslint-disable-line
     try {
       const response = await fetch('/api/v1/login', {
         method: 'POST',

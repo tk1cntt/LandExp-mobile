@@ -29,10 +29,7 @@ export const login = async (username, password) => {
         rememberMe: true,
       })
       .then(response => response.data)
-      .catch(error =>
-        error.response.data,
-      );
-    // console.log('login-context', response); // eslint-disable-line
+      .catch(error => error.response.data);
     return token;
   } catch (error) {
     return { error: { status: 100, detail: "Server undermaintain"} };

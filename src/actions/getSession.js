@@ -1,7 +1,5 @@
 import { SESSION_START, SESSION_SUCCESS, SESSION_ERROR } from '../constants';
 
-import mutateGetSession from './getSession.graphql';
-
 export default function getSession() {
   return async (dispatch, getState, { client }) => {
     dispatch({

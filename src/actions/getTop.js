@@ -4,26 +4,23 @@ import {
   TOP_HOUSE_ERROR,
 } from '../constants';
 
-import mutateGetTop from './getTop.graphql';
-
 export default function getTop({ page, size }) {
   return async (dispatch, getState, { client }) => {
     dispatch({
       type: TOP_HOUSE_START,
     });
     try {
-      const queryResponse = await client.query(
-        {
-          query: mutateGetTop,
-          variables: { page, size },
+      const response = await fetch('/api/v1/houses/top', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
         },
-        { cache: false },
-      );
-      const data = queryResponse.data.getTop;
-      if (data.error) {
+      });
+      const data = await response.json();
+      if (data.status) {
         dispatch({
           type: TOP_HOUSE_ERROR,
-          payload: data.error,
+          payload: data,
         });
       } else {
         dispatch({

@@ -33,6 +33,7 @@ import {
   detail as detailHouse,
   update as updateHouse,
   init as initHouse,
+  top as topHouse,
 } from './data/rest/houses';
 
 import {
@@ -175,10 +176,23 @@ app.get('/api/v1/houses', async (req, res) => {
 });
 
 app.get('/api/v1/houses/init', async (req, res) => {
-  // console.log('header',  req);
   res.setHeader('Content-Type', 'application/json');
   try {
     const response = await initHouse(req.headers.authorization);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+});
+
+app.get('/api/v1/houses/top', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await topHouse();
     res.send(JSON.stringify(response));
   } catch (e) {
     if (__DEV__) {

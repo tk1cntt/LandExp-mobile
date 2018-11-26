@@ -7,7 +7,6 @@ export default function updateHouse(houseEntity) {
     });
     const state = getState();
     try {
-      //const response = await fetch('/api/v1/houses', {
       const response = await fetch('/api/v1/houses', {
         method: 'PUT',
         headers: {
@@ -17,8 +16,6 @@ export default function updateHouse(houseEntity) {
         body: JSON.stringify(houseEntity),
       });
       const json = await response.json();
-      console.log(json);
-      //*
       if (json.status) {
         dispatch({
           type: UPDATE_HOUSE_ERROR,
