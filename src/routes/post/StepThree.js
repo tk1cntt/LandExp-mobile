@@ -4,12 +4,13 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import NumberFormat from 'react-number-format';
 import { Input, Radio } from 'antd';
 import { Picker, List, InputItem, CheckboxItem } from 'antd-mobile';
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
 
 import { getPresent, getSaleType } from 'constants/utils';
 import s from './StepThree.css';
 import jsonData from './cities.json';
+
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 class StepThree extends React.Component {
   static propTypes = {
@@ -69,7 +70,7 @@ class StepThree extends React.Component {
       locations,
     });
   }
-  //*/
+  // */
 
   mappingCity() {
     const districts = [];
@@ -80,13 +81,13 @@ class StepThree extends React.Component {
         city.districts.map(district => {
           const districtData = {
             value: district.id,
-            label: district.type + ' ' + district.name,
-            children: []
+            label: `${district.type} ${district.name}`,
+            children: [],
           };
           district.wards.map(ward => {
             const wardData = {
               value: ward.id,
-              label: ward.type + ' ' + ward.name
+              label: `${ward.type} ${ward.name}`,
             };
             districtData.children.push(wardData);
           });
@@ -159,26 +160,26 @@ class StepThree extends React.Component {
       districts,
     });
   };
-  //*/
+  // */
 
   onChangeCascader = value => {
     const { cityId } = this.state;
     this.setState({
-      city: value
+      city: value,
     });
     this.props.updateHouse({
       cityId,
       districtId: value[0],
-      wardId: value[1]
+      wardId: value[1],
     });
-  }
+  };
 
   onChangeAddress = value => {
     this.setState({
-      address: value
+      address: value,
     });
     this.props.updateHouse({
-      address: value
+      address: value,
     });
   };
 
@@ -194,28 +195,28 @@ class StepThree extends React.Component {
 
   onChangePresent = e => {
     this.setState({
-      present: e.target.value
+      present: e.target.value,
     });
     this.props.updateHouse({
-      present: e.target.value
+      present: e.target.value,
     });
   };
 
   onChangeSaleType = e => {
     this.setState({
-      saleType: e.target.value
+      saleType: e.target.value,
     });
     this.props.updateHouse({
-      saleType: e.target.value
+      saleType: e.target.value,
     });
   };
 
   onChangeCustomer = value => {
     this.setState({
-      customer: value
+      customer: value,
     });
     this.props.updateHouse({
-      customer: value
+      customer: value,
     });
   };
 
@@ -223,38 +224,38 @@ class StepThree extends React.Component {
     const reg = /^\d{1,11}$/;
     if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
       this.setState({
-        mobile: value
+        mobile: value,
       });
       this.props.updateHouse({
-        mobile: value
+        mobile: value,
       });
     }
   };
 
   onChangeEmail = value => {
     this.setState({
-      email: value
+      email: value,
     });
     this.props.updateHouse({
-      email: value
+      email: value,
     });
   };
 
   onChangeZalo = e => {
     this.setState({
-      zalo: e.target.value
+      zalo: e.target.value,
     });
     this.props.updateHouse({
-      zalo: e.target.value
+      zalo: e.target.value,
     });
   };
 
   onChangeFacebook = e => {
     this.setState({
-      facebook: e.target.value
+      facebook: e.target.value,
     });
     this.props.updateHouse({
-      facebook: e.target.value
+      facebook: e.target.value,
     });
   };
 
@@ -262,7 +263,7 @@ class StepThree extends React.Component {
     const radioStyle = {
       display: 'block',
       height: '30px',
-      lineHeight: '30px'
+      lineHeight: '30px',
     };
     // console.log(this.state);
     return (
@@ -289,9 +290,7 @@ class StepThree extends React.Component {
             type="text"
             placeholder="Số nhà, ngõ, ngách, phố"
             clear
-            value={
-              this.state.address || this.props.house.address
-            }
+            value={this.state.address || this.props.house.address}
             onChange={this.onChangeAddress}
             moneyKeyboardAlign="left"
           />
@@ -311,25 +310,25 @@ class StepThree extends React.Component {
             onChange={this.onChangePresent}
             value={this.state.present || this.props.house.present}
           >
-            <Radio style={radioStyle} value={'NONE'}>
+            <Radio style={radioStyle} value="NONE">
               {getPresent('NONE')}
             </Radio>
-            <Radio style={radioStyle} value={'BASIC_FURNITURE'}>
+            <Radio style={radioStyle} value="BASIC_FURNITURE">
               {getPresent('BASIC_FURNITURE')}
             </Radio>
-            <Radio style={radioStyle} value={'FULL_FURNITURE'}>
+            <Radio style={radioStyle} value="FULL_FURNITURE">
               {getPresent('FULL_FURNITURE')}
             </Radio>
-            <Radio style={radioStyle} value={'DISCOUNT_PRICE'}>
+            <Radio style={radioStyle} value="DISCOUNT_PRICE">
               {getPresent('DISCOUNT_PRICE')}
             </Radio>
-            <Radio style={radioStyle} value={'SUPPORT_EXHIBIT'}>
+            <Radio style={radioStyle} value="SUPPORT_EXHIBIT">
               {getPresent('SUPPORT_EXHIBIT')}
             </Radio>
-            <Radio style={radioStyle} value={'SUPPORT_FEE'}>
+            <Radio style={radioStyle} value="SUPPORT_FEE">
               {getPresent('SUPPORT_FEE')}
             </Radio>
-            <Radio style={radioStyle} value={'HAVE_PRESENT'}>
+            <Radio style={radioStyle} value="HAVE_PRESENT">
               {getPresent('HAVE_PRESENT')}
             </Radio>
           </RadioGroup>
@@ -341,24 +340,25 @@ class StepThree extends React.Component {
             value={this.state.saleType || this.props.house.saleType}
           >
             1. Thông thường (Người mua quan tâm sẽ liên hệ trực tiếp với bạn)
-            <Radio style={radioStyle} value={'SALE_BY_MYSELF'}>
+            <Radio style={radioStyle} value="SALE_BY_MYSELF">
               {getSaleType('SALE_BY_MYSELF')}
             </Radio>
             Được đăng tin vô thời giạn trên trang web
-            <Radio style={radioStyle} value={'SALE_BY_MYSELF_VIP'}>
+            <Radio style={radioStyle} value="SALE_BY_MYSELF_VIP">
               {getSaleType('SALE_BY_MYSELF_VIP')}
             </Radio>
             Sẽ xuất hiện ưu tiên trên trang chủ và các trang tìm kiếm
             <br />
             2. Ký gửi (Chúng tôi hỗ trợ bán tận răng)
-            <Radio style={radioStyle} value={'SALE_SUPPORT'}>
+            <Radio style={radioStyle} value="SALE_SUPPORT">
               {getSaleType('SALE_SUPPORT')}
             </Radio>
             Chúng tôi sẽ tìm kiếm khách hàng giúp bạn
-            <Radio style={radioStyle} value={'SALE_SUPPORT_VIP'}>
+            <Radio style={radioStyle} value="SALE_SUPPORT_VIP">
               {getSaleType('SALE_SUPPORT_VIP')}
             </Radio>
-            Sử dụng các nghiệp vụ marketing để bán được nhà của bạn hiệu quả nhất
+            Sử dụng các nghiệp vụ marketing để bán được nhà của bạn hiệu quả
+            nhất
             <br />
             Hoa hồng ký gửi: 0.5%/giá bán (Không quá 10 triệu VNĐ)
           </RadioGroup>
@@ -368,9 +368,7 @@ class StepThree extends React.Component {
             type="text"
             placeholder="Tên người bán"
             clear
-            value={
-              this.state.customer || this.props.house.customer
-            }
+            value={this.state.customer || this.props.house.customer}
             onChange={this.onChangeCustomer}
             moneyKeyboardAlign="left"
           />
@@ -378,9 +376,7 @@ class StepThree extends React.Component {
             type="text"
             placeholder="Số điện thoại"
             clear
-            value={
-              this.state.mobile || this.props.house.mobile
-            }
+            value={this.state.mobile || this.props.house.mobile}
             onChange={this.onChangeMobile}
             moneyKeyboardAlign="left"
           />
@@ -388,9 +384,7 @@ class StepThree extends React.Component {
             type="text"
             placeholder="Email"
             clear
-            value={
-              this.state.email || this.props.house.email
-            }
+            value={this.state.email || this.props.house.email}
             onChange={this.onChangeEmail}
             moneyKeyboardAlign="left"
           />
@@ -398,9 +392,7 @@ class StepThree extends React.Component {
             type="text"
             placeholder="Facebook"
             clear
-            value={
-              this.state.facebook || this.props.house.facebook
-            }
+            value={this.state.facebook || this.props.house.facebook}
             onChange={this.onChangeFaebook}
             moneyKeyboardAlign="left"
           />
@@ -408,9 +400,7 @@ class StepThree extends React.Component {
             type="text"
             placeholder="Zalo"
             clear
-            value={
-              this.state.zalo || this.props.house.zalo
-            }
+            value={this.state.zalo || this.props.house.zalo}
             onChange={this.onChangeZalo}
             moneyKeyboardAlign="left"
           />

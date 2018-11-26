@@ -28,7 +28,7 @@ export const detail = async id => {
     }
     return json;
   } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
+    return { error: { status: 100, detail: 'Server undermaintain' } };
   }
 };
 
@@ -40,33 +40,33 @@ export const top = async authorization => {
       .catch(error => error.response.data);
     return data;
   } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
+    return { error: { status: 100, detail: 'Server undermaintain' } };
   }
 };
 
 export const init = async authorization => {
   try {
-    client.defaults.headers['Authorization'] = `${authorization}`;
+    client.defaults.headers.Authorization = `${authorization}`;
     const data = await client
       .get('/api/houses/init')
       .then(response => response.data)
       .catch(error => error.response.data);
     return data;
   } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
+    return { error: { status: 100, detail: 'Server undermaintain' } };
   }
 };
 
 export const update = async (authorization, body) => {
   try {
-    client.defaults.headers['Authorization'] = `${authorization}`;
+    client.defaults.headers.Authorization = `${authorization}`;
     const data = await client
       .put('/api/houses', body)
       .then(response => response.data)
       .catch(error => error.response.data);
     return data;
   } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
+    return { error: { status: 100, detail: 'Server undermaintain' } };
   }
 };
 
@@ -78,7 +78,7 @@ export const search = async query => {
       .catch(error => error.response.data);
     return data;
   } catch (error) {
-    return { code: 100, message: 'Server undermaintain'};
+    return { code: 100, message: 'Server undermaintain' };
   }
 };
 

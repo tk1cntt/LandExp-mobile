@@ -7,9 +7,9 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Flex, NavBar, WhiteSpace, WingBlank } from 'antd-mobile';
 import { Icon } from 'antd';
 
+import SearchHeader from 'components/SearchHeader';
 import history from '../../history';
 import Link from '../../components/Link';
-import SearchHeader from 'components/SearchHeader';
 import Footer from '../../components/Footer';
 import login from '../../actions/login';
 
@@ -33,7 +33,7 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { usernameOrEmail, password } = this.state;
-    this.props.login({ username:usernameOrEmail, password });
+    this.props.login({ username: usernameOrEmail, password });
   };
 
   render() {

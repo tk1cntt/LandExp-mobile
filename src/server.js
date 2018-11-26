@@ -42,10 +42,7 @@ import {
   remove as deletePhoto,
 } from './data/rest/images';
 
-import {
-  login,
-  getSession,
-} from './data/rest/session';
+import { login, getSession } from './data/rest/session';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
@@ -79,8 +76,8 @@ app.set('trust proxy', config.trustProxy);
 // -----------------------------------------------------------------------------
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
-app.use(bodyParser.json({limit: '50mb', extended: true}))
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb', extended: true }));
 //
 // Authentication
 // -----------------------------------------------------------------------------
@@ -127,13 +124,11 @@ app.get('/api/v1/sessions', async (req, res) => {
     }
     res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
   }
-  createPhoto
 });
 
 app.post('/api/v1/login', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
-    console.log("login", req.body);
     const response = await login(req.body.username, req.body.password);
     res.send(JSON.stringify(response));
   } catch (e) {
@@ -143,7 +138,6 @@ app.post('/api/v1/login', async (req, res) => {
     }
     res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
   }
-  createPhoto
 });
 
 app.put('/api/v1/houses', async (req, res) => {
@@ -158,7 +152,6 @@ app.put('/api/v1/houses', async (req, res) => {
     }
     res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
   }
-  createPhoto
 });
 
 app.get('/api/v1/houses', async (req, res) => {
@@ -229,7 +222,6 @@ app.post('/api/v1/images', async (req, res) => {
     }
     res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
   }
-  createPhoto
 });
 
 app.put('/api/v1/houses', async (req, res) => {
@@ -244,7 +236,6 @@ app.put('/api/v1/houses', async (req, res) => {
     }
     res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
   }
-  createPhoto
 });
 
 //

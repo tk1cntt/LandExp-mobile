@@ -55,7 +55,9 @@ class StepTwo extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ files: this.props.house.files ? this.props.house.files : [] });
+    this.setState({
+      files: this.props.house.files ? this.props.house.files : [],
+    });
   }
 
   onChangeAcreage = value => {
@@ -161,10 +163,10 @@ class StepTwo extends React.Component {
     // const file = files.slice(-1).pop();
     switch (type) {
       case 'add':
-        console.log("Add image", files);
+        console.log('Add image', files);
         break;
       case 'remove':
-        console.log("Remove image", this.state.files[index]);
+        console.log('Remove image', this.state.files[index]);
         break;
     }
     this.setState({
@@ -366,7 +368,8 @@ class StepTwo extends React.Component {
           )}
         </List>
         <List renderHeader={() => 'Tiện nghi'}>
-          <CheckboxItem key="1"
+          <CheckboxItem
+            key="1"
             onChange={this.onChangeParking}
             defaultChecked={this.state.parking || this.props.house.parking}
           >
@@ -378,9 +381,7 @@ class StepTwo extends React.Component {
             rows={3}
             placeholder="Thông tin mô tả ngôi nhà của ban"
             onChange={this.onChangeSummary}
-            value={
-              this.state.summary || this.props.house.summary
-            }
+            value={this.state.summary || this.props.house.summary}
           />
         </List>
         <List renderHeader={() => 'Hình ảnh mô tả ngôi nhà'}>

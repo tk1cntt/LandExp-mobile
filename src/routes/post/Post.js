@@ -12,10 +12,7 @@ import ReactModal from 'react-modal';
 import CitySelection from 'components/CitySelection';
 import Logo from 'components/Logo';
 
-import {
-  encodePayment,
-  encodeId,
-} from 'constants/utils';
+import { encodePayment, encodeId } from 'constants/utils';
 
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
@@ -32,7 +29,6 @@ import s from './Post.css';
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
 class Post extends React.Component {
-    
   constructor() {
     super();
     this.state = {
@@ -83,9 +79,9 @@ class Post extends React.Component {
       } else {
         this.state.districts.push(district);
       }
-      //*/
+      // */
     }
-    //*/
+    //* /
   }
 
   handleChangeCity = () => {
@@ -149,10 +145,8 @@ class Post extends React.Component {
 
   gotoPayment = () => {
     //*
-    history.push(
-      `/tai-khoan/thanh-toan/${encodePayment(this.props.house.id)}`,
-    );
-    //*/
+    history.push(`/tai-khoan/thanh-toan/${encodePayment(this.props.house.id)}`);
+    //* /
   };
 
   gotoPreview = () => {
@@ -162,7 +156,7 @@ class Post extends React.Component {
     history.push(
       `/bat-dong-san/${encodeId(this.props.house.id)}/xem-truoc-tin-dang`,
     );
-    //*/
+    //* /
   };
 
   prev = () => {
@@ -246,7 +240,7 @@ class Post extends React.Component {
     const alerts = [];
     const cityValue = this.state.house.cityId || this.props.house.cityId;
     const cityForm = cityValue ? null : (
-      <Row key={'city-type-value-alert'}>
+      <Row key="city-type-value-alert">
         <Col md="12">
           <Alert type="error" message="Bạn phải chọn một tỉnh thành" />
         </Col>
@@ -255,7 +249,7 @@ class Post extends React.Component {
     alerts.push(cityForm);
     const addressValue = this.state.house.address || this.props.house.address;
     const addressForm = addressValue ? null : (
-      <Row key={'address-type-value-alert'}>
+      <Row key="address-type-value-alert">
         <Col md="12">
           <Alert type="error" message="Bạn phải nhập địa chỉ" />
         </Col>
@@ -264,25 +258,27 @@ class Post extends React.Component {
     alerts.push(addressForm);
     const moneyValue = this.state.house.money || this.props.house.money;
     const moneyForm = moneyValue ? null : (
-      <Row key={'money-type-value-alert'}>
+      <Row key="money-type-value-alert">
         <Col md="12">
           <Alert type="error" message="Bạn phải nhập giá bán ngôi nhà" />
         </Col>
       </Row>
     );
     alerts.push(moneyForm);
-    const saleTypeValue = this.state.house.saleType || this.props.house.saleType;
+    const saleTypeValue =
+      this.state.house.saleType || this.props.house.saleType;
     const saleTypeForm = saleTypeValue ? null : (
-      <Row key={'sale-type-value-alert'}>
+      <Row key="sale-type-value-alert">
         <Col md="12">
           <Alert type="error" message="Bạn phải chọn một gói tin đăng" />
         </Col>
       </Row>
     );
     alerts.push(saleTypeForm);
-    const customerValue = this.state.house.customer || this.props.house.customer;
+    const customerValue =
+      this.state.house.customer || this.props.house.customer;
     const customerForm = customerValue ? null : (
-      <Row key={'customer-type-value-alert'}>
+      <Row key="customer-type-value-alert">
         <Col md="12">
           <Alert type="error" message="Bạn phải nhập tên người bán" />
         </Col>
@@ -291,16 +287,23 @@ class Post extends React.Component {
     alerts.push(customerForm);
     const mobileValue = this.state.house.mobile || this.props.house.mobile;
     const mobileForm = mobileValue ? null : (
-      <Row key={'mobile-type-value-alert'}>
+      <Row key="mobile-type-value-alert">
         <Col md="12">
           <Alert type="error" message="Bạn phải nhập số điện thoại liên lạc" />
         </Col>
       </Row>
     );
     alerts.push(mobileForm);
-    ////////////////////////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
     this.setState({ alerts });
-    if (cityValue && addressValue && moneyValue && saleTypeValue && customerValue && mobileValue) {
+    if (
+      cityValue &&
+      addressValue &&
+      moneyValue &&
+      saleTypeValue &&
+      customerValue &&
+      mobileValue
+    ) {
       const current = this.state.current + 1;
       this.setState({ current });
     }
@@ -312,8 +315,12 @@ class Post extends React.Component {
       ...house,
       ...this.state.house,
     };
-    entity.direction = this.state.house.direction ? this.state.house.direction[0] : null;
-    entity.directionBalcony = this.state.house.directionBalcony ? this.state.house.directionBalcony[0] : null;
+    entity.direction = this.state.house.direction
+      ? this.state.house.direction[0]
+      : null;
+    entity.directionBalcony = this.state.house.directionBalcony
+      ? this.state.house.directionBalcony[0]
+      : null;
     // console.log("saveEntity", entity);
     //*
     this.props.updateHouse(entity);
@@ -325,12 +332,16 @@ class Post extends React.Component {
           const imageURL = file.url;
           const block = imageURL.split(';');
           const realData = block[1].split(',')[1];
-          const imageData = { image: realData, imageContentType: file.file.type, houseId: this.props.house.id };
+          const imageData = {
+            image: realData,
+            imageContentType: file.file.type,
+            houseId: this.props.house.id,
+          };
           this.props.createPhoto(imageData);
         }
       });
     }
-    //*/
+    //* /
     this.next();
   };
 
@@ -359,7 +370,13 @@ class Post extends React.Component {
       },
       {
         title: 'Thông tin',
-        content: <StepThree city={this.state.cityLabel} house={entity} updateHouse={this.updateHouse} />,
+        content: (
+          <StepThree
+            city={this.state.cityLabel}
+            house={entity}
+            updateHouse={this.updateHouse}
+          />
+        ),
       },
       {
         title: 'Hoàn tất',

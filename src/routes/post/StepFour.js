@@ -34,35 +34,36 @@ class StepFour extends React.Component {
           <div>Xin hãy thử lại</div>
           <div>Chọn [Quay lại] sau đó chọn [Hoàn tất]</div>
         </div>
-      )
+      );
     }
-    else {
-      return (
-        <div className={s.selection}>
-          <h3 className="text-center">
-            <strong>Hoàn tất đăng tin</strong>
-          </h3>
-          <p>Bạn đã hoàn tất việc cung cấp thông tin đăng bán bất động sản trên website của chúng tôi.</p>
-          <p>
-            Bạn sẽ cần thanh toán khoản phí đăng tin 1 lần duy nhất, tin đăng của bạn sẽ được hiển thị trên website ngay. Chúng tôi sẽ bắt đầu
-            hỗ trợ bán bất động sản của bạn bằng giải pháp tốt nhất và nhanh chóng nhất.
-          </p>
-          <p>
-            Hãy chờ tin của chúng tôi!<br />Cảm ơn bạn đã tin tưởng.
-          </p>
-        </div>
-      )
-    }
+
+    return (
+      <div className={s.selection}>
+        <h3 className="text-center">
+          <strong>Hoàn tất đăng tin</strong>
+        </h3>
+        <p>
+          Bạn đã hoàn tất việc cung cấp thông tin đăng bán bất động sản trên
+          website của chúng tôi.
+        </p>
+        <p>
+          Bạn sẽ cần thanh toán khoản phí đăng tin 1 lần duy nhất, tin đăng của
+          bạn sẽ được hiển thị trên website ngay. Chúng tôi sẽ bắt đầu hỗ trợ
+          bán bất động sản của bạn bằng giải pháp tốt nhất và nhanh chóng nhất.
+        </p>
+        <p>
+          Hãy chờ tin của chúng tôi!
+          <br />
+          Cảm ơn bạn đã tin tưởng.
+        </p>
+      </div>
+    );
   }
 
   render() {
     return (
       <div className={s.body}>
-        {this.props.loading ? (
-          this.loading()
-        ) : (
-          this.notice()
-        )}
+        {this.props.loading ? this.loading() : this.notice()}
       </div>
     );
   }

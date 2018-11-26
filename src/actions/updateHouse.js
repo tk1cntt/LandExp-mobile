@@ -1,4 +1,8 @@
-import { UPDATE_HOUSE_START, UPDATE_HOUSE_SUCCESS, UPDATE_HOUSE_ERROR } from '../constants';
+import {
+  UPDATE_HOUSE_START,
+  UPDATE_HOUSE_SUCCESS,
+  UPDATE_HOUSE_ERROR,
+} from '../constants';
 
 export default function updateHouse(houseEntity) {
   return async (dispatch, getState, { fetch }) => {

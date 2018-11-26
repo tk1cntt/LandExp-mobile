@@ -7,16 +7,16 @@ const client = axios.create({
   baseURL: api.remoteUrl,
 });
 
-export const getSession = async (authorization) => {
+export const getSession = async authorization => {
   try {
-    client.defaults.headers['Authorization'] = `${authorization}`;
+    client.defaults.headers.Authorization = `${authorization}`;
     const account = await client
       .get('/api/account')
       .then(response => response.data)
       .catch(error => error.response.data);
     return account;
   } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
+    return { error: { status: 100, detail: 'Server undermaintain' } };
   }
 };
 
@@ -32,7 +32,7 @@ export const login = async (username, password) => {
       .catch(error => error.response.data);
     return token;
   } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
+    return { error: { status: 100, detail: 'Server undermaintain' } };
   }
 };
 

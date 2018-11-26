@@ -9,27 +9,27 @@ const client = axios.create({
 
 export const create = async (authorization, body) => {
   try {
-    client.defaults.headers['Authorization'] = `${authorization}`;
+    client.defaults.headers.Authorization = `${authorization}`;
     const data = await client
       .post('/api/house-photos', body)
       .then(response => response.data)
       .catch(error => error.response.data);
     return data;
   } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
+    return { error: { status: 100, detail: 'Server undermaintain' } };
   }
 };
 
 export const remove = async (authorization, id) => {
   try {
-    client.defaults.headers['Authorization'] = `${authorization}`;
+    client.defaults.headers.Authorization = `${authorization}`;
     const data = await client
       .delete(`/api/house-images/${id}`)
       .then(response => response.data)
       .catch(error => error.response.data);
     return data;
   } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
+    return { error: { status: 100, detail: 'Server undermaintain' } };
   }
 };
 

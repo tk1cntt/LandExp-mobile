@@ -1,4 +1,8 @@
-import { UPDATE_HOUSE_START, UPDATE_HOUSE_SUCCESS, UPDATE_HOUSE_ERROR } from '../constants';
+import {
+  UPDATE_HOUSE_START,
+  UPDATE_HOUSE_SUCCESS,
+  UPDATE_HOUSE_ERROR,
+} from '../constants';
 
 const INITIAL_STATE = {
   loading: false,
