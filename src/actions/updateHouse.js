@@ -8,7 +8,7 @@ export default function updateHouse(houseEntity) {
     const state = getState();
     try {
       //const response = await fetch('/api/v1/houses', {
-      const response = await fetch('http://api.tinvang.com.vn/api/houses', {
+      const response = await fetch('/api/v1/houses', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',

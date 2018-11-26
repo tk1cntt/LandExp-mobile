@@ -7,43 +7,6 @@ const client = axios.create({
   baseURL: api.remoteUrl,
 });
 
-export const detail = async id => {
-  try {
-    const house = client
-      .get(`/api/houses/${decodeId(id)}`)
-      .then(
-        response =>
-          // console.log('top-response', response.data) // eslint-disable-line
-          response.data,
-      )
-      .catch(error =>
-        error.response.data,
-      );
-
-    const images = client
-      .get(`/api/house-photos/${decodeId(id)}/houses`)
-      .then(
-        response =>
-          // console.log('house-photos-response', response.data); // eslint-disable-line
-          response.data,
-      )
-      .catch(error =>
-        error.response.data,
-      );
-    const json = await Promise.props({
-      // wait for all promises to resolve
-      house,
-      images,
-    });
-    if (json.house.error) {
-      return json.house.error;
-    }
-    return json;
-  } catch (error) {
-    return { error: { status: 100, detail: "Server undermaintain"} };
-  }
-};
-
 export const create = async (authorization, body) => {
   try {
     client.defaults.headers['Authorization'] = `${authorization}`;
@@ -86,6 +49,5 @@ export const remove = async (authorization, id) => {
 
 export default {
   remove,
-  detail,
   create,
 };

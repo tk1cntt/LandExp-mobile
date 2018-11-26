@@ -10,7 +10,7 @@ class SearchHeader extends React.Component {
   static propTypes = {
     cityLabel: PropTypes.string,
     actionType: PropTypes.string,
-    handleOpenModal: PropTypes.func.isRequired,
+    handleOpenModal: PropTypes.func,
   };
 
   static defaultProps = {

@@ -67,7 +67,6 @@ export const init = async authorization => {
 export const update = async (authorization, body) => {
   try {
     client.defaults.headers['Authorization'] = `${authorization}`;
-    console.log(body);
     const data = await client
       .put('/api/houses', body)
       .then(

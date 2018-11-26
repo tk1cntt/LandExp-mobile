@@ -10,6 +10,10 @@ import PostItem from './PostItem';
 import s from './StepOne.css';
 
 class StepOne extends React.Component {
+  static propTypes = {
+    updateHouse: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -232,12 +236,4 @@ class StepOne extends React.Component {
   }
 }
 
-StepOne.defaultProps = {
-  house: {},
-};
-
-StepOne.propTypes = {
-  updateHouse: PropTypes.func.isRequired,
-  house: PropTypes.shape(PropTypes.object),
-};
 export default withStyles(s)(StepOne);

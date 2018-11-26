@@ -32,6 +32,7 @@ import s from './Post.css';
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
 class Post extends React.Component {
+    
   constructor() {
     super();
     this.state = {
@@ -454,18 +455,9 @@ class Post extends React.Component {
   }
 }
 
-Post.defaultProps = {
-  house: {},
-  // heightScreen: 1000,
-  // isAuthenticated: false,
-};
-
 Post.propTypes = {
-  // isAuthenticated: PropTypes.bool,
   updateHouse: PropTypes.func.isRequired,
   createPhoto: PropTypes.func.isRequired,
-  house: PropTypes.shape(PropTypes.object),
-  // heightScreen: PropTypes.number,
 };
 
 const mapState = () => ({

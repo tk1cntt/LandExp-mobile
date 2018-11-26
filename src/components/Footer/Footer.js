@@ -18,7 +18,7 @@ import s from './Footer.css';
 
 class Footer extends React.Component {
   static propTypes = {
-    activeTab: PropTypes.string.isRequired,
+    activeTab: PropTypes.string,
   };
 
   gotoPage = link => {

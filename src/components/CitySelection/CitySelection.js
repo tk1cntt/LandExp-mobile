@@ -8,7 +8,7 @@ import CityFooter from './CityFooter';
 
 class CitySelection extends React.Component {
   static propTypes = {
-    showActionButton: PropTypes.bool.isRequired,
+    showActionButton: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     updateHouse: PropTypes.func.isRequired,
   };

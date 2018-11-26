@@ -40,6 +40,11 @@ import {
   detail as detailPhoto,
   remove as deletePhoto,
 } from './data/rest/images';
+
+import {
+  login,
+  getSession,
+} from './data/rest/session';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
@@ -109,60 +114,33 @@ const graphqlMiddleware = expressGraphQL(req => ({
 
 app.use('/graphql', graphqlMiddleware);
 
-app.get('/api/v1/houses', async (req, res) => {
+app.get('/api/v1/sessions', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
-    const response = await searchHouse(req.query);
+    const response = await getSession(req.headers.authorization);
     res.send(JSON.stringify(response));
   } catch (e) {
     if (__DEV__) {
       // eslint-disable-next-line no-console
       console.log(e);
     }
-    res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
   }
+  createPhoto
 });
 
-app.get('/api/v1/houses/init', async (req, res) => {
-  // console.log('header',  req);
+app.post('/api/v1/login', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
-    const response = await initHouse(req.headers.authorization);
+    console.log("login", req.body);
+    const response = await login(req.body.username, req.body.password);
     res.send(JSON.stringify(response));
   } catch (e) {
     if (__DEV__) {
       // eslint-disable-next-line no-console
       console.log(e);
     }
-    res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
-  }
-});
-
-app.get('/api/v1/houses/:id', async (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  try {
-    const response = await detailHouse(req.params.id);
-    res.send(JSON.stringify(response));
-  } catch (e) {
-    if (__DEV__) {
-      // eslint-disable-next-line no-console
-      console.log(e);
-    }
-    res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
-  }
-});
-
-app.post('/api/v1/images', async (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  try {
-    const response = await createPhoto(req.headers.authorization, req.body);
-    res.send(JSON.stringify(response));
-  } catch (e) {
-    if (__DEV__) {
-      // eslint-disable-next-line no-console
-      console.log(e);
-    }
-    res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
   }
   createPhoto
 });
@@ -177,7 +155,80 @@ app.put('/api/v1/houses', async (req, res) => {
       // eslint-disable-next-line no-console
       console.log(e);
     }
-    res.send(JSON.stringify('{ code: 100, message: "Server undermaintain"}'));
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+  createPhoto
+});
+
+app.get('/api/v1/houses', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await searchHouse(req.query);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+});
+
+app.get('/api/v1/houses/init', async (req, res) => {
+  // console.log('header',  req);
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await initHouse(req.headers.authorization);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+});
+
+app.get('/api/v1/houses/:id', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await detailHouse(req.params.id);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+});
+
+app.post('/api/v1/images', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await createPhoto(req.headers.authorization, req.body);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+  createPhoto
+});
+
+app.put('/api/v1/houses', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await updateHouse(req.headers.authorization, req.body);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
   }
   createPhoto
 });

@@ -9,18 +9,19 @@ export default function getSession() {
     });
     const token = getState().auth.auth && getState().auth.auth.id_token;
     try {
-      const queryResponse = await client.query(
-        {
-          query: mutateGetSession,
-          variables: { token },
+      const response = await fetch('/api/v1/sessions', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          Authorization: `Bearer ${token}`,
         },
-        { cache: false },
-      );
-      const data = queryResponse.data.getSession;
-      if (data.error) {
+      });
+      const data = await response.json();
+      console.log(data);
+      if (!token) {
         dispatch({
           type: SESSION_ERROR,
-          payload: data.error,
+          payload: data,
         });
       } else {
         dispatch({

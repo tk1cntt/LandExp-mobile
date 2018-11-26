@@ -33,7 +33,7 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { usernameOrEmail, password } = this.state;
-    this.props.login({ usernameOrEmail, password });
+    this.props.login({ username:usernameOrEmail, password });
   };
 
   render() {
@@ -105,7 +105,7 @@ class Login extends React.Component {
 }
 
 Login.defaultProps = {
-  // heightScreen: 1000,
+  loading: false,
   isAuthenticated: false,
 };
 
@@ -113,7 +113,6 @@ Login.propTypes = {
   loading: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  // heightScreen: PropTypes.number,
 };
 
 const mapState = state => ({
