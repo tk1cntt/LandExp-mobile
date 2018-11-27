@@ -26,7 +26,9 @@ export default function login(loginEntity) {
         });
       }
       window.localStorage.setItem('token', data.id_token);
-      history.goBack();
+      const locationPath = getState().locationPath.locationPath;
+      const gotoPrevious = locationPath[locationPath.length - 2];
+      gotoPrevious ? history.push(gotoPrevious) : history.goBack();
     } catch (error) {
       dispatch({
         type: LOGIN_ERROR,
