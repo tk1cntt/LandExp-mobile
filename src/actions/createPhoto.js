@@ -20,8 +20,6 @@ export default function createPhoto(photo) {
         body: JSON.stringify(photo),
       });
       const json = await response.json();
-      console.log(json);
-      //*
       if (json.status) {
         dispatch({
           type: CREATE_PHOTO_ERROR,

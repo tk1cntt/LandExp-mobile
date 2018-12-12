@@ -1,7 +1,7 @@
 import { SESSION_START, SESSION_SUCCESS, SESSION_ERROR } from '../constants';
 
 export default function getSession() {
-  return async (dispatch, getState, { client }) => {
+  return async (dispatch, getState) => {
     dispatch({
       type: SESSION_START,
     });
@@ -15,7 +15,6 @@ export default function getSession() {
         },
       });
       const data = await response.json();
-      console.log(data);
       if (!token) {
         dispatch({
           type: SESSION_ERROR,

@@ -22,7 +22,7 @@ class ArticleList extends React.Component {
         <a
           className={cx(s.hListItem, s.ib)}
           data-key={2099224}
-          href={`/bat-dong-san/${encodeId(article.id)}/${article.link}`}
+          href={`/tin-tuc/${encodeId(article.id)}/${article.link}`}
         >
           <div className={cx(s.imageSection, s.ib)}>
             <img

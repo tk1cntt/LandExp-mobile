@@ -67,6 +67,10 @@ const routes = {
       load: () => import(/* webpackChunkName: 'detail' */ './detail'),
     },
     {
+      path: '/tin-tuc/:id/:link',
+      load: () => import(/* webpackChunkName: 'article' */ './article'),
+    },
+    {
       path: '/tim-kiem',
       load: () => import(/* webpackChunkName: 'search' */ './search'),
     },
