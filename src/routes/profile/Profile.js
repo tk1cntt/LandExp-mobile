@@ -60,7 +60,7 @@ class Profile extends React.Component {
         <div className="flex-container">
           <Flex>
             <Flex.Item>
-              <div className="breadcrumb">Account center</div>
+              <div className="breadcrumb">Tài khoản của bạn</div>
             </Flex.Item>
           </Flex>
           <Menu>

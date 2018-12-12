@@ -829,6 +829,9 @@ a:hover {
 
 /* Detail page end */
 
+.app-container .flex-container {
+  background-color: #fff;
+}
 
 /* Footer page */
 

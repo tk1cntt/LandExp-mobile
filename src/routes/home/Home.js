@@ -105,7 +105,7 @@ class Home extends React.Component {
         <div className="flex-container dummy-footer">
           <HorizontalList
             houseList={this.props.houseList}
-            title="Tin nhà đất tương tự"
+            title="Tin nhà đất"
             subtitle="Dựa trên các tin nhà đất bạn đã xem"
           />
         </div>
