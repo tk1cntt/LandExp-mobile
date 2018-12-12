@@ -37,9 +37,13 @@ import {
 } from './data/rest/houses';
 
 import {
+  detail as detailArticle,
+  top as topArticle,
+} from './data/rest/articles';
+
+import {
   create as createPhoto,
-  detail as detailPhoto,
-  remove as deletePhoto,
+  //  remove as deletePhoto,
 } from './data/rest/images';
 
 import { login, getSession } from './data/rest/session';
@@ -196,10 +200,38 @@ app.get('/api/v1/houses/top', async (req, res) => {
   }
 });
 
+app.get('/api/v1/articles/top', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await topArticle();
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+});
+
 app.get('/api/v1/houses/:id', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
     const response = await detailHouse(req.params.id);
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+});
+
+app.get('/api/v1/articles/:id', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await detailArticle(req.params.id);
     res.send(JSON.stringify(response));
   } catch (e) {
     if (__DEV__) {

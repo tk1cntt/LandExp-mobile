@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { getLandType, getMoney, encodeId } from 'constants/utils';
+import {
+  SERVER_API_URL,
+  getLandType,
+  getMoney,
+  encodeId,
+} from 'constants/utils';
 
 import history from '../../history';
 import s from './HorizontalList.css';
@@ -28,9 +33,9 @@ class HorizontalList extends React.Component {
           <div className={cx(s.imageSection, s.ib)}>
             <img
               className={cx(s.listImg)}
-              style={{
-                backgroundImage: 'url("/images/item-1.png")',
-              }}
+              src={`${SERVER_API_URL}/api/house-photos/${encodeId(
+                house.id,
+              )}/thumbnails.jpg`}
               alt={house.title}
             />
           </div>

@@ -17,10 +17,6 @@ import history from '../../history';
 import s from './Footer.css';
 
 class Footer extends React.Component {
-  static propTypes = {
-    activeTab: PropTypes.string,
-  };
-
   gotoPage = link => {
     history.push(link);
   };
@@ -48,11 +44,11 @@ class Footer extends React.Component {
             <Col span={8} className={favoritesStyle}>
               <Icon
                 style={{ fontSize: 23 }}
-                type="heart"
+                type="edit"
                 // eslint-disable-next-line
                 onClick={this.gotoPage.bind(this, '/tai-khoan/dang-tin')}
               />
-              <div className={s.text}>Yêu thích</div>
+              <div className={s.text}>Đăng tin</div>
             </Col>
             <Col span={8} className={profileStyle}>
               <Icon

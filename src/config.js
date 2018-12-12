@@ -29,8 +29,8 @@ module.exports = {
     // API URL to be used in the server-side code
     serverUrl:
       process.env.API_SERVER_URL ||
-      `http://localhost:${process.env.PORT || 3000}`,
-    remoteUrl: 'http://api.tinvang.com.vn',
+      `https://localhost:${process.env.PORT || 3000}`,
+    remoteUrl: 'https://api.tinvang.com.vn',
     // remoteUrl: 'http://localhost:8080',
   },
 

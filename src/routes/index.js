@@ -31,7 +31,7 @@ const routes = {
     {
       path: '/tai-khoan/thong-tin-ca-nhan',
       protected: true,
-      load: () => import(/* webpackChunkName: 'profile' */ './home'),
+      load: () => import(/* webpackChunkName: 'profile' */ './profile'),
     },
     {
       path: '/tai-khoan/tin-yeu-thich',

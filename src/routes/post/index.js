@@ -10,9 +10,7 @@
 import React from 'react';
 import Post from './Post';
 import Layout from '../../components/Layout';
-import {
-  SET_LOCATION_PATH_VARIABLE,
-} from '../../constants';
+import { SET_LOCATION_PATH_VARIABLE } from '../../constants';
 
 async function action({ store, pathname, fetch }) {
   const state = store.getState();

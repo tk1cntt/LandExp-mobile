@@ -8,7 +8,9 @@ import { NoticeBar } from 'antd-mobile';
 import ReactModal from 'react-modal';
 
 import getTop from 'actions/getTop';
+import getArticleTop from 'actions/getArticleTop';
 import HorizontalList from 'components/HorizontalList';
+import ArticleList from 'components/ArticleList';
 import SearchHeader from 'components/SearchHeader';
 import Footer from 'components/Footer';
 // import Tag from 'components/Tag';
@@ -27,6 +29,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.props.getTop(1, 8);
+    this.props.getArticleTop(1, 8);
     // eslint-disable-next-line
     const cityLabel =
       typeof window !== 'undefined'
@@ -94,7 +97,11 @@ class Home extends React.Component {
           Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
           trong tháng 8/2018
         </NoticeBar>
-
+        <ArticleList
+          articleList={this.props.articleList}
+          title="Tin tức nổi bật"
+          subtitle="Thông tin mới nhất về nhà đất"
+        />
         <div className="flex-container dummy-footer">
           <HorizontalList
             houseList={this.props.houseList}
@@ -121,25 +128,30 @@ class Home extends React.Component {
 
 Home.defaultProps = {
   houseList: [],
+  articleList: [],
   // heightScreen: 1000,
   // isAuthenticated: false,
 };
 
 Home.propTypes = {
   getTop: PropTypes.func.isRequired,
+  getArticleTop: PropTypes.func.isRequired,
   // isAuthenticated: PropTypes.bool,
   // heightScreen: PropTypes.number,
   houseList: PropTypes.arrayOf(PropTypes.shape),
+  articleList: PropTypes.arrayOf(PropTypes.shape),
 };
 
 const mapState = state => ({
   // isAuthenticated: state.session.isAuthenticated,
   // heightScreen: state.setting.heightScreen,
   houseList: state.top.top,
+  articleList: state.article.top,
 });
 
 const mapDispatch = {
   getTop,
+  getArticleTop,
 };
 
 export default connect(

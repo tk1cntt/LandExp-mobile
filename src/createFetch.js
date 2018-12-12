@@ -20,6 +20,8 @@ type Options = {
   graphql?: graphqType,
 };
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
 /**
  * Creates a wrapper function around the HTML5 Fetch API that provides
  * default arguments to fetch(...) and is intended to reduce the amount
