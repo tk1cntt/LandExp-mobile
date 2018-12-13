@@ -7,14 +7,14 @@
 }
 
 .hListItem {
-  width: 170px;
+  width: 97%;
   position: relative;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .hListItem .listImg {
-  width: 170px;
+  width: 100%;
   height: 130px;
 }
 
