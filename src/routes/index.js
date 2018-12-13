@@ -39,6 +39,11 @@ const routes = {
       load: () => import(/* webpackChunkName: 'like' */ './home'),
     },
     {
+      path: '/tai-khoan/danh-sach-tin-dang',
+      protected: true,
+      load: () => import(/* webpackChunkName: 'myhome' */ './myhome'),
+    },
+    {
       path: '/dang-nhap',
       load: () => import(/* webpackChunkName: 'login' */ './login'),
     },

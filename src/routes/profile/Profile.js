@@ -14,6 +14,7 @@ import { Flex, NavBar } from 'antd-mobile';
 import { Menu, Icon } from 'antd';
 
 import Logo from 'components/Logo';
+import Link from 'components/Link';
 
 import history from '../../history';
 import s from './Profile.css';
@@ -65,8 +66,10 @@ class Profile extends React.Component {
           </Flex>
           <Menu>
             <Menu.Item>
-              <Icon type="book" />
-              <span>Tin đăng của bạn</span>
+              <Link to={'/tai-khoan/danh-sach-tin-dang'}>
+                <Icon type="book" />
+                <span>Tin đăng của bạn</span>
+              </Link>
             </Menu.Item>
             <Menu.Item>
               <Icon type="heart" />
