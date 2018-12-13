@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Flex, NavBar } from 'antd-mobile';
 import { Menu, Icon } from 'antd';

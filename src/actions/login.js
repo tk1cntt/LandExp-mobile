@@ -28,9 +28,7 @@ export default function login(loginEntity) {
       window.localStorage.setItem('token', data.id_token);
       const locationPath = getState().locationPath.locationPath;
       const gotoPrevious = locationPath[locationPath.length - 2];
-      gotoPrevious === '/tai-khoan/dang-tin'
-        ? history.push(gotoPrevious)
-        : history.goBack();
+      gotoPrevious ? history.push(gotoPrevious) : history.goBack();
     } catch (error) {
       dispatch({
         type: LOGIN_ERROR,

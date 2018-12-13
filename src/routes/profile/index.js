@@ -10,10 +10,20 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import Profile from './Profile';
+import { SET_LOCATION_PATH_VARIABLE } from '../../constants';
 
 const title = 'User profile';
 
-function action() {
+function action({ store, pathname }) {
+  const state = store.getState();
+  if (!state.auth.auth) {
+    // Save path name to store
+    store.dispatch({
+      type: SET_LOCATION_PATH_VARIABLE,
+      locationPath: pathname,
+    });
+    return { redirect: '/dang-nhap', from: pathname }; // <== where the redirect come from?
+  }
   return {
     chunks: ['profile'],
     title,

@@ -12,6 +12,7 @@ import s from './StepOne.css';
 class StepOne extends React.Component {
   static propTypes = {
     updateHouse: PropTypes.func.isRequired,
+    house: PropTypes.shape(PropTypes.object),
   };
 
   constructor(props) {

@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import NumberFormat from 'react-number-format';
 import { Input, Radio } from 'antd';
-import { Picker, List, InputItem, CheckboxItem } from 'antd-mobile';
+import { Picker, List, InputItem } from 'antd-mobile';
 
 import { getPresent, getSaleType } from 'constants/utils';
 import s from './StepThree.css';
 import jsonData from './cities.json';
-
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
 
 class StepThree extends React.Component {
   static propTypes = {
@@ -22,10 +19,7 @@ class StepThree extends React.Component {
     this.state = {
       cityId: null,
       money: null,
-      locations: [],
-      cities: [],
       districts: [],
-      columnNumber: 1,
     };
   }
 
@@ -222,7 +216,11 @@ class StepThree extends React.Component {
 
   onChangeMobile = value => {
     const reg = /^\d{1,11}$/;
-    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+    if (
+      (!Number.isNaN(value) && reg.test(value)) ||
+      value === '' ||
+      value === '-'
+    ) {
       this.setState({
         mobile: value,
       });

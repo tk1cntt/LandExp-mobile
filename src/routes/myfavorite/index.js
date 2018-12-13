@@ -11,8 +11,18 @@ import React from 'react';
 import MyFavorite from '../myhome/MyHome';
 import Maintain from '../maintain/Maintain';
 import Layout from '../../components/Layout';
+import { SET_LOCATION_PATH_VARIABLE } from '../../constants';
 
-async function action() {
+async function action({ store, pathname, fetch }) {
+  const state = store.getState();
+  if (!state.auth.auth) {
+    // Save path name to store
+    store.dispatch({
+      type: SET_LOCATION_PATH_VARIABLE,
+      locationPath: pathname,
+    });
+    return { redirect: '/dang-nhap', from: pathname }; // <== where the redirect come from?
+  }
   const component = (
     <Layout>
       <MyFavorite />

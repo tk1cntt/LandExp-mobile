@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Row, Col } from 'antd';
 import {
   Checkbox,
   ImagePicker,
@@ -20,19 +19,6 @@ import {
 import s from './StepThree.css';
 
 const CheckboxItem = Checkbox.CheckboxItem;
-
-const moneyKeyboardWrapProps = {};
-/*
-if (!window) {
-  const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
-  if (isIPhone) {
-    moneyKeyboardWrapProps = {
-      onTouchStart: e => e.preventDefault(),
-    };
-  }
-}
-*/
-const data = [];
 
 class StepTwo extends React.Component {
   constructor(props) {
@@ -163,10 +149,10 @@ class StepTwo extends React.Component {
     // const file = files.slice(-1).pop();
     switch (type) {
       case 'add':
-        console.log('Add image', files);
+        // console.log('Add image', files);
         break;
       case 'remove':
-        console.log('Remove image', this.state.files[index]);
+        // console.log('Remove image', this.state.files[index]);
         break;
     }
     this.setState({
@@ -178,7 +164,7 @@ class StepTwo extends React.Component {
   };
 
   render() {
-    console.log(this.props.house);
+    // console.log(this.props.house);
     const directions = [
       {
         label: 'Đông',
