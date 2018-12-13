@@ -8,19 +8,19 @@
  */
 
 import React from 'react';
-import MyHome from './MyHome';
+import MyFavorite from '../myhome/MyHome';
 import Maintain from '../maintain/Maintain';
 import Layout from '../../components/Layout';
 
 async function action() {
   const component = (
     <Layout>
-      <MyHome />
+      <MyFavorite />
     </Layout>
   );
   return {
-    title: 'My home',
-    chunks: ['myhome'],
+    title: 'My favorite',
+    chunks: ['myfavorite'],
     component,
   };
 }

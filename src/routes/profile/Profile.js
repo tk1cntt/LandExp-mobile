@@ -66,7 +66,7 @@ class Profile extends React.Component {
           </Flex>
           <Menu>
             <Menu.Item>
-              <Link to={'/tai-khoan/danh-sach-tin-dang'}>
+              <Link to="/tai-khoan/danh-sach-tin-dang">
                 <Icon type="book" />
                 <span>Tin đăng của bạn</span>
               </Link>

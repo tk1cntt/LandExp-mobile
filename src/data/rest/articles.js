@@ -30,7 +30,20 @@ export const top = async () => {
   }
 };
 
+export const list = async (page = 1, size = 10) => {
+  try {
+    const article = client
+      .get(`/api/articles/top?page=${page}&size=${size}`)
+      .then(response => response.data)
+      .catch(error => error.response.data);
+    return article;
+  } catch (error) {
+    return { error: { status: 100, detail: 'Server undermaintain' } };
+  }
+};
+
 export default {
   detail,
   top,
+  list,
 };

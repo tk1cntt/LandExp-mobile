@@ -21,6 +21,7 @@
   color: #000;
   margin-bottom: 4px;
   margin-top: 4px;
+  margin-right: 8px;
   font-size: 16px;
   font-weight: 500;
 }
@@ -28,6 +29,26 @@
 .cardSubtitle {
   color: #7f7f7f;
   font-size: 12px;
+  float: right;
+}
+
+.horizontalList {
+  width: auto;
+  height: 120px;
+  margin-top: 12px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+}
+
+.horizontalList a {
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
 }
 
 .ib {
@@ -37,6 +58,8 @@
 
 .hListItem {
   background: #fff;
+  width: 130px;
+  height: 130px;
   padding: 5px;
   position: relative;
   margin-right: 10px;
@@ -46,14 +69,16 @@
 }
 
 .hListItem .listImg {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   display: block;
   background-color: #cdcdcd;
 }
 
 .hListItem .imageSection {
   margin-right: 12px;
+  width: 130px;
+  height: 130px;
 }
 
 .hListItem .imageSection > img {
@@ -62,7 +87,7 @@
 }
 
 .hListItem .contentSection {
-  width: 140px;
+  width: 130px;
 }
 
 .hListItem .contentSection > div {
@@ -121,4 +146,15 @@
   color: #fff;
   text-align: center;
   background: url(/images/rent_bg.png) no-repeat;
+}
+
+.tag {
+  position: absolute;
+  bottom: 10px;
+  z-index: 1;
+  width: 130px;
+  text-align: justify;
+  padding: 5px;
+  height: 33%;
+  overflow: hidden;
 }

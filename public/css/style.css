@@ -6,7 +6,7 @@ body {
   font-weight: 300;
   font-size: 14px;
   color: #454545;
-  background-color: #fff;
+  background-color: #fff !important;
   min-width: 320px;
 }
 

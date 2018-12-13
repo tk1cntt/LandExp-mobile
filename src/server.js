@@ -39,6 +39,7 @@ import {
 import {
   detail as detailArticle,
   top as topArticle,
+  list as listArticle,
 } from './data/rest/articles';
 
 import {
@@ -204,6 +205,20 @@ app.get('/api/v1/articles/top', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
     const response = await topArticle();
+    res.send(JSON.stringify(response));
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+    res.send(JSON.stringify('{ status: 100, detail: "Server undermaintain"}'));
+  }
+});
+
+app.get('/api/v1/articles', async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  try {
+    const response = await listArticle();
     res.send(JSON.stringify(response));
   } catch (e) {
     if (__DEV__) {

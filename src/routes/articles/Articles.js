@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import cx from 'classnames';
-
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Flex, Carousel, NavBar, WhiteSpace } from 'antd-mobile';
 import { Breadcrumb, Tabs, Icon } from 'antd';
 import ReactModal from 'react-modal';
@@ -17,25 +16,20 @@ import {
   humanize,
   SERVER_API_URL,
 } from 'constants/utils';
-import getTop from 'actions/getTop';
 import ContactSeller from 'components/ContactSeller';
 import Logo from 'components/Logo';
 
 import history from '../../history';
-import s from './MyHome.css';
+import s from './Articles.css';
 
 const TabPane = Tabs.TabPane; // eslint-disable-line
 
-class MyHome extends React.Component {
+class Articles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
     };
-  }
-
-  componentDidMount() {
-    this.props.getTop(1, 8);
   }
 
   onOpenChange = () => {
@@ -51,51 +45,31 @@ class MyHome extends React.Component {
     history.push(link);
   };
 
-  houseListForm() {
-    const houstListDom = this.props.houseList.map(house => (
-      <div key={`entity-${house.id}`} className={cx(s.ib)}>
+  articleListForm() {
+    const articleListDom = this.props.articleList.map(article => (
+      <div key={`entity-${article.id}`} className={cx(s.ib)}>
         <a
           className={cx(s.hListItem, s.ib)}
           data-key={2099224}
-          href={`/bat-dong-san/${encodeId(house.id)}/${house.link}`}
+          href={`/tin-tuc/${encodeId(article.id)}/${article.link}`}
         >
           <div className={cx(s.imageSection, s.ib)}>
             <img
               className={cx(s.listImg)}
-              src={`${SERVER_API_URL}/api/house-photos/${encodeId(
-                house.id,
-              )}/thumbnails.jpg`}
-              alt={house.title}
-              width="130"
-              height="130"
+              src={`${SERVER_API_URL}/api/articles/${encodeId(
+                article.id,
+              )}/avatar/${article.link}-${encodeId(article.id)}.jpg`}
+              width="100"
+              height="100"
             />
-          </div>
-          <div className={cx(s.contentSection, s.ib)}>
-            <div className={cx(s.listHeading)}>
-              {getLandType(house.landType)}
-            </div>
-            <div className={cx(s.listSubheading)}>{house.projectName}</div>
-            <div className={cx(s.listLocality)}>
-              {house.districtType} {house.districtName}
-            </div>
-            {house.actionType === 'FOR_SELL' ? (
-              <div className={cx(s.typeSell)}>BÁN</div>
-            ) : (
-              <div className={cx(s.typeRent)}>CHO THUÊ</div>
-            )}
-            <div className={cx(s.listContent)}>
-              <span
-                className={cx(s.listPrice)}
-                dangerouslySetInnerHTML={{
-                  __html: getMoney(house.money, house.actionType),
-                }}
-              />
+            <div className={s.tag}>
+              <p>{article.title}</p>
             </div>
           </div>
         </a>
       </div>
     ));
-    return houstListDom;
+    return articleListDom;
   }
 
   render() {
@@ -120,44 +94,36 @@ class MyHome extends React.Component {
           <Flex>
             <Flex.Item>
               <Breadcrumb className="breadcrumb">
-                <Breadcrumb.Item href="/">Tài khoản</Breadcrumb.Item>
-                <Breadcrumb.Item href="/tin-tuc">
-                  Tin đăng của bạn
-                </Breadcrumb.Item>
+                <Breadcrumb.Item href="/">Trang chủ</Breadcrumb.Item>
+                <Breadcrumb.Item href="/tin-tuc">Tin tức</Breadcrumb.Item>
               </Breadcrumb>
             </Flex.Item>
           </Flex>
           <WhiteSpace size="md" />
-          {this.houseListForm()}
+          <div className={s.container}>{this.articleListForm()}</div>
         </div>
       </div>
     );
   }
 }
 
-MyHome.defaultProps = {
-  houseList: [],
+Articles.defaultProps = {
   // isAuthenticated: false,
 };
 
-MyHome.propTypes = {
-  getTop: PropTypes.func.isRequired,
+Articles.propTypes = {
   // isAuthenticated: PropTypes.bool,
-  houseList: PropTypes.arrayOf(PropTypes.shape),
 };
 
-const mapState = state => ({
+const mapState = () => ({
   // isAuthenticated: state.session.isAuthenticated,
-  houseList: state.top.top,
 });
 
-const mapDispatch = {
-  getTop,
-};
+const mapDispatch = {};
 
 export default withStyles(s)(
   connect(
     mapState,
     mapDispatch,
-  )(MyHome),
+  )(Articles),
 );

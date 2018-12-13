@@ -79,7 +79,8 @@ class Detail extends React.Component {
             <WhiteSpace size="md" />
             <Flex>
               <Flex.Item>
-                <img style={{ textAlign: 'center' }}
+                <img
+                  style={{ textAlign: 'center' }}
                   src={`${SERVER_API_URL}/api/articles/${encodeId(
                     this.props.articleEntity.id,
                   )}/avatar/${this.props.articleEntity.link}-${encodeId(

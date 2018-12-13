@@ -36,7 +36,7 @@ const routes = {
     {
       path: '/tai-khoan/tin-yeu-thich',
       protected: true,
-      load: () => import(/* webpackChunkName: 'like' */ './home'),
+      load: () => import(/* webpackChunkName: 'myfavorite' */ './myfavorite'),
     },
     {
       path: '/tai-khoan/danh-sach-tin-dang',
@@ -74,6 +74,10 @@ const routes = {
     {
       path: '/tin-tuc/:id/:link',
       load: () => import(/* webpackChunkName: 'article' */ './article'),
+    },
+    {
+      path: '/tin-tuc',
+      load: () => import(/* webpackChunkName: 'articles' */ './articles'),
     },
     {
       path: '/tim-kiem',

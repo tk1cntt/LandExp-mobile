@@ -4,6 +4,8 @@ import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { SERVER_API_URL, encodeId } from 'constants/utils';
 
+import Link from 'components/Link';
+
 import history from '../../history';
 import s from './ArticleList.css';
 
@@ -47,8 +49,12 @@ class ArticleList extends React.Component {
         <div className={s.title}>
           <div className={cx(s.hlTitle, s.ib)}>
             <div>
-              <div className={s.cardTitle}>{this.props.title}</div>
-              <div className={s.cardSubtitle}>Xem thêm</div>
+              <div className={s.cardTitle}>
+                {this.props.title}
+                <div className={s.cardSubtitle}>
+                  <Link to="/tin-tuc">Xem thêm</Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
