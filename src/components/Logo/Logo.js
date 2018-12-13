@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'antd';
 import history from '../../history';
 
-class Logo extends React.Component {
+export default class Logo extends React.Component {
   gotoPage = link => {
     history.push(link);
   };
@@ -12,7 +12,7 @@ class Logo extends React.Component {
       <div
         className="logo"
         onClick={() => this.gotoPage('/')}
-        onKeyPress={() => {}}
+        // onKeyPress={() => {}}
         tabIndex={0}
         role="button"
       >
@@ -22,5 +22,3 @@ class Logo extends React.Component {
     );
   }
 }
-
-export default Logo;

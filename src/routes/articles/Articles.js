@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Flex, Carousel, NavBar, WhiteSpace } from 'antd-mobile';
-import { Breadcrumb, Tabs, Icon } from 'antd';
+import { Row, Col, Breadcrumb, Tabs, Icon } from 'antd';
 import ReactModal from 'react-modal';
 
 import {
@@ -47,7 +47,7 @@ class Articles extends React.Component {
 
   articleListForm() {
     const articleListDom = this.props.articleList.map(article => (
-      <div key={`entity-${article.id}`} className={cx(s.ib)}>
+      <Col span={12} key={`entity-${article.id}`} className={cx(s.ib)}>
         <a
           className={cx(s.hListItem, s.ib)}
           data-key={2099224}
@@ -59,15 +59,17 @@ class Articles extends React.Component {
               src={`${SERVER_API_URL}/api/articles/${encodeId(
                 article.id,
               )}/avatar/${article.link}-${encodeId(article.id)}.jpg`}
-              width="100"
-              height="100"
+              width="170"
+              height="130"
             />
-            <div className={s.tag}>
-              <p>{article.title}</p>
+            <div className={s.caption}>
+              <div className={s.tag}>
+                <p>{article.title}</p>
+              </div>
             </div>
           </div>
         </a>
-      </div>
+      </Col>
     ));
     return articleListDom;
   }

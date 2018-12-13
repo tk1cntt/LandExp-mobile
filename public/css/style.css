@@ -25,6 +25,10 @@ a:hover {
   justify-content: space-around;
 }
 
+.anticon {
+  vertical-align: 3px !important;
+}
+
 .popup {
   position: absolute;
   top: 0;

@@ -33,8 +33,10 @@ class ArticleList extends React.Component {
                 article.id,
               )}/avatar/${article.link}-${encodeId(article.id)}.jpg`}
             />
-            <div className={s.tag}>
-              <p>{article.title}</p>
+            <div className={s.caption}>
+              <div className={s.tag}>
+                <p>{article.title}</p>
+              </div>
             </div>
           </div>
         </a>

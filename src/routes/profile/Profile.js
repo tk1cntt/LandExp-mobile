@@ -72,8 +72,10 @@ class Profile extends React.Component {
               </Link>
             </Menu.Item>
             <Menu.Item>
-              <Icon type="heart" />
-              <span>Tin yêu thích</span>
+              <Link to="/tai-khoan/tin-yeu-thich">
+                <Icon type="heart" />
+                <span>Tin yêu thích</span>
+              </Link>
             </Menu.Item>
             <Menu.Item>
               <Icon type="setting" />
