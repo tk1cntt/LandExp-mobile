@@ -61,10 +61,6 @@
   background-size: cover;
 }
 
-.hListItem .contentSection {
-  width: 250px;
-}
-
 .hListItem .contentSection > div {
   overflow: hidden;
   text-overflow: ellipsis;
