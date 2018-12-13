@@ -16,8 +16,8 @@ export default class Logo extends React.Component {
         tabIndex={0}
         role="button"
       >
-        <Icon type="home" /> Land
-        <font color="red">Exp</font>
+        <Icon type="home" /> Tin
+        <font color="red">Vang</font>
       </div>
     );
   }
