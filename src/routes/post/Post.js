@@ -191,7 +191,7 @@ class Post extends React.Component {
     const actionTypeForm = actionTypeValue ? null : (
       <Row key="action-type-value-alert">
         <Col md="12">
-          <Alert type="error" message="Bạn phải chọn một hình thức bán" />
+          <Alert type="error" message="Bạn phải chọn nhu cầu của bạn" />
         </Col>
       </Row>
     );
@@ -420,7 +420,7 @@ class Post extends React.Component {
             </div>
           </div>
           <WhiteSpace size="md" />
-          <div>
+          <div className={s.container}>
             <div className="steps-content">
               {steps[this.state.current].content}
             </div>
