@@ -19,6 +19,7 @@ import {
 import s from './StepThree.css';
 
 const CheckboxItem = Checkbox.CheckboxItem;
+const moneyKeyboardWrapProps = {}:
 
 class StepTwo extends React.Component {
   constructor(props) {
