@@ -11,6 +11,7 @@ import React from 'react';
 import Detail from './Detail';
 import Maintain from '../maintain/Maintain';
 import Layout from '../../components/Layout';
+import {  SERVER_IMAGE_URL, SERVER_URL, stringToSlug } from 'constants/utils';
 
 async function action({ fetch, params }) {
   const response = await fetch(`/api/v1/houses/${params.id}`, {
@@ -26,8 +27,12 @@ async function action({ fetch, params }) {
       <Detail houseEntity={json.house} housePhotoList={json.images} />
     </Layout>
   );
+  const imageUrl = `${SERVER_IMAGE_URL}/api/house-photos/${params.id}/thumbnails.jpg`;
+  const canonicalUrl = `${SERVER_URL}/bat-dong-san/${params.id}/${json.house ? stringToSlug(json.house.title) : ""}`;
   return {
-    title: json.house ? json.house.title : 'Server undermaintain',
+    canonicalUrl,
+    imageUrl,
+    title: `${json.house ? json.house.title : "Tin nha dat"} ${params.id}`,
     chunks: ['detail'],
     component,
   };

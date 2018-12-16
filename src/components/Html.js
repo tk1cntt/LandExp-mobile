@@ -35,7 +35,31 @@ class Html extends React.Component {
   };
 
   render() {
-    const { title, description, styles, scripts, app, children } = this.props;
+    const { title, description, canonicalUrl, imageUrl, styles, scripts, app, children } = this.props;
+    const metaCanonicalUrl = [];
+    if (canonicalUrl) {
+      metaCanonicalUrl.push(
+        <meta property="og:url" content={canonicalUrl} />,
+      );
+      metaCanonicalUrl.push(
+        <link rel="canonical" href={canonicalUrl} />,
+      );
+    }
+    const metaImageUrl = [];
+    if (imageUrl) {
+      metaImageUrl.push(
+        <meta property="og:image" content={imageUrl} />,
+      );
+      metaImageUrl.push(
+        <meta name="twitter:image" content={imageUrl} />,
+      );
+      metaImageUrl.push(
+        <meta name="og:image:width" content="170" />,
+      );
+      metaImageUrl.push(
+        <meta name="og:image:height" content="170" />,
+      );
+    }
     return (
       <html className="no-js" lang="en">
         <head>
@@ -47,6 +71,19 @@ class Html extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
           />
+          <meta property="fb:app_id" content="743549422677962" />
+          <meta property="og:site_name" content="Bất động sản TinVang" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="article:publisher" content="https://www.facebook.com/bdstinvang" />
+          <meta property="article:section" content="Facebook" />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@bdstinvang" />
+          <meta name="twitter:creator" content="@bdstinvang" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          {metaCanonicalUrl}
+          {metaImageUrl}
           {scripts.map(script => (
             <link key={script} rel="preload" href={script} as="script" />
           ))}

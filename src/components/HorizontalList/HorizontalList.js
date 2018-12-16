@@ -7,6 +7,7 @@ import {
   getLandType,
   getMoney,
   encodeId,
+  stringToSlug,
 } from 'constants/utils';
 
 import history from '../../history';
@@ -28,7 +29,7 @@ class HorizontalList extends React.Component {
         <a
           className={cx(s.hListItem, s.ib)}
           data-key={2099224}
-          href={`/bat-dong-san/${encodeId(house.id)}/${house.link}`}
+          href={`/bat-dong-san/${encodeId(house.id)}/${stringToSlug(house.link)}`}
         >
           <div className={cx(s.imageSection, s.ib)}>
             <img

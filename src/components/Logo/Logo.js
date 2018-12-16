@@ -3,15 +3,15 @@ import { Icon } from 'antd';
 import history from '../../history';
 
 export default class Logo extends React.Component {
-  gotoPage = link => {
-    history.push(link);
+  gotoPage = () => {
+    history.push("/");
   };
 
   render() {
     return (
       <div
         className="logo"
-        onClick={() => this.gotoPage('/')}
+        onClick={this.gotoPage}
         // onKeyPress={() => {}}
         tabIndex={0}
         role="button"
