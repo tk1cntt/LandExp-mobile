@@ -94,8 +94,7 @@ class Home extends React.Component {
           handleOpenModal={this.handleOpenModal}
         />
         <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
-          Thông báo: Miễn phí đăng tin cho khách hàng đăng ký mới tài khoản
-          trong tháng 8/2018
+          Thông báo: Miễn phí đăng tin cho khách hàng chia sẻ tin lên facebook
         </NoticeBar>
         <ArticleList
           articleList={this.props.articleList}
